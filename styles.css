@@ -1160,34 +1160,74 @@ p.subtitle {
         display: none !important;
     }
     
-    /* Keep 5 cards: gc-1, gc-2, gc-5, gc-7, gc-8 */
+    /* Wrap the entire glass network absolutely behind the hero text */
     .hero-glass-wrapper {
-        margin-top: 32px;
-        height: auto;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        padding-bottom: 32px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -20px; /* Offset mobile container padding */
+        right: -20px;
+        width: calc(100% + 40px);
+        height: 100%;
+        display: block;
+        z-index: 1; /* Below text, above background */
+        pointer-events: none; /* Let clicks pass through to buttons! */
+        margin-top: 0;
+        padding: 0;
     }
     
-    .hero-glass-wrapper .glass-card {
-        position: relative !important;
-        transform: none !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        max-width: 90vw;
+    .hero-content {
+        position: relative;
+        z-index: 10; /* Ensure text and CTA buttons sit safely ABOVE all floating cards */
     }
 
-    /* Scatter them safely using margins so they never collide */
-    .gc-1 { margin-left: 0; } /* Center */
-    .gc-8 { align-self: flex-start; margin-left: 5%; transform: scale(0.85) !important; transform-origin: left center !important; } 
-    .gc-2 { align-self: flex-end; margin-right: 5%; transform: scale(0.9) !important; transform-origin: right center !important; } 
-    .gc-7 { align-self: flex-start; margin-left: 10%; transform: scale(0.9) !important; transform-origin: left center !important; } 
-    .gc-5 { align-self: flex-end; margin-right: 10%; transform: scale(0.9) !important; transform-origin: right center !important; }
+    .hero-glass-wrapper .glass-card {
+        position: absolute !important;
+        margin: 0 !important;
+        opacity: 0.95;
+    }
+
+    /* Top Center Frame */
+    .gc-1 {
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.8) !important;
+        transform-origin: top center !important;
+    }
+
+    /* Top Left Frame */
+    .gc-8 {
+        top: 20%;
+        left: 0;
+        transform: scale(0.7) !important;
+        transform-origin: left center !important;
+    }
+    
+    /* Top Right Frame */
+    .gc-2 {
+        top: 25%;
+        right: 0;
+        left: auto !important;
+        transform: scale(0.75) !important;
+        transform-origin: right center !important;
+    }
+
+    /* Bottom Left Frame */
+    .gc-7 {
+        top: 60%;
+        left: 2%;
+        transform: scale(0.75) !important;
+        transform-origin: left center !important;
+    }
+    
+    /* Bottom Right Frame */
+    .gc-5 {
+        top: 68%;
+        right: 2%;
+        left: auto !important;
+        transform: scale(0.75) !important;
+        transform-origin: right center !important;
+    }
 
 
     .problem-grid,
