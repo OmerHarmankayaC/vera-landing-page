@@ -959,6 +959,13 @@ p.subtitle {
         margin-top: 40px;
     }
 }
+/* Mobile Elements Hidden on Desktop */
+.mobile-app-header,
+.mobile-menu-overlay,
+.mobile-bottom-bar,
+.mobile-feature-img {
+    display: none;
+}
 
 @media (max-width: 768px) {
     .span-6 {
@@ -992,6 +999,11 @@ p.subtitle {
         transform-origin: top center;
         margin-top: 0;
         height: 200px;
+    }
+
+    /* Hide smaller, cluttered floating cards on mobile */
+    .gc-4, .gc-6, .gc-8, .gc-3 {
+        display: none !important;
     }
 
     .problem-grid,
@@ -1245,6 +1257,15 @@ p.subtitle {
         margin-top: 12px;
         opacity: 1 !important;
         visibility: visible !important;
+    }
+
+    .mobile-feature-img {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        margin: 24px auto 0;
+        border-radius: 12px;
+        box-shadow: var(--shadow-soft-float);
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
