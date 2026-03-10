@@ -1162,18 +1162,32 @@ p.subtitle {
     
     /* Keep 5 cards: gc-1, gc-2, gc-5, gc-7, gc-8 */
     .hero-glass-wrapper {
-        margin-top: 40px; /* Push down BELOW the button */
-        height: 380px;
+        margin-top: 32px;
+        height: auto;
         width: 100%;
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 32px;
     }
     
-    /* We set transform: none for all, and use top/left/right + scale explicitly to scatter them without collision */
-    .gc-1 { top: 10px; left: 50%; transform: translateX(-50%) scale(0.85); z-index: 10; } /* Net worth center */
-    .gc-8 { top: 100px; left: 2%; transform: scale(0.7); z-index: 8; } /* Notification left */
-    .gc-2 { top: 110px; left: auto; right: 2%; transform: scale(0.75); z-index: 9; } /* Spotify right */
-    .gc-7 { top: 210px; left: 5%; transform: scale(0.8); z-index: 11; } /* Goal left bottom */
-    .gc-5 { top: 230px; left: auto; right: 5%; transform: scale(0.8); z-index: 12; } /* Inflation right bottom */
+    .hero-glass-wrapper .glass-card {
+        position: relative !important;
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        max-width: 90vw;
+    }
+
+    /* Scatter them safely using margins so they never collide */
+    .gc-1 { margin-left: 0; } /* Center */
+    .gc-8 { align-self: flex-start; margin-left: 5%; transform: scale(0.85) !important; transform-origin: left center !important; } 
+    .gc-2 { align-self: flex-end; margin-right: 5%; transform: scale(0.9) !important; transform-origin: right center !important; } 
+    .gc-7 { align-self: flex-start; margin-left: 10%; transform: scale(0.9) !important; transform-origin: left center !important; } 
+    .gc-5 { align-self: flex-end; margin-right: 10%; transform: scale(0.9) !important; transform-origin: right center !important; }
 
 
     .problem-grid,
@@ -1410,14 +1424,13 @@ p.subtitle {
         flex: 0 0 85%;
         scroll-snap-align: center;
         opacity: 1 !important; /* Always visible on mobile swipe */
-        padding: 24px 24px 0 24px !important; /* Pad top/sides, make bottom flush for image */
+        padding: 24px !important; /* Full padding */
         background: var(--bg-card) !important;
         border: 1px solid var(--border-light) !important;
         border-radius: 24px !important;
         box-shadow: var(--shadow-soft-float) !important;
         display: flex;
         flex-direction: column;
-        overflow: hidden; /* Ensure the image corners are rounded by the container */
     }
 
     .feature-tab-item.active {
@@ -1446,16 +1459,14 @@ p.subtitle {
 
     .mobile-feature-img {
         display: block !important; 
-        width: calc(100% + 48px); /* Break out of parent padding */
-        margin-left: -24px;
-        margin-right: -24px;
-        margin-top: 24px;
-        margin-bottom: 0;
-        height: 240px; /* Sneak peek height */
-        object-fit: cover;
-        object-position: top center; /* Show the top of the app interface */
+        width: 100%; 
+        max-height: 320px; /* Keep it contained so it doesn't blow up the page height */
+        margin: 24px auto 0 auto; 
+        object-fit: contain; /* NEVER CROP - show the full app interface */
+        border-radius: 12px;
+        background: transparent;
+        box-shadow: none;
         border: none;
-        border-top: 1px solid var(--border-light);
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
