@@ -994,16 +994,13 @@ p.subtitle {
         width: 100%;
     }
 
-    .hero-glass-wrapper {
-        transform: scale(0.5);
-        transform-origin: top center;
-        margin-top: 0;
-        height: 200px;
+    /* Hide all complex floating cards on mobile to reduce clutter completely */
+    .glass-card {
+        display: none !important;
     }
 
-    /* Hide smaller, cluttered floating cards on mobile */
-    .gc-4, .gc-6, .gc-8, .gc-3 {
-        display: none !important;
+    .hero-glass-wrapper {
+        display: none; /* Remove entirely on mobile since cards are gone */
     }
 
     .problem-grid,
@@ -1240,20 +1237,28 @@ p.subtitle {
         flex: 0 0 85%;
         scroll-snap-align: center;
         opacity: 1 !important; /* Always visible on mobile swipe */
-        padding: 24px;
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border-light) !important;
-        box-shadow: var(--shadow-soft-float) !important;
-        border-radius: var(--radius-card-inner);
+        padding: 0; /* Remove padding to make it a full-bleed app card */
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .feature-tab-item.active {
-        box-shadow: var(--shadow-large-float) !important;
-        border-color: var(--text-primary) !important;
+        box-shadow: none !important;
+        border-color: transparent !important;
+    }
+
+    /* Mobile Text Container for Feature Tabs */
+    .mobile-feature-text {
+        padding: 24px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: 24px 24px 0 0;
+        box-shadow: var(--shadow-soft-float);
     }
 
     .feature-tab-desc {
-        max-height: none !important; /* Always show description on mobile cards */
+        max-height: none !important;
         margin-top: 12px;
         opacity: 1 !important;
         visibility: visible !important;
@@ -1262,10 +1267,12 @@ p.subtitle {
     .mobile-feature-img {
         display: block;
         width: 100%;
-        max-width: 280px;
-        margin: 24px auto 0;
-        border-radius: 12px;
+        max-width: 100%; /* Go full width of the card */
+        margin: 0; /* Attach directly below text */
+        border-radius: 0 0 24px 24px; /* Round bottom corners */
         box-shadow: var(--shadow-soft-float);
+        border: 1px solid var(--border-light);
+        border-top: none;
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
