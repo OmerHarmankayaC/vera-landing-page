@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vera.finance/sitemap.xml
