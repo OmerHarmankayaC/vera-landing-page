@@ -1160,77 +1160,34 @@ p.subtitle {
         display: none !important;
     }
     
-    /* Wrap the entire glass network absolutely behind the hero text */
+    /* Keep 5 cards: gc-1, gc-2, gc-5, gc-7, gc-8 */
     .hero-glass-wrapper {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: -20px; /* Offset mobile container padding */
-        right: -20px;
-        width: calc(100% + 40px);
-        height: 100%;
-        display: block;
-        z-index: 1; /* Below text, above background */
-        pointer-events: none; /* Let clicks pass through to buttons! */
-        margin-top: 0;
-        padding: 0;
+        margin-top: 32px;
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 32px;
     }
     
-    .hero-content {
-        position: relative;
-        z-index: 10; /* Ensure text and CTA buttons sit safely ABOVE all floating cards */
-    }
-
     .hero-glass-wrapper .glass-card {
-        position: absolute !important;
-        margin: 0 !important;
-        opacity: 0.95;
-    }
-
-    /* Top Center Frame */
-    .gc-1 {
-        top: -60px; /* Pull way up */
-        left: 50%;
-        transform: translateX(-50%) scale(0.65) !important;
-        transform-origin: top center !important;
-        opacity: 0.8;
-    }
-
-    /* Top Left Frame */
-    .gc-8 {
-        top: 5%;
-        left: -10px;
-        transform: scale(0.6) !important;
-        transform-origin: left top !important;
-        opacity: 0.7;
-    }
-    
-    /* Top Right Frame */
-    .gc-2 {
-        top: 8%;
-        right: -10px;
+        position: relative !important;
+        transform: none !important;
         left: auto !important;
-        transform: scale(0.65) !important;
-        transform-origin: right top !important;
-        opacity: 0.7;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        max-width: 90vw;
     }
 
-    /* Bottom Left Frame */
-    .gc-7 {
-        top: 75%; /* Push way down below buttons */
-        left: -5px;
-        transform: scale(0.65) !important;
-        transform-origin: left bottom !important;
-    }
-    
-    /* Bottom Right Frame */
-    .gc-5 {
-        top: 82%; /* Push way down below buttons */
-        right: -5px;
-        left: auto !important;
-        transform: scale(0.65) !important;
-        transform-origin: right bottom !important;
-    }
+    /* Scatter them safely using margins so they never collide */
+    .gc-1 { margin-left: 0; } /* Center */
+    .gc-8 { align-self: flex-start; margin-left: 5%; transform: scale(0.85) !important; transform-origin: left center !important; } 
+    .gc-2 { align-self: flex-end; margin-right: 5%; transform: scale(0.9) !important; transform-origin: right center !important; } 
+    .gc-7 { align-self: flex-start; margin-left: 10%; transform: scale(0.9) !important; transform-origin: left center !important; } 
+    .gc-5 { align-self: flex-end; margin-right: 10%; transform: scale(0.9) !important; transform-origin: right center !important; }
 
 
     .problem-grid,
@@ -1464,17 +1421,16 @@ p.subtitle {
     }
 
     .feature-tab-item {
-        flex: 0 0 88%; /* Slightly wider cards */
+        flex: 0 0 85%;
         scroll-snap-align: center;
-        opacity: 1 !important;
-        padding: 0 !important; /* Full bleed image at top */
+        opacity: 1 !important; /* Always visible on mobile swipe */
+        padding: 24px !important; /* Full padding */
         background: var(--bg-card) !important;
         border: 1px solid var(--border-light) !important;
-        border-radius: 28px !important; /* Softer, more modern corners */
+        border-radius: 24px !important;
         box-shadow: var(--shadow-soft-float) !important;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
     }
 
     .feature-tab-item.active {
@@ -1484,7 +1440,7 @@ p.subtitle {
 
     /* Mobile Text Container for Feature Tabs */
     .mobile-feature-text {
-        padding: 24px 24px 32px 24px; /* Generous padding at the bottom */
+        padding: 0;
         background: transparent;
         border: none;
         border-radius: 0;
@@ -1496,21 +1452,21 @@ p.subtitle {
 
     .feature-tab-desc {
         max-height: none !important;
-        margin-top: 14px;
-        line-height: 1.6;
-        opacity: 0.8 !important; /* Slightly more subtle description */
+        margin-top: 12px;
+        opacity: 1 !important;
         visibility: visible !important;
     }
 
     .mobile-feature-img {
         display: block !important; 
         width: 100%; 
-        height: 420px; /* Taller area for the screenshot */
-        margin: 0; 
+        max-height: 320px; /* Keep it contained so it doesn't blow up the page height */
+        margin: 24px auto 0 auto; 
         object-fit: contain; /* NEVER CROP - show the full app interface */
-        object-position: top center;
-        background: #fdfdfd; /* Very subtle background to frame the white screenshot */
-        border-bottom: 1px solid var(--border-light);
+        border-radius: 12px;
+        background: transparent;
+        box-shadow: none;
+        border: none;
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
