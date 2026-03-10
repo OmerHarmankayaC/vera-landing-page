@@ -37,8 +37,8 @@
 
 <body>
 
-    <!-- Floating Pill Navigation -->
-    <div class="nav-wrapper">
+    <!-- Floating Pill Navigation (Desktop Only) -->
+    <div class="nav-wrapper desktop-nav">
         <nav class="navbar">
             <a href="#" class="logo">
                 <img src="assets/logo_transparent.png" alt="Vera Logo">
@@ -53,6 +53,33 @@
             <button class="btn btn-primary" style="padding: 10px 20px;"
                 onclick="window.location.href='#pricing'">İndir</button>
         </nav>
+    </div>
+
+    <!-- Mobile App Header (Mobile Only) -->
+    <header class="mobile-app-header">
+        <div class="mobile-logo-container">
+            <img src="assets/logo_transparent.png" alt="Vera Logo" class="mobile-logo">
+            <span class="mobile-logo-text">Vera Finance</span>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i data-lucide="menu"></i>
+        </button>
+    </header>
+
+    <!-- Full Screen Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="mobile-logo-text">Menü</span>
+            <button class="mobile-close-btn" id="mobileCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#features" class="mobile-link">Özellikler <i data-lucide="chevron-right"></i></a>
+            <a href="#security" class="mobile-link">Güvenlik <i data-lucide="chevron-right"></i></a>
+            <a href="#pricing" class="mobile-link">Vera Premium <i data-lucide="chevron-right"></i></a>
+            <a href="about.html" class="mobile-link">Hakkımızda <i data-lucide="chevron-right"></i></a>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -405,6 +432,13 @@
         </footer>
     </div>
 
+    <!-- Sticky Bottom CTA Bar (Mobile Only) -->
+    <div class="mobile-bottom-bar">
+        <button class="btn btn-primary mobile-cta-btn" onclick="window.location.href='#pricing'">
+            Uygulamayı İndir
+        </button>
+    </div>
+
     <script>
         lucide.createIcons();
 
@@ -462,6 +496,31 @@
             tabs.forEach(tab => {
                 tabObserver.observe(tab);
             });
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileMenuBtn && mobileCloseBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+
+                mobileCloseBtn.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
         });
     </script>
 </body>
