@@ -1155,23 +1155,25 @@ p.subtitle {
         width: 100%;
     }
 
-    /* Hide SOME complex floating cards on mobile to reduce clutter, but keep the core ones */
-    .gc-2, .gc-3, .gc-4, .gc-6, .gc-8 {
+    /* Hide ONLY gc-3, gc-4, gc-6 on mobile to reduce clutter */
+    .gc-3, .gc-4, .gc-6 {
         display: none !important;
     }
     
-    /* Keep gc-1, gc-5, gc-7 but scale them to fit nicely */
+    /* Keep 5 cards: gc-1, gc-2, gc-5, gc-7, gc-8 */
     .hero-glass-wrapper {
-        transform: scale(0.85); /* Scale down so they aren't cramped but are still legible */
-        transform-origin: top center;
-        margin-top: 60px; /* Push down BELOW the button */
-        height: 250px;
+        margin-top: 40px; /* Push down BELOW the button */
+        height: 380px;
         width: 100%;
+        position: relative;
     }
     
-    .gc-1 { top: 0; left: 50%; transform: translateX(-50%); z-index: 10; } /* Net worth center */
-    .gc-7 { top: 100px; left: 0; transform: none; z-index: 8; } /* Goal left */
-    .gc-5 { top: 130px; left: auto; right: 0; transform: none; z-index: 9; } /* Savings right */
+    /* We set transform: none for all, and use top/left/right + scale explicitly to scatter them without collision */
+    .gc-1 { top: 10px; left: 50%; transform: translateX(-50%) scale(0.85); z-index: 10; } /* Net worth center */
+    .gc-8 { top: 100px; left: 2%; transform: scale(0.7); z-index: 8; } /* Notification left */
+    .gc-2 { top: 110px; left: auto; right: 2%; transform: scale(0.75); z-index: 9; } /* Spotify right */
+    .gc-7 { top: 210px; left: 5%; transform: scale(0.8); z-index: 11; } /* Goal left bottom */
+    .gc-5 { top: 230px; left: auto; right: 5%; transform: scale(0.8); z-index: 12; } /* Inflation right bottom */
 
 
     .problem-grid,
@@ -1408,10 +1410,14 @@ p.subtitle {
         flex: 0 0 85%;
         scroll-snap-align: center;
         opacity: 1 !important; /* Always visible on mobile swipe */
-        padding: 0; /* Remove padding to make it a full-bleed app card */
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+        padding: 24px 24px 0 24px !important; /* Pad top/sides, make bottom flush for image */
+        background: var(--bg-card) !important;
+        border: 1px solid var(--border-light) !important;
+        border-radius: 24px !important;
+        box-shadow: var(--shadow-soft-float) !important;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* Ensure the image corners are rounded by the container */
     }
 
     .feature-tab-item.active {
@@ -1421,12 +1427,12 @@ p.subtitle {
 
     /* Mobile Text Container for Feature Tabs */
     .mobile-feature-text {
-        padding: 24px;
-        background: var(--bg-card);
-        border: 1px solid var(--border-light);
-        border-radius: 24px; /* Fully rounded since image is gone */
-        box-shadow: var(--shadow-soft-float);
-        height: 100%; /* Make them uniform height */
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        height: auto;
         display: flex;
         flex-direction: column;
     }
@@ -1439,7 +1445,17 @@ p.subtitle {
     }
 
     .mobile-feature-img {
-        display: none !important; /* Hide image to match the "Why Vera" section perfectly */
+        display: block !important; 
+        width: calc(100% + 48px); /* Break out of parent padding */
+        margin-left: -24px;
+        margin-right: -24px;
+        margin-top: 24px;
+        margin-bottom: 0;
+        height: 240px; /* Sneak peek height */
+        object-fit: cover;
+        object-position: top center; /* Show the top of the app interface */
+        border: none;
+        border-top: 1px solid var(--border-light);
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
