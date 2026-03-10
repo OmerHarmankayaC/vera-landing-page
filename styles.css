@@ -959,6 +959,167 @@ p.subtitle {
         margin-top: 40px;
     }
 }
+
+/* --- Interactive Feature Tabs --- */
+.interactive-features-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .interactive-features-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feature-tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    padding-bottom: 300px;
+    /* Extra padding so the sticky scroll feels longer */
+}
+
+.feature-tab-item {
+    padding: 24px;
+    border-radius: var(--radius-card-inner);
+    background: transparent;
+    border: 1px solid transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.feature-tab-item:hover {
+    opacity: 0.8;
+}
+
+.feature-tab-item.active {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-soft-float);
+    opacity: 1;
+}
+
+.feature-tab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background: var(--bg-card);
+}
+
+.tab-theme-navy {
+    background-color: #0F172A;
+    color: white;
+}
+
+.tab-theme-white {
+    background-color: #F9FAFB;
+    color: #0F172A;
+    border: 1px solid #E5E7EB;
+}
+
+.tab-theme-green {
+    background-color: #064E3B;
+    color: white;
+}
+
+.tab-theme-red {
+    background-color: #7F1D1D;
+    color: white;
+}
+
+.theme-blue {
+    background-color: #2563EB;
+    /* Vibrant Blue */
+    color: white;
+}
+
+.theme-blue .bento-title,
+.theme-blue .bento-desc {
+    color: white;
+}
+
+.theme-blue .bento-icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+}
+
+.theme-blue .bento-device-cut {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.tab-theme-blue {
+    background-color: #2563EB;
+    color: white;
+}
+
+.feature-tab-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.feature-tab-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+
+.feature-tab-item.active .feature-tab-desc {
+    max-height: 200px;
+    margin-top: 8px;
+}
+
+.feature-visual-panel {
+    position: sticky;
+    top: 120px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-mockup-layer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(24px);
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    justify-content: center;
+}
+
+.feature-mockup-layer.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.feature-mockup-layer img {
+    height: 600px;
+    object-fit: contain;
+}
+
 /* Mobile Elements Hidden on Desktop */
 .mobile-app-header,
 .mobile-menu-overlay,
@@ -994,14 +1155,23 @@ p.subtitle {
         width: 100%;
     }
 
-    /* Hide all complex floating cards on mobile to reduce clutter completely */
-    .glass-card {
+    /* Hide SOME complex floating cards on mobile to reduce clutter, but keep the core ones */
+    .gc-2, .gc-3, .gc-4, .gc-6, .gc-8 {
         display: none !important;
     }
-
+    
+    /* Keep gc-1, gc-5, gc-7 but scale them to fit nicely */
     .hero-glass-wrapper {
-        display: none; /* Remove entirely on mobile since cards are gone */
+        transform: scale(0.75); /* Scale down so they aren't cramped but are still legible */
+        transform-origin: top center;
+        margin-top: 60px; /* Push down BELOW the button */
+        height: 280px;
     }
+    
+    .gc-1 { top: 0; left: 50%; transform: translateX(-50%); z-index: 10; } /* Net worth center */
+    .gc-7 { top: 100px; left: -5%; z-index: 8; } /* Goal left */
+    .gc-5 { top: 130px; right: -5%; z-index: 9; } /* Savings right */
+
 
     .problem-grid,
     .pricing-grid,
@@ -1277,166 +1447,6 @@ p.subtitle {
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
     .feature-visual-panel {
-        display: none;
+        display: none !important;
     }
-}
-
-/* --- Interactive Feature Tabs --- */
-.interactive-features-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-    .interactive-features-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
-
-.feature-tabs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    position: relative;
-    padding-bottom: 300px;
-    /* Extra padding so the sticky scroll feels longer */
-}
-
-.feature-tab-item {
-    padding: 24px;
-    border-radius: var(--radius-card-inner);
-    background: transparent;
-    border: 1px solid transparent;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.5;
-}
-
-.feature-tab-item:hover {
-    opacity: 0.8;
-}
-
-.feature-tab-item.active {
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-soft-float);
-    opacity: 1;
-}
-
-.feature-tab-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    background: var(--bg-card);
-}
-
-.tab-theme-navy {
-    background-color: #0F172A;
-    color: white;
-}
-
-.tab-theme-white {
-    background-color: #F9FAFB;
-    color: #0F172A;
-    border: 1px solid #E5E7EB;
-}
-
-.tab-theme-green {
-    background-color: #064E3B;
-    color: white;
-}
-
-.tab-theme-red {
-    background-color: #7F1D1D;
-    color: white;
-}
-
-.theme-blue {
-    background-color: #2563EB;
-    /* Vibrant Blue */
-    color: white;
-}
-
-.theme-blue .bento-title,
-.theme-blue .bento-desc {
-    color: white;
-}
-
-.theme-blue .bento-icon {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: none;
-}
-
-.theme-blue .bento-device-cut {
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.tab-theme-blue {
-    background-color: #2563EB;
-    color: white;
-}
-
-.feature-tab-item h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-}
-
-.feature-tab-desc {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, margin-top 0.4s ease;
-}
-
-.feature-tab-item.active .feature-tab-desc {
-    max-height: 200px;
-    margin-top: 8px;
-}
-
-.feature-visual-panel {
-    position: sticky;
-    top: 120px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-mockup-layer {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(24px);
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    width: 100%;
-    max-width: 320px;
-    display: flex;
-    justify-content: center;
-}
-
-.feature-mockup-layer.active {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-.feature-mockup-layer img {
-    height: 600px;
-    object-fit: contain;
 }
