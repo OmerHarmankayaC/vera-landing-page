@@ -1189,44 +1189,47 @@ p.subtitle {
 
     /* Top Center Frame */
     .gc-1 {
-        top: -10px;
+        top: -60px; /* Pull way up */
         left: 50%;
-        transform: translateX(-50%) scale(0.8) !important;
+        transform: translateX(-50%) scale(0.65) !important;
         transform-origin: top center !important;
+        opacity: 0.8;
     }
 
     /* Top Left Frame */
     .gc-8 {
-        top: 20%;
-        left: 0;
-        transform: scale(0.7) !important;
-        transform-origin: left center !important;
+        top: 5%;
+        left: -10px;
+        transform: scale(0.6) !important;
+        transform-origin: left top !important;
+        opacity: 0.7;
     }
     
     /* Top Right Frame */
     .gc-2 {
-        top: 25%;
-        right: 0;
+        top: 8%;
+        right: -10px;
         left: auto !important;
-        transform: scale(0.75) !important;
-        transform-origin: right center !important;
+        transform: scale(0.65) !important;
+        transform-origin: right top !important;
+        opacity: 0.7;
     }
 
     /* Bottom Left Frame */
     .gc-7 {
-        top: 60%;
-        left: 2%;
-        transform: scale(0.75) !important;
-        transform-origin: left center !important;
+        top: 75%; /* Push way down below buttons */
+        left: -5px;
+        transform: scale(0.65) !important;
+        transform-origin: left bottom !important;
     }
     
     /* Bottom Right Frame */
     .gc-5 {
-        top: 68%;
-        right: 2%;
+        top: 82%; /* Push way down below buttons */
+        right: -5px;
         left: auto !important;
-        transform: scale(0.75) !important;
-        transform-origin: right center !important;
+        transform: scale(0.65) !important;
+        transform-origin: right bottom !important;
     }
 
 
@@ -1461,16 +1464,17 @@ p.subtitle {
     }
 
     .feature-tab-item {
-        flex: 0 0 85%;
+        flex: 0 0 88%; /* Slightly wider cards */
         scroll-snap-align: center;
-        opacity: 1 !important; /* Always visible on mobile swipe */
-        padding: 24px !important; /* Full padding */
+        opacity: 1 !important;
+        padding: 0 !important; /* Full bleed image at top */
         background: var(--bg-card) !important;
         border: 1px solid var(--border-light) !important;
-        border-radius: 24px !important;
+        border-radius: 28px !important; /* Softer, more modern corners */
         box-shadow: var(--shadow-soft-float) !important;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .feature-tab-item.active {
@@ -1480,7 +1484,7 @@ p.subtitle {
 
     /* Mobile Text Container for Feature Tabs */
     .mobile-feature-text {
-        padding: 0;
+        padding: 24px 24px 32px 24px; /* Generous padding at the bottom */
         background: transparent;
         border: none;
         border-radius: 0;
@@ -1492,21 +1496,21 @@ p.subtitle {
 
     .feature-tab-desc {
         max-height: none !important;
-        margin-top: 12px;
-        opacity: 1 !important;
+        margin-top: 14px;
+        line-height: 1.6;
+        opacity: 0.8 !important; /* Slightly more subtle description */
         visibility: visible !important;
     }
 
     .mobile-feature-img {
         display: block !important; 
         width: 100%; 
-        max-height: 320px; /* Keep it contained so it doesn't blow up the page height */
-        margin: 24px auto 0 auto; 
+        height: 420px; /* Taller area for the screenshot */
+        margin: 0; 
         object-fit: contain; /* NEVER CROP - show the full app interface */
-        border-radius: 12px;
-        background: transparent;
-        box-shadow: none;
-        border: none;
+        object-position: top center;
+        background: #fdfdfd; /* Very subtle background to frame the white screenshot */
+        border-bottom: 1px solid var(--border-light);
     }
 
     /* Hide the complex sticky visual panel on mobile since context is lost */
