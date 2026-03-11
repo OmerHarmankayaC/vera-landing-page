@@ -1155,25 +1155,23 @@ p.subtitle {
         width: 100%;
     }
 
-    /* Hide ONLY gc-3, gc-4, gc-6 on mobile to reduce clutter */
-    .gc-3, .gc-4, .gc-6 {
+    /* Hide ONLY gc-3, gc-4 */
+    .gc-3, .gc-4 {
         display: none !important;
     }
     
-    /* Keep 5 cards: gc-1, gc-2, gc-5, gc-7, gc-8 */
+    /* Exact 6-card pixel map to match the user's diagram perfectly */
     .hero-glass-wrapper {
-        margin-top: 32px;
-        height: auto;
+        position: relative;
+        height: 380px;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        padding-bottom: 32px;
+        margin-top: 24px;
+        display: block; 
     }
     
     .hero-glass-wrapper .glass-card {
-        position: relative !important;
+        position: absolute !important;
+        margin: 0 !important;
         transform: none !important;
         left: auto !important;
         right: auto !important;
@@ -1182,12 +1180,54 @@ p.subtitle {
         max-width: 90vw;
     }
 
-    /* Scatter them safely using margins so they never collide */
-    .gc-1 { margin-left: 0; } /* Center */
-    .gc-8 { align-self: flex-start; margin-left: 5%; transform: scale(0.85) !important; transform-origin: left center !important; } 
-    .gc-2 { align-self: flex-end; margin-right: 5%; transform: scale(0.9) !important; transform-origin: right center !important; } 
-    .gc-7 { align-self: flex-start; margin-left: 10%; transform: scale(0.9) !important; transform-origin: left center !important; } 
-    .gc-5 { align-self: flex-end; margin-right: 10%; transform: scale(0.9) !important; transform-origin: right center !important; }
+    /* Box 1: TL Short */
+    .gc-8 { 
+        top: 0px; 
+        left: 5%; 
+        transform: scale(0.65) !important; 
+        transform-origin: top left !important; 
+    }
+
+    /* Box 2: TR Short */
+    .gc-5 { 
+        top: 0px; 
+        right: 5%; 
+        transform: scale(0.65) !important; 
+        transform-origin: top right !important; 
+    }
+
+    /* Box 3: ML Long */
+    .gc-7 { 
+        top: 75px; 
+        left: 5%; 
+        transform: scale(0.7) !important; 
+        transform-origin: top left !important; 
+    }
+
+    /* Box 4: BL Short */
+    .gc-2 { 
+        top: 170px; 
+        left: 5%; 
+        transform: scale(0.65) !important; 
+        transform-origin: top left !important; 
+    }
+
+    /* Box 5: BR Med */
+    .gc-6 { 
+        display: flex !important; /* Overrides earlier hide if any, ensures visible */
+        top: 130px; 
+        right: 5%; 
+        transform: scale(0.7) !important; 
+        transform-origin: top right !important; 
+    }
+
+    /* Box 6: Bottom Center Long */
+    .gc-1 { 
+        top: 250px; 
+        left: 50%; 
+        transform: translateX(-50%) scale(0.75) !important; 
+        transform-origin: top center !important; 
+    }
 
 
     .problem-grid,
