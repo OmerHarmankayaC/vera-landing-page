@@ -1174,11 +1174,6 @@ p.subtitle {
         opacity: 1 !important; /* Override fadeUpGlass opacity start */
         position: absolute !important;
         margin: 0 !important;
-        transform: none !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
         max-width: 90vw;
         transition: none !important; /* Prevent any layout shifts */
     }
