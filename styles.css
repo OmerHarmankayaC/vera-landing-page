@@ -1170,6 +1170,8 @@ p.subtitle {
     }
     
     .hero-glass-wrapper .glass-card {
+        animation: none !important; /* CRITICAL: Prevents keyframe transforms from overriding our scale() offsets */
+        opacity: 1 !important; /* Override fadeUpGlass opacity start */
         position: absolute !important;
         margin: 0 !important;
         transform: none !important;
@@ -1178,6 +1180,7 @@ p.subtitle {
         top: auto !important;
         bottom: auto !important;
         max-width: 90vw;
+        transition: none !important; /* Prevent any layout shifts */
     }
 
     /* Box 1: TL Short */
