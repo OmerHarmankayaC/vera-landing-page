@@ -257,72 +257,63 @@ p.subtitle {
     opacity: 0;
 }
 
-/* Staggered load animations & Wider Positioning */
+/* Staggered load animations & Wider Positioning (Collision-Free Orbits) */
+
+/* LEFT ORBIT CLUSTER */
 .gc-1 {
     animation: float-gentle 6s ease-in-out infinite, fadeUpGlass 0.8s ease 0.3s forwards;
-    left: 12%;
-    /* Pulling in from 2% */
-    top: -50px;
-    /* Pushing higher */
+    left: 2%;
+    top: 20px;
     z-index: 3;
-}
-
-.gc-2 {
-    animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
-    right: 15%;
-    /* Pulling in from 5% */
-    top: -70px;
-    /* Pushing higher */
-    z-index: 2;
 }
 
 .gc-3 {
     animation: float-gentle 6.5s ease-in-out infinite 0.5s, fadeUpGlass 0.8s ease 0.7s forwards;
-    left: 22%;
-    top: 180px;
-    /* Pushing lower */
+    left: 14%;
+    top: 120px;
     z-index: 4;
-}
-
-.gc-4 {
-    animation: float-gentle 5.5s ease-in-out infinite 0.2s, fadeUpGlass 0.8s ease 0.4s forwards;
-    right: 32%;
-    /* Pulling deeper in */
-    top: 210px;
-    /* Pushing lower */
-    z-index: 1;
 }
 
 .gc-5 {
     animation: float-gentle 6.2s ease-in-out infinite 0.8s, fadeUpGlass 0.8s ease 0.6s forwards;
-    left: 6%;
-    /* Pulling in from -8% */
-    top: 60px;
+    left: -2%;
+    top: 180px;
     z-index: 5;
-}
-
-.gc-6 {
-    animation: float-gentle 5.8s ease-in-out infinite 1.2s, fadeUpGlass 0.8s ease 0.8s forwards;
-    right: 8%;
-    /* Pulling in from -2% */
-    top: 100px;
-    z-index: 6;
 }
 
 .gc-7 {
     animation: float-gentle 7.5s ease-in-out infinite 0.4s, fadeUpGlass 0.8s ease 0.9s forwards;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Center piece */
-    top: 70px;
+    left: 8%;
+    top: 260px;
     z-index: 7;
+}
+
+/* RIGHT ORBIT CLUSTER */
+.gc-2 {
+    animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
+    right: 2%;
+    top: 30px;
+    z-index: 2;
+}
+
+.gc-4 {
+    animation: float-gentle 5.5s ease-in-out infinite 0.2s, fadeUpGlass 0.8s ease 0.4s forwards;
+    right: 15%;
+    top: 140px;
+    z-index: 1;
+}
+
+.gc-6 {
+    animation: float-gentle 5.8s ease-in-out infinite 1.2s, fadeUpGlass 0.8s ease 0.8s forwards;
+    right: -1%;
+    top: 220px;
+    z-index: 6;
 }
 
 .gc-8 {
     animation: float-gentle 5s ease-in-out infinite 0.7s, fadeUpGlass 0.8s ease 1s forwards;
-    left: 36%;
-    /* Moved slightly */
-    top: -40px;
+    right: 24%;
+    top: 60px;
     z-index: 2;
 }
 
@@ -1155,76 +1146,50 @@ p.subtitle {
         width: 100%;
     }
 
-    /* Hide ONLY gc-3, gc-4 */
-    .gc-3, .gc-4 {
+    /* Simplify Mobile Hero Float: Eradicate Clutter */
+    .gc-4, .gc-5, .gc-6, .gc-8 {
         display: none !important;
     }
     
-    /* Exact 6-card pixel map to match the user's diagram perfectly */
     .hero-glass-wrapper {
         position: relative;
-        height: 380px;
+        height: 280px; /* Tighter stage */
         width: 100%;
-        margin-top: 24px;
+        margin-top: 16px;
         display: block; 
     }
     
+    /* Allow organic floating but constrain scale */
     .hero-glass-wrapper .glass-card {
-        animation: none !important; /* CRITICAL: Prevents keyframe transforms from overriding our scale() offsets */
-        opacity: 1 !important; /* Override fadeUpGlass opacity start */
-        position: absolute !important;
-        margin: 0 !important;
+        transform: scale(0.85);
         max-width: 90vw;
-        transition: none !important; /* Prevent any layout shifts */
     }
 
-    /* Box 1: TL Short */
-    .gc-8 { 
-        top: 0px; 
-        left: 5%; 
-        transform: scale(0.65) !important; 
-        transform-origin: top left !important; 
-    }
-
-    /* Box 2: TR Short */
-    .gc-5 { 
-        top: 0px; 
-        right: 5%; 
-        transform: scale(0.65) !important; 
-        transform-origin: top right !important; 
-    }
-
-    /* Box 3: ML Long */
-    .gc-7 { 
-        top: 75px; 
-        left: 5%; 
-        transform: scale(0.7) !important; 
-        transform-origin: top left !important; 
-    }
-
-    /* Box 4: BL Short */
-    .gc-2 { 
-        top: 170px; 
-        left: 5%; 
-        transform: scale(0.65) !important; 
-        transform-origin: top left !important; 
-    }
-
-    /* Box 5: BR Med */
-    .gc-6 { 
-        display: flex !important; /* Overrides earlier hide if any, ensures visible */
-        top: 130px; 
-        right: 5%; 
-        transform: scale(0.7) !important; 
-        transform-origin: top right !important; 
-    }
-
-    /* Box 6: Bottom Center Long */
+    /* Cascade 1: Top Left Anchor */
     .gc-1 { 
-        top: 250px; 
-        left: 50%; 
-        transform: translateX(-50%) scale(0.75) !important; 
-        transform-origin: top center !important; 
+        top: 0px !important; 
+        left: 2% !important; 
+    }
+
+    /* Cascade 2: Mid Right Overlap */
+    .gc-2 { 
+        top: 60px !important; 
+        right: 2% !important; 
+        z-index: 5 !important;
+    }
+
+    /* Cascade 3: Lower Left */
+    .gc-3 { 
+        top: 140px !important; 
+        left: -4% !important; 
+    }
+
+    /* Cascade 4: Bottom Right Anchor */
+    .gc-7 { 
+        top: 200px !important; 
+        right: 5% !important; 
+        left: auto !important; /* Override desktop center */
+        transform: scale(0.85) !important; 
     }
 
 
