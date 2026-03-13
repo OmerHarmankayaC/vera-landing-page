@@ -225,10 +225,14 @@
                     <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;">Harcamalarınızı dijitalleştirin. Google Gemini API desteğiyle fişlerinizi saniyeler içinde analiz edin ve bütçenize otomatik olarak işleyin.</p>
                     <div class="scanner-container" id="receiptScanner">
                         <div class="scanner-laser"></div>
-                        <img src="assets/modern_receipt_mockup.png" alt="Receipt Mockup" class="receipt-img">
-                        <div class="scanner-tooltip" style="top: 25%; left: 5%;">Market: MODERN CAFE</div>
-                        <div class="scanner-tooltip" style="top: 45%; right: 5%;">Flat White: ₺95.00</div>
-                        <div class="scanner-tooltip" style="top: 65%; left: 10%;">Avocado Toast: ₺160.00</div>
+                        <img src="assets/detailed_receipt.png" alt="Fiş Analizi" class="receipt-img">
+                        <div class="scanner-tooltip" style="top: 15%; left: 5%;">Market: MODERN KAFE</div>
+                        <div class="scanner-tooltip" style="top: 35%; right: 5%;">Flat White: ₺95,00</div>
+                        <div class="scanner-tooltip" style="top: 45%; left: 10%;">Avokado Tost: ₺160,00</div>
+                        <div class="scanner-tooltip" style="top: 55%; right: 8%;">Kruvasan: ₺75,00</div>
+                        <div class="scanner-tooltip" style="top: 65%; left: 8%;">Filtre Kahve: ₺65,00</div>
+                        <div class="scanner-tooltip" style="top: 75%; right: 10%;">Çikolatalı Kek: ₺120,00</div>
+                        <div class="scanner-tooltip" style="top: 88%; left: 5%; font-weight: 800; border-color: #2563EB;">Toplam: ₺515,00</div>
                     </div>
                 </div>
 
@@ -592,26 +596,44 @@
             const scanner = document.getElementById('receiptScanner');
             const tooltips = scanner.querySelectorAll('.scanner-tooltip');
             const counterEl = document.getElementById('inflationCounter');
+            const engineContainer = document.getElementById('inflationEngine');
+            
             let counterStarted = false;
+            let currentVal = 0;
+            let targetVal = 28.4;
+            const baseTarget = 28.4;
+            const hoverTarget = 42.1;
 
-            const animateCounter = (target) => {
-                let current = 0;
-                const duration = 2000;
-                const start = performance.now();
-
-                const step = (now) => {
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    // Ease out expo
-                    const value = progress === 1 ? target : target * (1 - Math.pow(2, -10 * progress));
-                    counterEl.innerText = value.toFixed(1) + '%';
-
-                    if (progress < 1) {
-                        requestAnimationFrame(step);
-                    }
-                };
-                requestAnimationFrame(step);
+            const updateCounter = () => {
+                if (!counterStarted) return;
+                
+                // Smooth interpolation (Lerp)
+                const diff = targetVal - currentVal;
+                currentVal += diff * 0.08; // Smoothing factor
+                
+                counterEl.innerText = currentVal.toFixed(1) + '%';
+                
+                if (Math.abs(diff) > 0.01) {
+                    requestAnimationFrame(updateCounter);
+                }
             };
+
+            const startCounter = () => {
+                if (!counterStarted) {
+                    counterStarted = true;
+                    updateCounter();
+                }
+            };
+
+            engineContainer.addEventListener('mouseenter', () => {
+                targetVal = hoverTarget;
+                updateCounter();
+            });
+
+            engineContainer.addEventListener('mouseleave', () => {
+                targetVal = baseTarget;
+                updateCounter();
+            });
 
             const spotlightObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -635,16 +657,15 @@
                             };
                             showTooltips();
                         }
-                        if (entry.target.id === 'inflationEngine' && !counterStarted) {
-                            counterStarted = true;
-                            animateCounter(28.4);
+                        if (entry.target.id === 'inflationEngine') {
+                            startCounter();
                         }
                     }
                 });
             }, { threshold: 0.5 });
 
             spotlightObserver.observe(scanner);
-            spotlightObserver.observe(document.getElementById('inflationEngine'));
+            spotlightObserver.observe(engineContainer);
         });
     </script>
 </body>

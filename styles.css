@@ -232,11 +232,10 @@ p.subtitle {
 /* Hero View Floating UI Cards */
 .hero-glass-wrapper {
     position: relative;
-    max-width: 1200px;
-    height: 320px;
-    /* Stage height for absolute positioned elements */
+    max-width: 1400px; /* Wider stage */
+    height: 400px; /* Taller stage for deeper orbit */
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 80px;
 }
 
 .glass-card {
@@ -249,72 +248,76 @@ p.subtitle {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 100px;
-    /* Pill shape */
     padding: 12px 24px 12px 12px;
     box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.05);
-    /* Soft, deep drop shadow */
     animation: float-gentle 6s ease-in-out infinite;
     opacity: 0;
+    transition: transform 0.3s ease;
 }
 
-/* Staggered load animations & Wider Positioning (Collision-Free Orbits) */
-
-/* LEFT ORBIT CLUSTER */
+/* Redesigned Massive Unified Orbit - Refined for Middle Focus & Surroundings */
 .gc-1 {
+    /* Inner Layer - Focused Right-ish Top */
     animation: float-gentle 6s ease-in-out infinite, fadeUpGlass 0.8s ease 0.3s forwards;
-    left: 2%;
-    top: 20px;
-    z-index: 3;
-}
-
-.gc-3 {
-    animation: float-gentle 6.5s ease-in-out infinite 0.5s, fadeUpGlass 0.8s ease 0.7s forwards;
-    left: 14%;
-    top: 120px;
-    z-index: 4;
-}
-
-.gc-5 {
-    animation: float-gentle 6.2s ease-in-out infinite 0.8s, fadeUpGlass 0.8s ease 0.6s forwards;
-    left: -2%;
-    top: 180px;
+    left: 22%;
+    top: -30px;
     z-index: 5;
 }
 
-.gc-7 {
-    animation: float-gentle 7.5s ease-in-out infinite 0.4s, fadeUpGlass 0.8s ease 0.9s forwards;
-    left: 8%;
-    top: 260px;
-    z-index: 7;
-}
-
-/* RIGHT ORBIT CLUSTER */
-.gc-2 {
-    animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
-    right: 2%;
-    top: 30px;
+.gc-8 {
+    /* Inner Layer - Focused Left-ish Top */
+    animation: float-gentle 5s ease-in-out infinite 0.7s, fadeUpGlass 0.8s ease 1s forwards;
+    right: 25%;
+    top: -50px;
     z-index: 2;
 }
 
-.gc-4 {
-    animation: float-gentle 5.5s ease-in-out infinite 0.2s, fadeUpGlass 0.8s ease 0.4s forwards;
-    right: 15%;
-    top: 140px;
-    z-index: 1;
+.gc-2 {
+    /* Outer Layer - Far Right Surroundings */
+    animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
+    right: 3%;
+    top: 50px;
+    z-index: 4;
 }
 
-.gc-6 {
-    animation: float-gentle 5.8s ease-in-out infinite 1.2s, fadeUpGlass 0.8s ease 0.8s forwards;
-    right: -1%;
-    top: 220px;
+.gc-3 {
+    /* Outer Layer - Far Left Surroundings */
+    animation: float-gentle 6.5s ease-in-out infinite 0.5s, fadeUpGlass 0.8s ease 0.7s forwards;
+    left: -5%;
+    top: 140px;
     z-index: 6;
 }
 
-.gc-8 {
-    animation: float-gentle 5s ease-in-out infinite 0.7s, fadeUpGlass 0.8s ease 1s forwards;
-    right: 24%;
-    top: 60px;
-    z-index: 2;
+.gc-4 {
+    /* Inner Layer - Focused Right Middle */
+    animation: float-gentle 5.5s ease-in-out infinite 0.2s, fadeUpGlass 0.8s ease 0.4s forwards;
+    right: 18%;
+    top: 200px;
+    z-index: 3;
+}
+
+.gc-7 {
+    /* Inner Layer - Focused Left Middle */
+    animation: float-gentle 7.5s ease-in-out infinite 0.4s, fadeUpGlass 0.8s ease 0.9s forwards;
+    left: 20%;
+    top: 250px;
+    z-index: 8;
+}
+
+.gc-5 {
+    /* Outer Layer - Left Surroundings Bottom */
+    animation: float-gentle 6.2s ease-in-out infinite 0.8s, fadeUpGlass 0.8s ease 0.6s forwards;
+    left: 2%;
+    top: 320px;
+    z-index: 7;
+}
+
+.gc-6 {
+    /* Outer Layer - Far Right Surroundings Bottom */
+    animation: float-gentle 5.8s ease-in-out infinite 1.2s, fadeUpGlass 0.8s ease 0.8s forwards;
+    right: -2%;
+    top: 340px;
+    z-index: 5;
 }
 
 /* Size Adjustments */
@@ -1586,6 +1589,7 @@ p.subtitle {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .orbit-pulse {
@@ -1595,6 +1599,7 @@ p.subtitle {
     border: 1px solid rgba(37, 99, 235, 0.2);
     border-radius: 50%;
     animation: orbitPulse 3s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .orbit-pulse-large {
@@ -1604,6 +1609,21 @@ p.subtitle {
     border: 1px solid rgba(37, 99, 235, 0.1);
     border-radius: 50%;
     animation: orbitPulse 4s ease-in-out infinite reverse;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.engine-container:hover .orbit-pulse {
+    animation-duration: 1.5s;
+    border-color: rgba(37, 99, 235, 0.5);
+    width: 260px;
+    height: 260px;
+}
+
+.engine-container:hover .orbit-pulse-large {
+    animation-duration: 2s;
+    border-color: rgba(37, 99, 235, 0.3);
+    width: 340px;
+    height: 340px;
 }
 
 @keyframes orbitPulse {
@@ -1620,6 +1640,12 @@ p.subtitle {
     -webkit-text-fill-color: transparent;
     z-index: 10;
     font-variant-numeric: tabular-nums;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: contents, transform;
+}
+
+.engine-container:hover .counter-value {
+    transform: scale(1.1);
 }
 
 .engine-label {
@@ -1631,4 +1657,11 @@ p.subtitle {
     text-transform: uppercase;
     color: #2563EB;
     opacity: 0.8;
+    transition: all 0.5s ease;
+}
+
+.engine-container:hover .engine-label {
+    opacity: 1;
+    letter-spacing: 0.25em;
+    transform: translateY(-5px);
 }
