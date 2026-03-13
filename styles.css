@@ -1483,6 +1483,7 @@ p.subtitle {
 
 /* Spotlight Section (Advanced Components) */
 .spotlight-section {
+    scroll-margin-top: 100px;
     background-color: #0A1128; /* Deep Navy */
     color: #FFFFFF;
     padding: 120px 0;
