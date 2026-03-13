@@ -457,13 +457,17 @@
             const tabs = document.querySelectorAll(".feature-tab-item");
             const mockups = document.querySelectorAll(".feature-mockup-layer");
             let isScrollingFromClick = false;
+            let isTransitioning = false; // NEW: Lock to prevent re-triggering during layout shift
             let scrollTimeout;
+            let transitionTimeout;
 
             const setActiveState = (targetId) => {
                 const targetTab = Array.from(tabs).find(t => t.dataset.target === targetId);
                 const targetMockup = document.getElementById(targetId);
 
-                if (targetTab && !targetTab.classList.contains("active")) {
+                if (targetTab && !targetTab.classList.contains("active") && !isTransitioning) {
+                    isTransitioning = true;
+                    
                     tabs.forEach(t => t.classList.remove("active"));
                     mockups.forEach(m => m.classList.remove("active"));
 
@@ -471,6 +475,12 @@
                     if (targetMockup) {
                         targetMockup.classList.add("active");
                     }
+
+                    // Release lock after CSS transition completes (~400ms in style.css)
+                    clearTimeout(transitionTimeout);
+                    transitionTimeout = setTimeout(() => {
+                        isTransitioning = false;
+                    }, 450); 
                 }
             };
 
@@ -481,39 +491,40 @@
                     isScrollingFromClick = true;
                     setActiveState(targetId);
 
-                    // Smooth scroll to the tab with an offset to account for sticky panel
+                    // Smooth scroll to the tab with an offset
                     const yOffset = -150; 
                     const y = tab.getBoundingClientRect().top + window.pageYOffset + yOffset;
                     
                     window.scrollTo({ top: y, behavior: 'smooth' });
 
-                    // Re-enable observer after scroll finishes
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         isScrollingFromClick = false;
-                    }, 1000); // 1s is Usually enough for smooth scroll
+                    }, 1000); 
                 });
             });
 
             // High-performance Intersection Observer for scroll spy
             const observerOptions = {
                 root: null,
-                rootMargin: '-40% 0px -40% 0px', // More focused trigger zone
+                rootMargin: '-35% 0px -45% 0px', // Precise trigger band
                 threshold: [0, 0.5, 1]
             };
 
             const tabObserver = new IntersectionObserver((entries) => {
-                if (isScrollingFromClick) return;
+                // Ignore observer if we are scrolling from a click OR in the middle of a transition layout shift
+                if (isScrollingFromClick || isTransitioning) return;
 
-                // Find the entry that is most prominent if multiple intersect
                 const intersecting = entries.filter(e => e.isIntersecting);
                 if (intersecting.length > 0) {
-                    // Pick the most intersecting one
+                    // Pick the entry with the highest intersection ratio
                     const primaryEntry = intersecting.reduce((prev, current) => 
                         (prev.intersectionRatio > current.intersectionRatio) ? prev : current
                     );
                     
-                    setActiveState(primaryEntry.target.dataset.target);
+                    if (primaryEntry.intersectionRatio > 0.1) {
+                        setActiveState(primaryEntry.target.dataset.target);
+                    }
                 }
             }, observerOptions);
 
