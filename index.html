@@ -461,51 +461,65 @@
         document.addEventListener("DOMContentLoaded", () => {
             const tabs = document.querySelectorAll(".feature-tab-item");
             const mockups = document.querySelectorAll(".feature-mockup-layer");
+            let isScrollingFromClick = false;
+            let scrollTimeout;
 
-            // Optional: Implement click to activate a tab
-            tabs.forEach(tab => {
-                tab.addEventListener("click", () => {
-                    const targetId = tab.dataset.target;
+            const setActiveState = (targetId) => {
+                const targetTab = Array.from(tabs).find(t => t.dataset.target === targetId);
+                const targetMockup = document.getElementById(targetId);
 
-                    // Remove active from all tabs & mockups
+                if (targetTab && !targetTab.classList.contains("active")) {
                     tabs.forEach(t => t.classList.remove("active"));
                     mockups.forEach(m => m.classList.remove("active"));
 
-                    // Add active to selected
-                    tab.classList.add("active");
-                    const targetMockup = document.getElementById(targetId);
+                    targetTab.classList.add("active");
                     if (targetMockup) {
                         targetMockup.classList.add("active");
                     }
+                }
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    const targetId = tab.dataset.target;
+                    
+                    isScrollingFromClick = true;
+                    setActiveState(targetId);
+
+                    // Smooth scroll to the tab with an offset to account for sticky panel
+                    const yOffset = -150; 
+                    const y = tab.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+
+                    // Re-enable observer after scroll finishes
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        isScrollingFromClick = false;
+                    }, 1000); // 1s is Usually enough for smooth scroll
                 });
             });
 
             // High-performance Intersection Observer for scroll spy
             const observerOptions = {
                 root: null,
-                rootMargin: '-30% 0px -40% 0px', // Triggers when a tab enters the middle 30% of the screen
-                threshold: 0
+                rootMargin: '-40% 0px -40% 0px', // More focused trigger zone
+                threshold: [0, 0.5, 1]
             };
 
             const tabObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // Only act when a tab intersecting the active zone
-                    if (entry.isIntersecting) {
-                        const targetId = entry.target.dataset.target;
+                if (isScrollingFromClick) return;
 
-                        // If it's not already active
-                        if (!entry.target.classList.contains("active")) {
-                            tabs.forEach(t => t.classList.remove("active"));
-                            mockups.forEach(m => m.classList.remove("active"));
-
-                            entry.target.classList.add("active");
-                            const targetMockup = document.getElementById(targetId);
-                            if (targetMockup) {
-                                targetMockup.classList.add("active");
-                            }
-                        }
-                    }
-                });
+                // Find the entry that is most prominent if multiple intersect
+                const intersecting = entries.filter(e => e.isIntersecting);
+                if (intersecting.length > 0) {
+                    // Pick the most intersecting one
+                    const primaryEntry = intersecting.reduce((prev, current) => 
+                        (prev.intersectionRatio > current.intersectionRatio) ? prev : current
+                    );
+                    
+                    setActiveState(primaryEntry.target.dataset.target);
+                }
             }, observerOptions);
 
             tabs.forEach(tab => {

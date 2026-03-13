@@ -1067,13 +1067,16 @@ p.subtitle {
     font-size: 1rem;
     color: var(--text-secondary);
     line-height: 1.5;
+    /* Prevent layout shifts by using a fixed-ish height or just better transition */
     max-height: 0;
+    opacity: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease, margin-top 0.4s ease;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
 }
 
 .feature-tab-item.active .feature-tab-desc {
-    max-height: 200px;
+    max-height: 150px; /* Adjusted from 200px */
+    opacity: 1;
     margin-top: 8px;
 }
 
@@ -1092,7 +1095,7 @@ p.subtitle {
     left: 50%;
     transform: translateX(-50%) translateY(24px);
     opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     width: 100%;
     max-width: 320px;
