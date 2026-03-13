@@ -213,6 +213,38 @@
         </div>
     </section>
 
+    <!-- Spotlight Section -->
+    <section class="section spotlight-section">
+        <div class="container">
+            <div class="spotlight-grid">
+                <!-- AI Receipt Scanner Card -->
+                <div class="spotlight-card">
+                    <h2 class="text-white" style="margin-bottom: 16px;">Yapay Zeka Fiş Analizi</h2>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;">Harcamalarınızı dijitalleştirin. Google Gemini API desteğiyle fişlerinizi saniyeler içinde analiz edin ve bütçenize otomatik olarak işleyin.</p>
+                    <div class="scanner-container" id="receiptScanner">
+                        <div class="scanner-laser"></div>
+                        <img src="assets/modern_receipt_mockup.png" alt="Receipt Mockup" class="receipt-img">
+                        <div class="scanner-tooltip" style="top: 25%; left: 5%;">Market: MODERN CAFE</div>
+                        <div class="scanner-tooltip" style="top: 45%; right: 5%;">Flat White: ₺95.00</div>
+                        <div class="scanner-tooltip" style="top: 65%; left: 10%;">Avocado Toast: ₺160.00</div>
+                    </div>
+                </div>
+
+                <!-- Personal Inflation Engine Card -->
+                <div class="spotlight-card">
+                    <h2 class="text-white" style="margin-bottom: 16px;">Kişisel Enflasyon Motoru</h2>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;">Resmi veriler sizi yanıltmasın. Kendi harcama sepetinize özel gerçek yaşam maliyetinizi mühendislik hassasiyetiyle hesaplayın.</p>
+                    <div class="engine-container" id="inflationEngine">
+                        <div class="orbit-pulse"></div>
+                        <div class="orbit-pulse-large"></div>
+                        <div class="counter-value" id="inflationCounter">0.0%</div>
+                        <div class="engine-label">Kişisel Enflasyon Motoru</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Interactive Features Section (Option C) -->
     <section id="features" class="section section-tint">
         <div class="container">
@@ -556,6 +588,64 @@
                     });
                 });
             }
+
+            // Advanced Spotlight Animations
+            const scanner = document.getElementById('receiptScanner');
+            const tooltips = scanner.querySelectorAll('.scanner-tooltip');
+            const counterEl = document.getElementById('inflationCounter');
+            let counterStarted = false;
+
+            const animateCounter = (target) => {
+                let current = 0;
+                const duration = 2000;
+                const start = performance.now();
+
+                const step = (now) => {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out expo
+                    const value = progress === 1 ? target : target * (1 - Math.pow(2, -10 * progress));
+                    counterEl.innerText = value.toFixed(1) + '%';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    }
+                };
+                requestAnimationFrame(step);
+            };
+
+            const spotlightObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'receiptScanner') {
+                            entry.target.classList.add('active');
+                            // Tooltip logic based on laser position
+                            let tooltipIdx = 0;
+                            const showTooltips = () => {
+                                tooltips.forEach(t => t.classList.remove('visible'));
+                                if (tooltipIdx < tooltips.length) {
+                                    tooltips[tooltipIdx].classList.add('visible');
+                                    tooltipIdx++;
+                                    setTimeout(showTooltips, 1200);
+                                } else {
+                                    setTimeout(() => {
+                                        tooltipIdx = 0;
+                                        showTooltips();
+                                    }, 2000);
+                                }
+                            };
+                            showTooltips();
+                        }
+                        if (entry.target.id === 'inflationEngine' && !counterStarted) {
+                            counterStarted = true;
+                            animateCounter(28.4);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            spotlightObserver.observe(scanner);
+            spotlightObserver.observe(document.getElementById('inflationEngine'));
         });
     </script>
 </body>
