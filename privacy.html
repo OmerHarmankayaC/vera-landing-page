@@ -73,6 +73,29 @@
             color: var(--text-secondary);
             margin-bottom: 16px;
         }
+        .legal-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.9375rem;
+        }
+
+        .legal-container th,
+        .legal-container td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .legal-container th {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .legal-container td {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 
@@ -99,61 +122,260 @@
     <!-- Legal Content Area -->
     <main class="legal-container">
         <!-- TR SECTION -->
-        <h1>VERA-FINANCE GİZLİLİK POLİTİKASI</h1>
-        <span class="text-meta">Son Güncelleme: 10 Mart 2026</span>
+        <h1>Vera Finance — Gizlilik Politikası</h1>
+        <span class="text-meta">Son Güncelleme: Mart 2026</span>
 
-        <h2>[TR] TÜRKÇE METİN</h2>
+        <h2>TÜRKÇE</h2>
 
         <h3>1. Veri Sorumlusu</h3>
-        <p>Vera-finance uygulaması, Static Orbit markası altında bağımsız geliştirici Ömer Harmankaya tarafından
-            sunulmaktadır. Bu politika, kullanıcı verilerinin nasıl toplandığını ve işlendiğini açıklar. Uygulama ile
-            ilgili tüm yasal sorumluluk geliştiriciye aittir.</p>
+        <p>Vera Finance uygulaması, <strong>Static Orbit</strong> markası altında bağımsız geliştirici <strong>Ömer Harmankaya</strong> tarafından sunulmaktadır.</p>
+        <p>İletişim: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a><br>
+        Destek: <a href="https://vera.staticorbit.dev/support">https://vera.staticorbit.dev/support</a></p>
 
         <h3>2. Toplanan Veriler ve İşleme Amaçları</h3>
-        <p><strong>Hesap Bilgileri:</strong> Kayıt sırasında kullanılan e-posta adresi, kullanıcı doğrulaması için
-            geliştirici tarafından yönetilen sunucularda saklanır.</p>
-        <p><strong>Finansal Kayıtlar:</strong> Harcama ve bütçe girişleriniz cihazınızın yerel hafızasında saklanır.</p>
-        <p><strong>Fiş Tarama (AI):</strong> Fiş görselleri, analiz için tam resim olarak Google Gemini API servislerine
-            iletilir. Bu veriler sadece analiz süresince işlenir.</p>
-        <p><strong>Reklam Kimlikleri:</strong> Kişiselleştirilmiş reklamlar için cihaz kimlikleri (IDFA/AAID) üçüncü
-            taraf reklam ağları tarafından işlenebilir.</p>
 
-        <h3>3. Veri Paylaşımı ve Üçüncü Taraflar</h3>
-        <p>Uygulama, fonksiyonlarını yerine getirmek için Google Gemini (Yapay Zeka) ve CollectAPI (Piyasa Verileri)
-            servislerini kullanır. Verileriniz, bu servis sağlayıcıların kendi gizlilik politikaları çerçevesinde
-            işlenir.</p>
+        <h4>2.1 Hesap Bilgileri</h4>
+        <p>Uygulamaya kayıt olurken yalnızca <strong>e-posta adresiniz ve şifreniz</strong> toplanır. Bu veriler <strong>Google Firebase Authentication</strong> altyapısı üzerinde saklanır. Şifreler hiçbir zaman düz metin olarak depolanmaz.</p>
 
-        <h3>4. Veri Silme Hakları</h3>
-        <p>Kullanıcılar, uygulama içerisindeki "Hesabımı Sil" butonu ile veya destek@staticorbit.dev adresi üzerinden
-            tüm verilerinin kalıcı olarak silinmesini talep edebilirler.</p>
+        <h4>2.2 Finansal Veriler</h4>
+        <p>Harcama kayıtlarınız, bütçeleriniz, hedefleriniz ve portföy bilgileriniz <strong>yalnızca cihazınızın yerel hafızasında (AsyncStorage)</strong> saklanır. Bu veriler sunucularımıza aktarılmaz.</p>
+
+        <h4>2.3 Fiş Tarama (OCR)</h4>
+        <p>Faturalarınızı taramayı seçtiğinizde, görüntü analiz amacıyla <strong>Google Gemini API</strong>'ye iletilir. Görüntüler yalnızca işleme tabi tutulur; tarafımızdan saklanmaz ve Google tarafından API çağrısının ötesinde tutulmaz.</p>
+
+        <h4>2.4 Tarama Kotası</h4>
+        <p>Haftalık fiş tarama limitinizi takip edebilmek için kota sayacınız <strong>Google Firestore</strong> veritabanında kullanıcı kimliğinizle ilişkili olarak tutulur. Yalnızca <code>weekly_ai_scan_count</code> ve <code>last_scan_reset_date</code> alanları saklanır.</p>
+
+        <h4>2.5 Abonelik Bilgileri</h4>
+        <p>Premium aboneliğinizin durumu <strong>RevenueCat</strong> ve <strong>Google Firebase</strong> altyapısı aracılığıyla işlenir. RevenueCat, cihaz kimliğinizi ve satın alma geçmişinizi kendi gizlilik politikası kapsamında işler.</p>
+
+        <h4>2.6 Pazar Fiyatları</h4>
+        <p>Hisse senedi, kripto para ve döviz fiyatları <strong>CollectAPI</strong> üzerinden alınmaktadır. Bu veriler kişiselleştirilmemiş sistematik piyasa verisidir; sizinle ilişkilendirilmez.</p>
+
+        <h4>2.7 Reklamlar</h4>
+        <p>Ücretsiz plan kullanıcılarına <strong>Google AdMob</strong> aracılığıyla reklam gösterilebilir. AdMob, reklam kişiselleştirmek için cihaz tanımlayıcılarını ve kullanım verilerini işleyebilir. Bu konuda KVKK/GDPR kapsamında ayrı bir onay alınacaktır.</p>
+
+        <h3>3. Üçüncü Taraflar ve Veri Paylaşımı</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Hizmet</th>
+                    <th>Amaç</th>
+                    <th>Gizlilik Politikası</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google Firebase Authentication</td>
+                    <td>Kimlik doğrulama</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Firestore</td>
+                    <td>Tarama kotası</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Firebase Realtime Database</td>
+                    <td>Pazar fiyatları</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Gemini API</td>
+                    <td>Fiş OCR</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>RevenueCat</td>
+                    <td>Abonelik yönetimi</td>
+                    <td><a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>CollectAPI</td>
+                    <td>Finansal pazar verileri</td>
+                    <td><a href="https://collectapi.com/privacy">collectapi.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google AdMob</td>
+                    <td>Reklam gösterimi</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Verileriniz satılmaz, kiralanmaz veya yukarıdaki hizmetlerin dışında üçüncü taraflarla paylaşılmaz.</p>
+
+        <h3>4. Veri Saklama Süreleri</h3>
+        <ul>
+            <li><strong>Hesap bilgileri (e-posta):</strong> Hesabınızı silene kadar saklanır.</li>
+            <li><strong>Firestore tarama kotası:</strong> 30 günlük kayan pencere ile yenilenir; hesap silindiğinde kalıcı olarak kaldırılır.</li>
+            <li><strong>Yerel finansal veriler:</strong> Uygulamayı kaldırana veya "Tüm Verileri Sil" / "Hesabı Sil" işlemini gerçekleştirene kadar cihazınızda saklanır.</li>
+            <li><strong>Fiş görüntüleri:</strong> Saklanmaz. Sadece işlem anında Google Gemini'ye iletilir.</li>
+        </ul>
+
+        <h3>5. Hesap ve Veri Silme</h3>
+        <p>Uygulama içindeki <strong>Ayarlar → Hesabı Sil</strong> butonu aracılığıyla:</p>
+        <ul>
+            <li>Firebase Authentication hesabınız kalıcı olarak silinir</li>
+            <li>Firestore üzerindeki kullanıcı kaydınız kaldırılır</li>
+            <li>Cihazınızdaki tüm yerel veriler temizlenir</li>
+        </ul>
+        <p>Yazılı talep için: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a></p>
+
+        <h3>6. KVKK Kapsamındaki Haklarınız (Madde 11)</h3>
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca aşağıdaki haklara sahipsiniz:</p>
+        <ol>
+            <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+            <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+            <li>Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+            <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme</li>
+            <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme</li>
+            <li>Kişisel verilerinizin silinmesini veya yok edilmesini isteme</li>
+            <li>Kişisel verilerinizin düzeltilmesi, silinmesi veya yok edilmesi işlemlerinin üçüncü kişilere bildirilmesini isteme</li>
+            <li>İşlenen verilerinizin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
+            <li>Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+        </ol>
+        <p>Bu haklarınızı kullanmak için: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a></p>
+
+        <h3>7. Yaş Sınırı</h3>
+        <p>Bu uygulama <strong>13 yaş ve üzeri</strong> kullanıcılar için tasarlanmıştır. 13 yaşın altındaki çocuklardan bilerek kişisel veri toplanmamaktadır. Böyle bir durumun farkına varırsak, söz konusu verileri derhal sileriz.</p>
+
+        <h3>8. Politika Değişiklikleri</h3>
+        <p>Bu politikada yapılacak önemli değişiklikler, güncelleme tarihi değiştirilerek ve/veya uygulama içi bildirimle kullanıcılara duyurulacaktır.</p>
+
+        <h3>9. İletişim</h3>
+        <p><strong>E-posta:</strong> <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a><br>
+        <strong>Destek:</strong> <a href="https://vera.staticorbit.dev/support">https://vera.staticorbit.dev/support</a></p>
+
+        <hr style="margin: 64px 0; border: 0; border-top: 1px solid var(--border-light);">
 
         <!-- EN SECTION -->
-        <h2>[EN] ENGLISH VERSION</h2>
-        <span class="text-meta" style="margin-bottom: 24px; margin-top: -16px;">Last Updated: March 10, 2026</span>
+        <h2>ENGLISH</h2>
+        <span class="text-meta" style="margin-bottom: 24px;">Last Updated: March 2026</span>
 
         <h3>1. Data Controller</h3>
-        <p>Vera-finance is provided by independent developer Ömer Harmankaya under the brand Static Orbit. This policy
-            outlines how user data is collected and processed. All legal responsibilities regarding the application
-            belong to the developer.</p>
+        <p>The Vera Finance application is provided by independent developer <strong>Ömer Harmankaya</strong> under the <strong>Static Orbit</strong> brand.</p>
+        <p>Contact: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a><br>
+        Support: <a href="https://vera.staticorbit.dev/support">https://vera.staticorbit.dev/support</a></p>
 
-        <h3>2. Data Collection and Usage</h3>
-        <p><strong>Account Information:</strong> Email addresses used for registration are stored on servers managed by
-            the developer for authentication purposes.</p>
-        <p><strong>Financial Records:</strong> Budget and expense entries are primarily stored on your device’s local
-            storage.</p>
-        <p><strong>Receipt Scanning (AI):</strong> Full images are transmitted to Google Gemini API for processing and
-            text extraction. Data is processed only during the analysis.</p>
-        <p><strong>Advertising Identifiers:</strong> Device identifiers (IDFA/AAID) may be processed by third-party ad
-            networks for personalized advertising.</p>
+        <h3>2. Data We Collect and Why</h3>
 
-        <h3>3. Third-Party Disclosures</h3>
-        <p>Vera-finance utilizes Google Gemini (AI) and CollectAPI (Market data). Your data is processed in accordance
-            with the privacy policies of these service providers.</p>
+        <h4>2.1 Account Information</h4>
+        <p>When you register, only your <strong>email address and password</strong> are collected. These are stored on <strong>Google Firebase Authentication</strong> infrastructure. Passwords are never stored in plain text.</p>
 
-        <h3>4. Data Deletion Rights</h3>
-        <p>Users may request the permanent deletion of their account and data via the "Delete Account" button or by
-            contacting destek@staticorbit.dev.</p>
+        <h4>2.2 Financial Data</h4>
+        <p>Your expense records, budgets, goals, and portfolio data are stored <strong>exclusively on your device's local storage (AsyncStorage)</strong>. This data is never transmitted to our servers.</p>
+
+        <h4>2.3 Receipt Scanning (OCR)</h4>
+        <p>When you choose to scan a receipt, the image is transmitted to the <strong>Google Gemini API</strong> for analysis. Images are processed only and are not stored by us, nor retained by Google beyond the API call.</p>
+
+        <h4>2.4 Scan Quota</h4>
+        <p>To track your weekly receipt scan limit, a quota counter is stored in <strong>Google Firestore</strong> linked to your user ID. Only the fields <code>weekly_ai_scan_count</code> and <code>last_scan_reset_date</code> are stored.</p>
+
+        <h4>2.5 Subscription Information</h4>
+        <p>Your premium subscription status is processed through <strong>RevenueCat</strong> and <strong>Google Firebase</strong> infrastructure. RevenueCat processes your device identifier and purchase history under its own privacy policy.</p>
+
+        <h4>2.6 Market Prices</h4>
+        <p>Stock, cryptocurrency, and currency prices are fetched from <strong>CollectAPI</strong>. This data is non-personalized systematic market data and is not linked to you personally.</p>
+
+        <h4>2.7 Advertising</h4>
+        <p>Free plan users may be shown advertisements through <strong>Google AdMob</strong>. AdMob may process device identifiers and usage data to personalise ads. A separate consent prompt will be shown in compliance with GDPR/KVKK requirements.</p>
+
+        <h3>3. Third Parties and Data Sharing</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Purpose</th>
+                    <th>Privacy Policy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google Firebase Authentication</td>
+                    <td>Authentication</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Firestore</td>
+                    <td>Scan quota tracking</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Firebase Realtime Database</td>
+                    <td>Market price data</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google Gemini API</td>
+                    <td>Receipt OCR</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>RevenueCat</td>
+                    <td>Subscription management</td>
+                    <td><a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>CollectAPI</td>
+                    <td>Financial market data</td>
+                    <td><a href="https://collectapi.com/privacy">collectapi.com/privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Google AdMob</td>
+                    <td>Ad delivery</td>
+                    <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Your data is never sold, rented, or shared with third parties outside the services listed above.</p>
+
+        <h3>4. Data Retention</h3>
+        <ul>
+            <li><strong>Account information (email):</strong> Retained until you delete your account.</li>
+            <li><strong>Firestore scan quota:</strong> Resets on a 30-day rolling window; permanently deleted when the account is deleted.</li>
+            <li><strong>Local financial data:</strong> Stored on your device until you uninstall the app or use "Delete All Data" / "Delete Account".</li>
+            <li><strong>Receipt images:</strong> Not stored. Transmitted to Google Gemini at processing time only.</li>
+        </ul>
+
+        <h3>5. Account and Data Deletion</h3>
+        <p>Using the <strong>Settings → Delete Account</strong> button in the app:</p>
+        <ul>
+            <li>Your Firebase Authentication account is permanently deleted</li>
+            <li>Your Firestore user record is removed</li>
+            <li>All local data on your device is cleared</li>
+        </ul>
+        <p>For written requests: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a></p>
+
+        <h3>6. Your Rights Under GDPR / KVKK</h3>
+        <p>You have the following rights regarding your personal data:</p>
+        <ol>
+            <li>The right to access your personal data</li>
+            <li>The right to rectification of inaccurate data</li>
+            <li>The right to erasure ("right to be forgotten")</li>
+            <li>The right to restriction of processing</li>
+            <li>The right to data portability</li>
+            <li>The right to object to processing</li>
+            <li>The right to know if data has been disclosed to third parties</li>
+            <li>The right not to be subject to automated decision-making</li>
+            <li>The right to lodge a complaint with a supervisory authority (Turkey: KVKK Board — kvkk.gov.tr)</li>
+        </ol>
+        <p>To exercise these rights: <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a></p>
+
+        <h3>7. Age Restriction</h3>
+        <p>This application is designed for users <strong>13 years of age or older</strong>. We do not knowingly collect personal data from children under 13. If we become aware of such data, we will delete it immediately.</p>
+
+        <h3>8. Policy Changes</h3>
+        <p>Material changes to this policy will be communicated by updating the date on this page and/or via an in-app notification.</p>
+
+        <h3>9. Contact</h3>
+        <p><strong>Email:</strong> <a href="mailto:destek@staticorbit.dev">destek@staticorbit.dev</a><br>
+        <strong>Support:</strong> <a href="https://vera.staticorbit.dev/support">https://vera.staticorbit.dev/support</a></p>
     </main>
+
 
     <!-- Wrapped Footer -->
     <div class="footer-wrapper" style="margin-top: 64px;">
