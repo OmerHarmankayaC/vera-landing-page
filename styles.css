@@ -259,64 +259,64 @@ p.subtitle {
 .gc-1 {
     /* Inner Layer - Focused Right-ish Top */
     animation: float-gentle 6s ease-in-out infinite, fadeUpGlass 0.8s ease 0.3s forwards;
-    left: 22%;
-    top: -30px;
+    left: 32%;
+    top: -10px;
     z-index: 5;
 }
 
 .gc-8 {
     /* Inner Layer - Focused Left-ish Top */
     animation: float-gentle 5s ease-in-out infinite 0.7s, fadeUpGlass 0.8s ease 1s forwards;
-    right: 25%;
-    top: -50px;
+    right: 32%;
+    top: 30px;
     z-index: 2;
 }
 
 .gc-2 {
     /* Outer Layer - Far Right Surroundings */
     animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
-    right: 3%;
-    top: 50px;
+    right: 12%;
+    top: 100px;
     z-index: 4;
 }
 
 .gc-3 {
     /* Outer Layer - Far Left Surroundings */
     animation: float-gentle 6.5s ease-in-out infinite 0.5s, fadeUpGlass 0.8s ease 0.7s forwards;
-    left: -5%;
-    top: 140px;
+    left: 12%;
+    top: 130px;
     z-index: 6;
 }
 
 .gc-4 {
     /* Inner Layer - Focused Right Middle */
     animation: float-gentle 5.5s ease-in-out infinite 0.2s, fadeUpGlass 0.8s ease 0.4s forwards;
-    right: 18%;
-    top: 200px;
+    right: 28%;
+    top: 220px;
     z-index: 3;
 }
 
 .gc-7 {
     /* Inner Layer - Focused Left Middle */
     animation: float-gentle 7.5s ease-in-out infinite 0.4s, fadeUpGlass 0.8s ease 0.9s forwards;
-    left: 20%;
-    top: 250px;
+    left: 35%;
+    top: 280px;
     z-index: 8;
 }
 
 .gc-5 {
     /* Outer Layer - Left Surroundings Bottom */
     animation: float-gentle 6.2s ease-in-out infinite 0.8s, fadeUpGlass 0.8s ease 0.6s forwards;
-    left: 2%;
-    top: 320px;
+    left: 15%;
+    top: 340px;
     z-index: 7;
 }
 
 .gc-6 {
     /* Outer Layer - Far Right Surroundings Bottom */
     animation: float-gentle 5.8s ease-in-out infinite 1.2s, fadeUpGlass 0.8s ease 0.8s forwards;
-    right: -2%;
-    top: 340px;
+    right: 18%;
+    top: 370px;
     z-index: 5;
 }
 
@@ -1664,4 +1664,97 @@ p.subtitle {
     opacity: 1;
     letter-spacing: 0.25em;
     transform: translateY(-5px);
+}
+
+/* Floating Support Button */
+.floating-support-btn {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: var(--radius-pill);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: var(--shadow-large-float);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+    animation: float-gentle 6s ease-in-out infinite;
+}
+
+.floating-support-btn.at-footer {
+    bottom: 110px;
+}
+
+.floating-support-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.floating-support-btn i {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+    .floating-support-btn {
+        bottom: 100px; /* Above the mobile bottom bar */
+        left: 20px;
+        right: auto;
+        padding: 10px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Language Switcher */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.04);
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    margin-left: -12px;
+}
+
+.lang-btn {
+    border: none;
+    background: none;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-pill);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.lang-btn.active {
+    background: var(--bg-white);
+    color: var(--text-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lang-btn:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+@media (max-width: 991px) {
+    .lang-switcher {
+        margin-left: 0;
+        margin-top: 16px;
+    }
 }

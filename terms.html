@@ -93,12 +93,16 @@
                 <span>Vera Finance</span>
             </a>
             <div class="nav-links">
-                <a href="index.html#features">Özellikler</a>
-                <a href="index.html#security">Güvenlik</a>
-                <a href="index.html#pricing">Vera Premium</a>
-                <a href="about.html">Hakkımızda</a>
+                <a href="index.html#features" data-i18n="nav-features">Özellikler</a>
+                <a href="index.html#security" data-i18n="nav-security">Güvenlik</a>
+                <a href="index.html#pricing" data-i18n="nav-premium">Vera Premium</a>
+                <a href="about.html" data-i18n="nav-about">Hakkımızda</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
-            <button class="btn btn-primary" style="padding: 10px 20px;" onclick="window.location.href='index.html'">Geri
+            <button class="btn btn-primary" style="padding: 10px 20px;" onclick="window.location.href='index.html'" data-i18n="nav-home">Geri
                 Dön</button>
         </nav>
     </div>
@@ -106,12 +110,13 @@
     <!-- Legal Content Area -->
     <main class="legal-container">
         <!-- TR SECTION -->
-        <h1>Vera Finance — Kullanım Şartları</h1>
+        <div id="legal-tr">
+            <h1 data-i18n="terms-title">Vera Finance — Kullanım Şartları</h1>
 
-        <div class="alert-box">
-            <p><strong>YATIRIM TAVSİYESİ DEĞİLDİR:</strong> Vera Finance içerisinde sunulan veriler sadece bilgilendirme
-                amaçlıdır. Uygulama hiçbir şekilde yatırım danışmanlığı veya "al-sat" tavsiyesi vermez.</p>
-        </div>
+            <div class="alert-box">
+                <p><strong>YATIRIM TAVSİYESİ DEĞİLDİR:</strong> Vera Finance içerisinde sunulan veriler sadece bilgilendirme
+                    amaçlıdır. Uygulama hiçbir şekilde yatırım danışmanlığı veya "al-sat" tavsiyesi vermez.</p>
+            </div>
 
         <span class="text-meta" style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 48px; display: block;">Son Güncelleme: Mart 2026</span>
 
@@ -185,11 +190,19 @@
         <p><strong>E-posta:</strong> <a href="mailto:support@staticorbit.dev">support@staticorbit.dev</a><br>
         <strong>Destek:</strong> <a href="support.html">https://vera.finance/support.html</a></p>
 
-        <hr style="margin: 64px 0; border: 0; border-top: 1px solid var(--border-light);">
+        </div>
+
+        <hr style="margin: 64px 0; border: 0; border-top: 1px solid var(--border-light);" class="legal-divider">
 
         <!-- EN SECTION -->
-        <h2>ENGLISH</h2>
-        <span class="text-meta" style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 48px; display: block;">Last Updated: March 2026</span>
+        <div id="legal-en">
+            <h2 data-i18n="terms-title">Vera Finance — Terms of Service</h2>
+            
+            <div class="alert-box">
+                <p><strong>NOT INVESTMENT ADVICE:</strong> The data provided within Vera Finance is for informational purposes only. The app does not provide investment advice or "buy/sell" recommendations in any way.</p>
+            </div>
+            
+            <span class="text-meta" style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 48px; display: block;">Last Updated: March 2026</span>
 
         <h3>1. Parties and Scope</h3>
         <p>These Terms of Service constitute an agreement between you, the user ("User"), and independent developer <strong>Ömer Harmankaya</strong>, operating under the <strong>Static Orbit</strong> brand ("Developer"), regarding your use of the Vera Finance application ("App").</p>
@@ -258,6 +271,7 @@
         <h3>12. Contact</h3>
         <p><strong>Email:</strong> <a href="mailto:support@staticorbit.dev">support@staticorbit.dev</a><br>
         <strong>Support:</strong> <a href="support.html">https://vera.finance/support.html</a></p>
+        </div>
     </main>
 
     <!-- Wrapped Footer -->
@@ -269,36 +283,94 @@
                         <i data-lucide="wallet"></i>
                         Vera Finance
                     </div>
-                    <p class="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
+                    <p class="footer-desc" data-i18n="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
                 </div>
                 <div>
-                    <div class="footer-title">Ürün</div>
+                    <div class="footer-title" data-i18n="footer-product">Ürün</div>
                     <ul class="footer-links">
-                        <li><a href="index.html#features">Özellikler</a></li>
-                        <li><a href="index.html#security">Güvenlik</a></li>
-                        <li><a href="index.html#pricing">Vera Premium</a></li>
+                        <li><a href="index.html#features" data-i18n="nav-features">Özellikler</a></li>
+                        <li><a href="index.html#security" data-i18n="nav-security">Güvenlik</a></li>
+                        <li><a href="index.html#pricing" data-i18n="nav-premium">Vera Premium</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Şirket</div>
+                    <div class="footer-title" data-i18n="footer-company">Şirket</div>
                     <ul class="footer-links">
-                        <li><a href="about.html">Hakkımızda</a></li>
-                        <li><a href="support.html">İletişim</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">Hakkımızda</a></li>
+                        <li><a href="support.html" data-i18n="nav-contact">İletişim</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>&copy; 2026 Vera Finance Inc. Tüm hakları saklıdır.</div>
+                <div data-i18n="footer-copyright">&copy; 2026 Ömer Harmankaya. Tüm hakları saklıdır.</div>
                 <div style="display: flex; gap: 24px;">
-                    <a href="privacy.html" style="color: inherit; text-decoration: none;">Gizlilik</a>
-                    <a href="terms.html" style="color: inherit; text-decoration: none;">Şartlar</a>
+                    <a href="privacy.html" style="color: inherit; text-decoration: none;" data-i18n="footer-privacy">Gizlilik</a>
+                    <a href="terms.html" style="color: inherit; text-decoration: none;" data-i18n="footer-terms">Şartlar</a>
                 </div>
             </div>
         </footer>
     </div>
 
+    <!-- Floating Support Button -->
+    <a href="support.html" class="floating-support-btn">
+        <i data-lucide="help-circle"></i>
+        <span data-i18n="float-support">Destek</span>
+    </a>
+
+    <script src="translations.js"></script>
     <script>
         lucide.createIcons();
+
+        // Language-specific content visibility
+        function updateLegalSections(lang) {
+            const trSection = document.getElementById('legal-tr');
+            const enSection = document.getElementById('legal-en');
+            const divider = document.querySelector('.legal-divider');
+
+            if (lang === 'tr') {
+                if (trSection) trSection.style.display = 'block';
+                if (enSection) enSection.style.display = 'none';
+                if (divider) divider.style.display = 'none';
+            } else {
+                if (trSection) trSection.style.display = 'none';
+                if (enSection) enSection.style.display = 'block';
+                if (divider) divider.style.display = 'none';
+            }
+        }
+
+        // Listen for language changes
+        const originalSetLanguage = window.setLanguage;
+        window.setLanguage = function(lang) {
+            originalSetLanguage(lang);
+            updateLegalSections(lang);
+        };
+
+        // Initialize visibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('vera-lang') || 'tr';
+            updateLegalSections(savedLang);
+        });
+
+        // Dynamic Support Button Position
+        const supportBtn = document.querySelector('.floating-support-btn');
+        const footer = document.querySelector('.footer-wrapper');
+
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    supportBtn.classList.add('at-footer');
+                } else {
+                    supportBtn.classList.remove('at-footer');
+                }
+            });
+        }, { 
+            threshold: 0,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        if (supportBtn && footer) {
+            footerObserver.observe(footer);
+        }
     </script>
 </body>
 

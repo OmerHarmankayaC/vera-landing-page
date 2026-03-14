@@ -173,43 +173,47 @@
                 <span>Vera Finance</span>
             </a>
             <div class="nav-links">
-                <a href="index.html#features">Özellikler</a>
-                <a href="index.html#security">Güvenlik</a>
-                <a href="index.html#pricing">Vera Premium</a>
-                <a href="about.html">Hakkımızda</a>
+                <a href="index.html#features" data-i18n="nav-features">Özellikler</a>
+                <a href="index.html#security" data-i18n="nav-security">Güvenlik</a>
+                <a href="index.html#pricing" data-i18n="nav-premium">Vera Premium</a>
+                <a href="about.html" data-i18n="nav-about">Hakkımızda</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
             <button class="btn btn-primary" style="padding: 10px 20px;"
-                onclick="window.location.href='index.html'">Ana Sayfa</button>
+                onclick="window.location.href='index.html'" data-i18n="nav-home">Ana Sayfa</button>
         </nav>
     </div>
 
     <main class="support-container">
         <div class="support-header">
-            <h1>Size Nasıl Yardımcı Olabiliriz?</h1>
-            <p>Vera ile ilgili sorularınız, teknik destek talepleriniz veya iş birliği önerileriniz için aşağıdaki formu doldurabilirsiniz.</p>
+            <h1 data-i18n="support-title">Size Nasıl Yardımcı Olabiliriz?</h1>
+            <p data-i18n="support-subtitle">Vera ile ilgili sorularınız, teknik destek talepleriniz veya iş birliği önerileriniz için aşağıdaki formu doldurabilirsiniz.</p>
         </div>
 
         <div class="contact-form-wrapper">
             <form action="https://formspree.io/f/mwvrnepv" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="name">İsim Soyisim</label>
-                        <input type="text" id="name" name="name" placeholder="Adınız" required>
+                        <label for="name" data-i18n="support-form-name">İsim Soyisim</label>
+                        <input type="text" id="name" name="name" placeholder="Adınız" data-i18n="support-form-name-ph" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">E-posta Adresi</label>
-                        <input type="email" id="email" name="_replyto" placeholder="E-posta adresiniz" required>
+                        <label for="email" data-i18n="support-form-email">E-posta Adresi</label>
+                        <input type="email" id="email" name="_replyto" placeholder="E-posta adresiniz" data-i18n="support-form-email-ph" required>
                     </div>
                 </div>
                 <div class="form-group" style="margin-bottom: 24px;">
-                    <label for="subject">Konu</label>
-                    <input type="text" id="subject" name="subject" placeholder="Mesajınızın konusu" required>
+                    <label for="subject" data-i18n="support-form-subject">Konu</label>
+                    <input type="text" id="subject" name="subject" placeholder="Mesajınızın konusu" data-i18n="support-form-subject-ph" required>
                 </div>
                 <div class="form-group" style="margin-bottom: 24px;">
-                    <label for="message">Mesaj</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Bize nasıl yardımcı olabileceğimizi anlatın..." required></textarea>
+                    <label for="message" data-i18n="support-form-message">Mesaj</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Bize nasıl yardımcı olabileceğimizi anlatın..." data-i18n="support-form-message-ph" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-submit">
+                <button type="submit" class="btn btn-primary btn-submit" data-i18n="support-form-btn">
                     Mesaj Gönder <i data-lucide="send" style="width: 18px; height: 18px;"></i>
                 </button>
             </form>
@@ -218,24 +222,23 @@
         <div class="contact-info">
             <div class="info-item">
                 <div class="info-icon"><i data-lucide="mail"></i></div>
-                <h3>E-posta</h3>
+                <h3 data-i18n="support-info-email">E-posta</h3>
                 <a href="mailto:support@staticorbit.dev">support@staticorbit.dev</a>
             </div>
             <div class="info-item">
                 <div class="info-icon"><i data-lucide="help-circle"></i></div>
-                <h3>Yardım Merkezi</h3>
-                <p>Yakında sizlerle.</p>
+                <h3 data-i18n="support-info-help">Yardım Merkezi</h3>
+                <p data-i18n="support-info-help-desc">Yakında sizlerle.</p>
             </div>
             <div class="info-item">
                 <div class="info-icon"><i data-lucide="message-square"></i></div>
-                <h3>Yanıt Süresi</h3>
-                <p>Genellikle 24 saat içinde.</p>
+                <h3 data-i18n="support-info-response">Yanıt Süresi</h3>
+                <p data-i18n="support-info-response-desc">Genellikle 24 saat içinde.</p>
             </div>
         </div>
     </main>
 
     <!-- Wrapped Footer -->
-    <div class="footer-wrapper">
         <footer class="footer">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -243,33 +246,35 @@
                         <i data-lucide="wallet"></i>
                         Vera Finance
                     </div>
-                    <p class="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
+                    <p class="footer-desc" data-i18n="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
                 </div>
                 <div>
-                    <div class="footer-title">Ürün</div>
+                    <div class="footer-title" data-i18n="footer-product">Ürün</div>
                     <ul class="footer-links">
-                        <li><a href="index.html#features">Özellikler</a></li>
-                        <li><a href="index.html#security">Güvenlik</a></li>
-                        <li><a href="index.html#pricing">Vera Premium</a></li>
+                        <li><a href="index.html#features" data-i18n="nav-features">Özellikler</a></li>
+                        <li><a href="index.html#security" data-i18n="nav-security">Güvenlik</a></li>
+                        <li><a href="index.html#pricing" data-i18n="nav-premium">Vera Premium</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Şirket</div>
+                    <div class="footer-title" data-i18n="footer-company">Şirket</div>
                     <ul class="footer-links">
-                        <li><a href="about.html">Hakkımızda</a></li>
-                        <li><a href="support.html">İletişim</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">Hakkımızda</a></li>
+                        <li><a href="support.html" data-i18n="nav-contact">İletişim</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>&copy; 2026 Vera Finance Inc. Tüm hakları saklıdır.</div>
+                <div data-i18n="footer-copyright">&copy; 2026 Ömer Harmankaya. Tüm hakları saklıdır.</div>
                 <div style="display: flex; gap: 24px;">
-                    <a href="privacy.html" style="color: inherit; text-decoration: none;">Gizlilik</a>
-                    <a href="terms.html" style="color: inherit; text-decoration: none;">Şartlar</a>
+                    <a href="privacy.html" style="color: inherit; text-decoration: none;" data-i18n="footer-privacy">Gizlilik</a>
+                    <a href="terms.html" style="color: inherit; text-decoration: none;" data-i18n="footer-terms">Şartlar</a>
                 </div>
             </div>
         </footer>
     </div>
+
+    <script src="translations.js"></script>
 
     <script>
         lucide.createIcons();

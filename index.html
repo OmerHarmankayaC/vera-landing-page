@@ -45,14 +45,18 @@
                 <span>Vera Finance</span>
             </a>
             <div class="nav-links">
-                <a href="#features">Özellikler</a>
-                <a href="#spotlight">İnovasyon</a>
-                <a href="#security">Güvenlik</a>
-                <a href="#pricing">Vera Premium</a>
-                <a href="about.html">Hakkımızda</a>
+                <a href="#features" data-i18n="nav-features">Özellikler</a>
+                <a href="#spotlight" data-i18n="nav-innovation">İnovasyon</a>
+                <a href="#security" data-i18n="nav-security">Güvenlik</a>
+                <a href="#pricing" data-i18n="nav-premium">Vera Premium</a>
+                <a href="about.html" data-i18n="nav-about">Hakkımızda</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
             <button class="btn btn-primary" style="padding: 10px 20px;"
-                onclick="window.location.href='#pricing'">İndir</button>
+                onclick="window.location.href='#pricing'" data-i18n="nav-get-started">İndir</button>
         </nav>
     </div>
 
@@ -70,17 +74,23 @@
     <!-- Full Screen Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="mobile-menu-header">
-            <span class="mobile-logo-text">Menü</span>
-            <button class="mobile-close-btn" id="mobileCloseBtn">
-                <i data-lucide="x"></i>
-            </button>
+            <span class="mobile-logo-text" data-i18n="mobile-menu-title">Menü</span>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <div class="lang-switcher" style="background: var(--bg-secondary); padding: 4px; border-radius: 8px;">
+                    <button class="lang-btn" data-lang="tr" style="font-size: 0.75rem; padding: 4px 8px;">TR</button>
+                    <button class="lang-btn" data-lang="en" style="font-size: 0.75rem; padding: 4px 8px;">EN</button>
+                </div>
+                <button class="mobile-close-btn" id="mobileCloseBtn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
         </div>
         <div class="mobile-menu-links">
-            <a href="#features" class="mobile-link">Özellikler <i data-lucide="chevron-right"></i></a>
-            <a href="#spotlight" class="mobile-link">İnovasyon <i data-lucide="chevron-right"></i></a>
-            <a href="#security" class="mobile-link">Güvenlik <i data-lucide="chevron-right"></i></a>
-            <a href="#pricing" class="mobile-link">Vera Premium <i data-lucide="chevron-right"></i></a>
-            <a href="about.html" class="mobile-link">Hakkımızda <i data-lucide="chevron-right"></i></a>
+            <a href="#features" class="mobile-link" data-i18n="nav-features">Özellikler <i data-lucide="chevron-right"></i></a>
+            <a href="#spotlight" class="mobile-link" data-i18n="nav-innovation">İnovasyon <i data-lucide="chevron-right"></i></a>
+            <a href="#security" class="mobile-link" data-i18n="nav-security">Güvenlik <i data-lucide="chevron-right"></i></a>
+            <a href="#pricing" class="mobile-link" data-i18n="nav-premium">Vera Premium <i data-lucide="chevron-right"></i></a>
+            <a href="about.html" class="mobile-link" data-i18n="nav-about">Hakkımızda <i data-lucide="chevron-right"></i></a>
         </div>
     </div>
 
@@ -88,13 +98,13 @@
     <section class="section hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Finansal Kontrol Hiç<br>Bu Kadar Net Olmamıştı.</h1>
-                <p class="subtitle">Vera, harcamalarınızın 'nedenini' otomatikleştirerek finansal karmaşayı ortadan kaldırır. Modern finans yönetimi için gerçek zamanlı analizler ve akıllı bütçeleme.</p>
+                <h1 data-i18n="hero-title">Finansal Kontrol Hiç<br>Bu Kadar Net Olmamıştı.</h1>
+                <p class="subtitle" data-i18n="hero-subtitle">Vera, harcamalarınızın 'nedenini' otomatikleştirerek finansal karmaşayı ortadan kaldırır. Modern finans yönetimi için gerçek zamanlı analizler ve akıllı bütçeleme.</p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary" onclick="window.location.href='#pricing'">
+                    <button class="btn btn-primary" onclick="window.location.href='#pricing'" data-i18n="hero-cta-primary">
                         Ücretsiz İndirin
                     </button>
-                    <button class="btn btn-secondary" onclick="window.location.href='#features'">
+                    <button class="btn btn-secondary" onclick="window.location.href='#features'" data-i18n="hero-cta-secondary">
                         Özellikleri Keşfedin
                     </button>
                 </div>
@@ -107,7 +117,7 @@
                 <div class="glass-card gc-1 theme-border-navy">
                     <div class="gc-icon navy-icon"><i data-lucide="pie-chart"></i></div>
                     <div class="gc-content">
-                        <span class="gc-label">Toplam Varlık</span>
+                        <span class="gc-label" data-i18n="gc-label-wealth">Toplam Varlık</span>
                         <span class="gc-value">₺124.500</span>
                     </div>
                 </div>
@@ -116,7 +126,7 @@
                 <div class="glass-card gc-2 theme-border-green">
                     <div class="gc-icon green-icon"><i data-lucide="trending-up"></i></div>
                     <div class="gc-content">
-                        <span class="gc-label">Aylık Tasarruf</span>
+                        <span class="gc-label" data-i18n="gc-label-savings">Aylık Tasarruf</span>
                         <span class="gc-value positive">+%12,4</span>
                     </div>
                 </div>
@@ -125,7 +135,7 @@
                 <div class="glass-card gc-3 theme-border-red">
                     <div class="gc-icon red-icon"><i data-lucide="shopping-cart"></i></div>
                     <div class="gc-content">
-                        <span class="gc-label">Market Harcaması</span>
+                        <span class="gc-label" data-i18n="gc-label-market">Market Harcaması</span>
                         <span class="gc-value negative">-₺1.240</span>
                     </div>
                 </div>
@@ -135,7 +145,7 @@
                     <div class="gc-icon navy-icon" style="width: 32px; height: 32px;"><i data-lucide="coffee"
                             style="width: 16px; height: 16px;"></i></div>
                     <div class="gc-content">
-                        <span class="gc-value" style="font-size: 0.9375rem;">Kahve</span>
+                        <span class="gc-value" style="font-size: 0.9375rem;" data-i18n="gc-label-coffee">Kahve</span>
                     </div>
                 </div>
 
@@ -144,7 +154,7 @@
                     <div class="gc-icon red-icon" style="width: 36px; height: 36px;"><i data-lucide="alert-circle"
                             style="width: 18px; height: 18px;"></i></div>
                     <div class="gc-content">
-                        <span class="gc-label" style="font-size: 0.7rem;">Enflasyon Farkı</span>
+                        <span class="gc-label" style="font-size: 0.7rem;" data-i18n="gc-label-inflation">Enflasyon Farkı</span>
                         <span class="gc-value negative" style="font-size: 1rem;">-%4.2</span>
                     </div>
                 </div>
@@ -154,7 +164,7 @@
                     <div class="gc-icon navy-icon" style="width: 32px; height: 32px;"><i data-lucide="home"
                             style="width: 16px; height: 16px;"></i></div>
                     <div class="gc-content">
-                        <span class="gc-value" style="font-size: 0.9375rem;">Kira</span>
+                        <span class="gc-value" style="font-size: 0.9375rem;" data-i18n="gc-label-rent">Kira</span>
                     </div>
                 </div>
 
@@ -162,7 +172,7 @@
                 <div class="glass-card gc-7 theme-border-green">
                     <div class="gc-icon green-icon"><i data-lucide="target"></i></div>
                     <div class="gc-content">
-                        <span class="gc-label">Yıl Sonu Hedefi</span>
+                        <span class="gc-label" data-i18n="gc-label-target">Yıl Sonu Hedefi</span>
                         <span class="gc-value positive">₺200.000</span>
                     </div>
                 </div>
@@ -174,7 +184,7 @@
                         <i data-lucide="bell" style="width: 16px; height: 16px;"></i>
                     </div>
                     <div class="gc-content">
-                        <span class="gc-value" style="font-size: 0.9375rem;">Yeni İçgörü</span>
+                        <span class="gc-value" style="font-size: 0.9375rem;" data-i18n="gc-label-insight">Yeni İçgörü</span>
                     </div>
                 </div>
 
@@ -185,31 +195,31 @@
     <!-- Problem / Why Vera Section -->
     <section id="problem" class="section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 64px;">Finansal Yolculuğunuzda Neden Zaman Kaybediyorsunuz?
+            <h2 style="text-align: center; margin-bottom: 64px;" data-i18n="why-title">Finansal Yolculuğunuzda Neden Zaman Kaybediyorsunuz?
             </h2>
 
             <div class="problem-grid">
                 <div class="problem-card">
                     <div class="problem-icon"><i data-lucide="x-circle"></i></div>
-                    <h3>Çok Fazla Araç</h3>
-                    <p>Farklı banka uygulamaları ve e-tablolar arasında geçiş yapmak odağınızı bozar ve sizi yavaşlatır.
+                    <h3 data-i18n="why-card1-title">Çok Fazla Araç</h3>
+                    <p data-i18n="why-card1-desc">Farklı banka uygulamaları ve e-tablolar arasında geçiş yapmak odağınızı bozar ve sizi yavaşlatır.
                     </p>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon"><i data-lucide="help-circle"></i></div>
-                    <h3>Öncelik Karmaşası</h3>
-                    <p>Gününüze nerede durduğunuzu, nereye gittiğinizi bilmeden başlıyorsunuz.</p>
+                    <h3 data-i18n="why-card2-title">Öncelik Karmaşası</h3>
+                    <p data-i18n="why-card2-desc">Gününüze nerede durduğunuzu, nereye gittiğinizi bilmeden başlıyorsunuz.</p>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon"><i data-lucide="trending-down"></i></div>
-                    <h3>İlerleme Takibi Yok</h3>
-                    <p>Hareket ediyorsunuz, ancak ilerleyip ilerlemediğinizi veya ne kadar harcadığınızı göremiyorsunuz.
+                    <h3 data-i18n="why-card3-title">İlerleme Takibi Yok</h3>
+                    <p data-i18n="why-card3-desc">Hareket ediyorsunuz, ancak ilerleyip ilerlemediğinizi veya ne kadar harcadığınızı göremiyorsunuz.
                     </p>
                 </div>
             </div>
 
             <div class="problem-solution" style="text-align: center; margin-top: 48px;">
-                <p class="subtitle">Vera, finansal dağınıklığı ortadan kaldırır. Dağınık veriler arasında kaybolmak
+                <p class="subtitle" data-i18n="why-solution">Vera, finansal dağınıklığı ortadan kaldırır. Dağınık veriler arasında kaybolmak
                     yerine, tek bir merkezden tüm finansal sağlığınızı kontrol altına alın.</p>
             </div>
         </div>
@@ -221,8 +231,8 @@
             <div class="spotlight-grid">
                 <!-- AI Receipt Scanner Card -->
                 <div class="spotlight-card">
-                    <h2 class="text-white" style="margin-bottom: 16px;">Yapay Zeka Fiş Analizi</h2>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;">Harcamalarınızı dijitalleştirin. Google Gemini API desteğiyle fişlerinizi saniyeler içinde analiz edin ve bütçenize otomatik olarak işleyin.</p>
+                    <h2 class="text-white" style="margin-bottom: 16px;" data-i18n="spotlight-scan-title">Yapay Zeka Fiş Analizi</h2>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;" data-i18n="spotlight-scan-desc">Harcamalarınızı dijitalleştirin. Google Gemini API desteğiyle fişlerinizi saniyeler içinde analiz edin ve bütçenize otomatik olarak işleyin.</p>
                     <div class="scanner-container" id="receiptScanner">
                         <div class="scanner-laser"></div>
                         <img src="assets/detailed_receipt.png" alt="Fiş Analizi" class="receipt-img">
@@ -232,19 +242,19 @@
                         <div class="scanner-tooltip" style="top: 55%; right: 8%;">Kruvasan: ₺75,00</div>
                         <div class="scanner-tooltip" style="top: 65%; left: 8%;">Filtre Kahve: ₺65,00</div>
                         <div class="scanner-tooltip" style="top: 75%; right: 10%;">Çikolatalı Kek: ₺120,00</div>
-                        <div class="scanner-tooltip" style="top: 88%; left: 5%; font-weight: 800; border-color: #2563EB;">Toplam: ₺515,00</div>
+                        <div class="scanner-tooltip" style="top: 88%; left: 5%; font-weight: 800; border-color: #2563EB;" data-i18n="gc-label-total">Toplam: ₺515,00</div>
                     </div>
                 </div>
 
                 <!-- Personal Inflation Engine Card -->
                 <div class="spotlight-card">
-                    <h2 class="text-white" style="margin-bottom: 16px;">Kişisel Enflasyon Motoru</h2>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;">Resmi veriler sizi yanıltmasın. Kendi harcama sepetinize özel gerçek yaşam maliyetinizi mühendislik hassasiyetiyle hesaplayın.</p>
+                    <h2 class="text-white" style="margin-bottom: 16px;" data-i18n="spotlight-inflation-title">Kişisel Enflasyon Motoru</h2>
+                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 32px;" data-i18n="spotlight-inflation-desc">Resmi veriler sizi yanıltmasın. Kendi harcama sepetinize özel gerçek yaşam maliyetinizi mühendislik hassasiyetiyle hesaplayın.</p>
                     <div class="engine-container" id="inflationEngine">
                         <div class="orbit-pulse"></div>
                         <div class="orbit-pulse-large"></div>
                         <div class="counter-value" id="inflationCounter">0.0%</div>
-                        <div class="engine-label">Kişisel Enflasyon Motoru</div>
+                        <div class="engine-label" data-i18n="spotlight-inflation-title">Kişisel Enflasyon Motoru</div>
                     </div>
                 </div>
             </div>
@@ -254,7 +264,7 @@
     <!-- Interactive Features Section (Option C) -->
     <section id="features" class="section section-tint">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 64px;">Temel Özellikler</h2>
+            <h2 style="text-align: center; margin-bottom: 64px;" data-i18n="feature-list-title">Temel Özellikler</h2>
 
             <div class="interactive-features-wrapper">
                 <!-- Left Side: Tabs -->
@@ -263,8 +273,8 @@
                     <div class="feature-tab-item active" data-target="mockup-1">
                         <div class="mobile-feature-text">
                             <div class="feature-tab-icon tab-theme-navy"><i data-lucide="calculator"></i></div>
-                            <h3>Kişisel Enflasyon Motoru</h3>
-                            <div class="feature-tab-desc">
+                            <h3 data-i18n="feature-1-title">Kişisel Enflasyon Motoru</h3>
+                            <div class="feature-tab-desc" data-i18n="feature-1-desc">
                                 Sadece genel verileri değil, kendi harcama sepetinizdeki gerçek enflasyonu hesaplayan gelişmiş bir mühendislik çözümü.
                             </div>
                         </div>
@@ -275,8 +285,8 @@
                     <div class="feature-tab-item" data-target="mockup-2">
                         <div class="mobile-feature-text">
                             <div class="feature-tab-icon tab-theme-white"><i data-lucide="scan-line"></i></div>
-                            <h3>Yapay Zeka Destekli Fiş Tarama</h3>
-                            <div class="feature-tab-desc">
+                            <h3 data-i18n="feature-2-title">Yapay Zeka Destekli Fiş Tarama</h3>
+                            <div class="feature-tab-desc" data-i18n="feature-2-desc">
                                 Optik karakter tanıma (OCR) ve yapay zeka ile fişlerinizi dijitalleştirin, envanterinizi ve fiyat değişimlerini anlık takip edin.
                             </div>
                         </div>
@@ -287,8 +297,8 @@
                     <div class="feature-tab-item" data-target="mockup-3">
                         <div class="mobile-feature-text">
                             <div class="feature-tab-icon tab-theme-green"><i data-lucide="pie-chart"></i></div>
-                            <h3>Bütünleşik Varlık Analizi</h3>
-                            <div class="feature-tab-desc">
+                            <h3 data-i18n="feature-3-title">Bütünleşik Varlık Analizi</h3>
+                            <div class="feature-tab-desc" data-i18n="feature-3-desc">
                                 Tüm yatırımlarınızı, nakit akışınızı ve birikimlerinizi tek bir merkezi mimari üzerinden izleyin.
                             </div>
                         </div>
@@ -299,8 +309,8 @@
                     <div class="feature-tab-item" data-target="mockup-4">
                         <div class="mobile-feature-text">
                             <div class="feature-tab-icon tab-theme-red"><i data-lucide="activity"></i></div>
-                            <h3>Derin Finansal Analiz</h3>
-                            <div class="feature-tab-desc">
+                            <h3 data-i18n="feature-4-title">Derin Finansal Analiz</h3>
+                            <div class="feature-tab-desc" data-i18n="feature-4-desc">
                                 Harcama alışkanlıklarınızın derinlerine inin. Geçmiş verilerle geleceğinizi daha iyi
                                 planlayın.
                             </div>
@@ -312,8 +322,8 @@
                     <div class="feature-tab-item" data-target="mockup-5">
                         <div class="mobile-feature-text">
                             <div class="feature-tab-icon tab-theme-blue"><i data-lucide="target"></i></div>
-                            <h3>Proaktif Bütçeleme</h3>
-                            <div class="feature-tab-desc">
+                            <h3 data-i18n="feature-5-title">Proaktif Bütçeleme</h3>
+                            <div class="feature-tab-desc" data-i18n="feature-5-desc">
                                 Limitlerinize yaklaşmadan önce akıllı uyarılar alın ve bütçenizi aşmayın.
                             </div>
                         </div>
@@ -347,29 +357,29 @@
     <!-- Transparency & Security Section -->
     <section id="security" class="section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 64px;">Şeffaf Mühendislik, Maksimum Gizlilik.</h2>
+            <h2 style="text-align: center; margin-bottom: 64px;" data-i18n="security-title">Şeffaf Mühendislik, Maksimum Gizlilik.</h2>
 
             <div class="security-grid">
                 <!-- Pillar 1 -->
                 <div class="security-card">
                     <div class="security-icon"><i data-lucide="shield-check"></i></div>
-                    <h3>Veri Minimizasyonu</h3>
-                    <p class="text-secondary">Vera, kullanıcı gizliliğini korumak adına sadece hizmet sunumu için
+                    <h3 data-i18n="security-pillar1-title">Veri Minimizasyonu</h3>
+                    <p class="text-secondary" data-i18n="security-pillar1-desc">Vera, kullanıcı gizliliğini korumak adına sadece hizmet sunumu için
                         gerekli olan minimum veriyi saklar.</p>
                 </div>
 
                 <!-- Pillar 2 -->
                 <div class="security-card">
                     <div class="security-icon"><i data-lucide="cloud"></i></div>
-                    <h3>Güvenli API Altyapısı</h3>
-                    <p class="text-secondary">Finansal verileriniz, Google Gemini ve CollectAPI gibi endüstri lideri platformlar üzerinden en yüksek güvenlik protokolleriyle işlenir.</p>
+                    <h3 data-i18n="security-pillar2-title">Güvenli API Altyapısı</h3>
+                    <p class="text-secondary" data-i18n="security-pillar2-desc">Finansal verileriniz, Google Gemini ve CollectAPI gibi endüstri lideri platformlar üzerinden en yüksek güvenlik protokolleriyle işlenir.</p>
                 </div>
 
                 <!-- Pillar 3 -->
                 <div class="security-card">
                     <div class="security-icon"><i data-lucide="key"></i></div>
-                    <h3>Modern Kimlik Doğrulama</h3>
-                    <p class="text-secondary">Kullanıcı girişleri ve profil yönetimi, güncel güvenlik standartlarına
+                    <h3 data-i18n="security-pillar3-title">Modern Kimlik Doğrulama</h3>
+                    <p class="text-secondary" data-i18n="security-pillar3-desc">Kullanıcı girişleri ve profil yönetimi, güncel güvenlik standartlarına
                         uygun bir altyapıyla sağlanır.</p>
                 </div>
             </div>
@@ -380,47 +390,47 @@
     <section id="pricing" class="section section-tint">
         <div class="container">
             <div class="pricing-header" style="text-align: center; margin-bottom: 64px;">
-                <h2>İhtiyacınıza Uygun Planlar.</h2>
+                <h2 data-i18n="pricing-title">İhtiyacınıza Uygun Planlar.</h2>
             </div>
 
             <div class="pricing-grid">
                 <!-- Free Plan -->
                 <div class="pricing-card free-plan">
                     <div class="plan-header">
-                        <h3>Ücretsiz</h3>
-                        <div class="price">₺0<span> / ay</span></div>
-                        <p>Finansal yolculuğuna yeni başlayanlar için.</p>
-                        <button class="btn btn-secondary plan-btn">Hemen Başlayın</button>
+                        <h3 data-i18n="pricing-free-name">Ücretsiz</h3>
+                        <div class="price"><span data-i18n="pricing-free-price">₺0</span><span> / ay</span></div>
+                        <p data-i18n="pricing-free-desc">Finansal yolculuğuna yeni başlayanlar için.</p>
+                        <button class="btn btn-secondary plan-btn" data-i18n="pricing-free-btn">Hemen Başlayın</button>
                     </div>
                     <div class="plan-features two-column">
                         <ul>
-                            <li><i data-lucide="check-circle-2"></i> Haftada 3 Fiş Taraması</li>
-                            <li><i data-lucide="check-circle-2"></i> Maks. 10 Varlık Takibi</li>
-                            <li><i data-lucide="check-circle-2"></i> Sadece Güncel Değer</li>
-                            <li class="disabled"><i data-lucide="x"></i> Kişisel Enflasyon Modülü</li>
-                            <li><i data-lucide="check-circle-2"></i> Uygulama İçi Görünüm</li>
-                            <li class="disabled"><i data-lucide="x"></i> Reklamsız Deneyim</li>
+                            <li data-i18n="pricing-free-li1"><i data-lucide="check-circle-2"></i> Haftada 3 Fiş Taraması</li>
+                            <li data-i18n="pricing-free-li2"><i data-lucide="check-circle-2"></i> Maks. 10 Varlık Takibi</li>
+                            <li data-i18n="pricing-free-li3"><i data-lucide="check-circle-2"></i> Sadece Güncel Değer</li>
+                            <li class="disabled" data-i18n="pricing-premium-li4"><i data-lucide="x"></i> Kişisel Enflasyon Modülü</li>
+                            <li data-i18n="pricing-free-li4"><i data-lucide="check-circle-2"></i> Uygulama İçi Görünüm</li>
+                            <li class="disabled" data-i18n="pricing-premium-li6"><i data-lucide="x"></i> Reklamsız Deneyim</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Premium Plan -->
                 <div class="pricing-card premium-plan">
-                    <div class="popular-badge">En Çok Tercih Edilen</div>
+                    <div class="popular-badge" data-i18n="pricing-popular">En Çok Tercih Edilen</div>
                     <div class="plan-header">
-                        <h3>Vera Premium</h3>
-                        <div class="price">₺19,99<span> / Ay</span></div>
-                        <p>Tüm finansal verilerini kontrol etmek isteyenler için.</p>
-                        <button class="btn btn-primary plan-btn">Premium'a Geçin</button>
+                        <h3 data-i18n="pricing-premium-name">Vera Premium</h3>
+                        <div class="price"><span data-i18n="pricing-premium-price">₺19,99</span><span> / Ay</span></div>
+                        <p data-i18n="pricing-premium-desc">Tüm finansal verilerini kontrol etmek isteyenler için.</p>
+                        <button class="btn btn-primary plan-btn" data-i18n="pricing-premium-btn">Premium'a Geçin</button>
                     </div>
                     <div class="plan-features two-column">
                         <ul>
-                            <li><i data-lucide="check-circle-2"></i> Haftada 15 Fiş Taraması</li>
-                            <li><i data-lucide="check-circle-2"></i> Sınırsız Varlık Takibi</li>
-                            <li><i data-lucide="check-circle-2"></i> K&Z Analizi ve Maliyet</li>
-                            <li><i data-lucide="check-circle-2"></i> Kişisel Enflasyon Modülü</li>
-                            <li><i data-lucide="check-circle-2"></i> PDF, CSV ve Excel Çıktısı</li>
-                            <li><i data-lucide="check-circle-2"></i> %100 Reklamsız</li>
+                            <li data-i18n="pricing-premium-li1"><i data-lucide="check-circle-2"></i> Haftada 15 Fiş Taraması</li>
+                            <li data-i18n="pricing-premium-li2"><i data-lucide="check-circle-2"></i> Sınırsız Varlık Takibi</li>
+                            <li data-i18n="pricing-premium-li3"><i data-lucide="check-circle-2"></i> K&Z Analizi ve Maliyet</li>
+                            <li data-i18n="pricing-premium-li4"><i data-lucide="check-circle-2"></i> Kişisel Enflasyon Modülü</li>
+                            <li data-i18n="pricing-premium-li5"><i data-lucide="check-circle-2"></i> PDF, CSV ve Excel Çıktısı</li>
+                            <li data-i18n="pricing-premium-li6"><i data-lucide="check-circle-2"></i> %100 Reklamsız</li>
                         </ul>
                     </div>
                 </div>
@@ -431,10 +441,10 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="container">
-            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem);">Finansal Geleceğinizi Bugün Netleştirin.</h2>
-            <p class="subtitle" style="margin-bottom: 48px;">Veriye dayalı yönetim ile finansal netliğe ulaşan binlerce kullanıcıya katılın.</p>
+            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem);" data-i18n="final-cta-title">Finansal Geleceğinizi Bugün Netleştirin.</h2>
+            <p class="subtitle" style="margin-bottom: 48px;" data-i18n="final-cta-subtitle">Veriye dayalı yönetim ile finansal netliğe ulaşan binlerce kullanıcıya katılın.</p>
             <button class="btn btn-primary" style="padding: 18px 40px; font-size: 1.125rem;"
-                onclick="window.location.href='#pricing'">
+                onclick="window.location.href='#pricing'" data-i18n="final-cta-btn">
                 Ücretsiz İndirin
             </button>
         </div>
@@ -449,29 +459,29 @@
                         <i data-lucide="wallet"></i>
                         Vera Finance
                     </div>
-                    <p class="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
+                    <p class="footer-desc" data-i18n="footer-desc">Kişisel servet yönetimi ve finansal netlik için modern standart.</p>
                 </div>
                 <div>
-                    <div class="footer-title">Ürün</div>
+                    <div class="footer-title" data-i18n="footer-product">Ürün</div>
                     <ul class="footer-links">
-                        <li><a href="#features">Özellikler</a></li>
-                        <li><a href="#security">Güvenlik</a></li>
-                        <li><a href="#pricing">Vera Premium</a></li>
+                        <li><a href="#features" data-i18n="nav-features">Özellikler</a></li>
+                        <li><a href="#security" data-i18n="nav-security">Güvenlik</a></li>
+                        <li><a href="#pricing" data-i18n="nav-premium">Vera Premium</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Şirket</div>
+                    <div class="footer-title" data-i18n="footer-company">Şirket</div>
                     <ul class="footer-links">
-                        <li><a href="about.html">Hakkımızda</a></li>
-                        <li><a href="support.html">İletişim</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">Hakkımızda</a></li>
+                        <li><a href="support.html" data-i18n="nav-contact">İletişim</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>&copy; 2026 Vera Finance Inc. Tüm hakları saklıdır.</div>
+                <div data-i18n="footer-copyright">&copy; 2026 Ömer Harmankaya. Tüm hakları saklıdır.</div>
                 <div style="display: flex; gap: 24px;">
-                    <a href="privacy.html" style="color: inherit; text-decoration: none;">Gizlilik</a>
-                    <a href="terms.html" style="color: inherit; text-decoration: none;">Şartlar</a>
+                    <a href="privacy.html" style="color: inherit; text-decoration: none;" data-i18n="footer-privacy">Gizlilik</a>
+                    <a href="terms.html" style="color: inherit; text-decoration: none;" data-i18n="footer-terms">Şartlar</a>
                 </div>
             </div>
         </footer>
@@ -479,10 +489,16 @@
 
     <!-- Sticky Bottom CTA Bar (Mobile Only) -->
     <div class="mobile-bottom-bar">
-        <button class="btn btn-primary mobile-cta-btn" onclick="window.location.href='#pricing'">
+        <button class="btn btn-primary mobile-cta-btn" onclick="window.location.href='#pricing'" data-i18n="mobile-cta">
             Uygulamayı İndir
         </button>
     </div>
+
+    <!-- Floating Support Button -->
+    <a href="support.html" class="floating-support-btn">
+        <i data-lucide="help-circle"></i>
+        <span data-i18n="float-support">Destek</span>
+    </a>
 
     <script>
         lucide.createIcons();
@@ -666,8 +682,30 @@
 
             spotlightObserver.observe(scanner);
             spotlightObserver.observe(engineContainer);
+
+            // Dynamic Support Button Position
+            const supportBtn = document.querySelector('.floating-support-btn');
+            const footer = document.querySelector('.footer-wrapper');
+
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        supportBtn.classList.add('at-footer');
+                    } else {
+                        supportBtn.classList.remove('at-footer');
+                    }
+                });
+            }, { 
+                threshold: 0,
+                rootMargin: '0px 0px -50px 0px' // Trigger slightly before the footer is fully visible
+            });
+
+            if (supportBtn && footer) {
+                footerObserver.observe(footer);
+            }
         });
     </script>
+    <script src="translations.js"></script>
 </body>
 
 </html>
