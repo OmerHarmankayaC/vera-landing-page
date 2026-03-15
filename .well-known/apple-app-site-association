@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "4W752QF3R9.com.omerharmankaya.verafinance",
+        "paths": [
+          "/verify",
+          "/verify*"
+        ]
+      }
+    ]
+  }
+}
