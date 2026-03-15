@@ -1,4 +1,4 @@
-const translations = {
+window.translations = {
     tr: {
         // Navigation
         "nav-features": "Özellikler",
@@ -189,7 +189,21 @@ const translations = {
 
         // Legal Pages
         "privacy-title": "Gizlilik Politikası",
-        "terms-title": "Kullanım Şartları"
+        "terms-title": "Kullanım Şartları",
+
+        // Verification Page
+        "verify-loading-title": "E-posta adresiniz doğrulanıyor",
+        "verify-loading-desc": "İşleminiz gerçekleştirilirken lütfen bekleyin...",
+        "verify-success-title": "Doğrulama Başarılı",
+        "verify-success-desc": "E-posta adresiniz başarıyla doğrulandı! Vera'ya hoş geldiniz.",
+        "verify-success-btn": "Vera'yı Aç",
+        "verify-error-title": "Doğrulama Başarısız",
+        "verify-error-missing": "Bağlantıda herhangi bir doğrulama kodu bulunamadı.",
+        "verify-error-expired": "Bu doğrulama bağlantısının süresi dolmuş. Lütfen uygulamadan yeni bir bağlantı isteyin.",
+        "verify-error-invalid": "Bu doğrulama bağlantısı geçersiz. Daha önce kullanılmış olabilir.",
+        "verify-error-generic": "Beklenmedik bir hata oluştu.",
+        "verify-error-contact": "Destekle İletişime Geç",
+        "verify-error-return": "Uygulamaya Dön"
     },
     en: {
         // Navigation
@@ -381,22 +395,36 @@ const translations = {
 
         // Legal Pages
         "privacy-title": "Privacy Policy",
-        "terms-title": "Terms of Service"
+        "terms-title": "Terms of Service",
+
+        // Verification Page
+        "verify-loading-title": "Verifying your email",
+        "verify-loading-desc": "Please wait a moment while we process your verification...",
+        "verify-success-title": "Verification Successful",
+        "verify-success-desc": "Your email has been successfully verified! Welcome to Vera.",
+        "verify-success-btn": "Open Vera",
+        "verify-error-title": "Verification Failed",
+        "verify-error-missing": "No verification code was found in the link.",
+        "verify-error-expired": "This verification link has expired. Please request a new one from the app.",
+        "verify-error-invalid": "This verification link is invalid. It may have already been used.",
+        "verify-error-generic": "An unexpected error occurred.",
+        "verify-error-contact": "Contact Support",
+        "verify-error-return": "Return to App"
     }
 };
 
-function setLanguage(lang) {
+window.setLanguage = function(lang) {
     localStorage.setItem('vera-lang', lang);
     document.documentElement.lang = lang;
     
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
+        if (window.translations[lang][key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translations[lang][key];
+                element.placeholder = window.translations[lang][key];
             } else {
-                element.textContent = translations[lang][key];
+                element.textContent = window.translations[lang][key];
             }
         }
     });
@@ -405,21 +433,17 @@ function setLanguage(lang) {
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
-
-    // Special case for Lucide icons: don't overwrite if they are inside the element
-    // Actually, textContent will clear them. Better to find a placeholder inside if needed.
-    // In our case, most icons are in separate <i> tags.
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('vera-lang') || 'tr';
-    setLanguage(savedLang);
+    window.setLanguage(savedLang);
 
     // Language switcher event listeners
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            setLanguage(btn.dataset.lang);
+            window.setLanguage(btn.dataset.lang);
         });
     });
 });

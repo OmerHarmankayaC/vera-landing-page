@@ -16,6 +16,9 @@
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Translations -->
+    <script src="translations.js"></script>
+
     <style>
         :root {
             --bg-white: #FFFFFF;
@@ -192,8 +195,8 @@
             <div class="status-icon">
                 <i data-lucide="loader-2" class="spinner"></i>
             </div>
-            <h1>Verifying your email</h1>
-            <p>Please wait a moment while we process your verification...</p>
+            <h1 data-i18n="verify-loading-title">Verifying your email</h1>
+            <p data-i18n="verify-loading-desc">Please wait a moment while we process your verification...</p>
         </div>
 
         <!-- Success State -->
@@ -201,9 +204,9 @@
             <div class="status-icon success">
                 <i data-lucide="check-circle-2"></i>
             </div>
-            <h1>Verification Successful</h1>
-            <p>Your email has been successfully verified! Welcome to Vera.</p>
-            <a href="https://vera.finance" class="btn">Open Vera</a>
+            <h1 data-i18n="verify-success-title">Verification Successful</h1>
+            <p data-i18n="verify-success-desc">Your email has been successfully verified! Welcome to Vera.</p>
+            <button onclick="handleOpenApp()" class="btn" data-i18n="verify-success-btn">Open Vera</button>
         </div>
 
         <!-- Error State -->
@@ -211,10 +214,10 @@
             <div class="status-icon error">
                 <i data-lucide="alert-circle"></i>
             </div>
-            <h1>Verification Failed</h1>
-            <p id="error-message">The verification link is invalid or has expired. Please try requesting a new one.</p>
-            <a href="support.html" class="btn">Contact Support</a>
-            <a href="https://vera.finance" class="btn btn-secondary">Return to App</a>
+            <h1 data-i18n="verify-error-title">Verification Failed</h1>
+            <p id="error-message" data-i18n="verify-error-generic">The verification link is invalid or has expired. Please try requesting a new one.</p>
+            <a href="support.html" class="btn" data-i18n="verify-error-contact">Contact Support</a>
+            <a href="https://vera.finance" class="btn btn-secondary" data-i18n="verify-error-return">Return to App</a>
         </div>
     </div>
 
@@ -245,13 +248,53 @@
             document.getElementById(stateId).classList.add('active');
         }
 
-        async function verifyEmail() {
-            // Get action code from URL
+        // Handle Language parameter
+        function handleLocalization() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (lang && (lang === 'tr' || lang === 'en')) {
+                // setLanguage is globally available from translations.js
+                window.setLanguage(lang);
+            }
+        }
+
+        window.handleOpenApp = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const oobCode = urlParams.get('oobCode');
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                const deepLink = `verafinance://verify?oobCode=${oobCode}`;
+                window.location.href = deepLink;
+                
+                // Fallback to website if app doesn't open
+                setTimeout(() => {
+                    window.location.href = "https://vera.finance";
+                }, 2000);
+            } else {
+                window.location.href = "https://vera.finance";
+            }
+        };
+
+        async function verifyEmail() {
+            // New URL Format Handling (mode, oobCode, apiKey, lang)
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            const oobCode = urlParams.get('oobCode');
+
+            // Apply localization if lang param is present
+            handleLocalization();
+
+            if (mode !== 'verifyEmail') {
+                console.warn("Unsupported mode:", mode);
+            }
 
             if (!oobCode) {
-                document.getElementById('error-message').innerText = "No verification code was found in the link.";
+                const errorMsgEl = document.getElementById('error-message');
+                errorMsgEl.setAttribute('data-i18n', 'verify-error-missing');
+                if (window.translations && window.translations[document.documentElement.lang]) {
+                    errorMsgEl.innerText = window.translations[document.documentElement.lang]['verify-error-missing'];
+                }
                 showState('error-state');
                 return;
             }
@@ -289,13 +332,26 @@
             } catch (error) {
                 console.error("Verification error:", error);
                 
+                const errorMsgEl = document.getElementById('error-message');
+                const lang = document.documentElement.lang || 'tr';
+                
+                // Safely get translation
+                const getT = (key, fallback) => {
+                    return (window.translations && window.translations[lang] && window.translations[lang][key]) 
+                        ? window.translations[lang][key] 
+                        : fallback;
+                };
+
                 // Handle specific Firebase error codes
                 if (error.code === 'auth/expired-action-code') {
-                    document.getElementById('error-message').innerText = "This verification link has expired. Please request a new one from the app.";
+                    errorMsgEl.setAttribute('data-i18n', 'verify-error-expired');
+                    errorMsgEl.innerText = getT('verify-error-expired', "This verification link has expired.");
                 } else if (error.code === 'auth/invalid-action-code') {
-                    document.getElementById('error-message').innerText = "This verification link is invalid. It may have already been used.";
+                    errorMsgEl.setAttribute('data-i18n', 'verify-error-invalid');
+                    errorMsgEl.innerText = getT('verify-error-invalid', "This verification link is invalid.");
                 } else {
-                    document.getElementById('error-message').innerText = "An unexpected error occurred. " + error.message;
+                    errorMsgEl.removeAttribute('data-i18n');
+                    errorMsgEl.innerText = getT('verify-error-generic', "An error occurred:") + " " + error.message;
                 }
                 
                 showState('error-state');
