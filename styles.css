@@ -1152,49 +1152,81 @@ p.subtitle {
         width: 100%;
     }
 
-    /* Simplify Mobile Hero Float: Eradicate Clutter */
-    .gc-4, .gc-5, .gc-6, .gc-8 {
-        display: none !important;
-    }
-    
+    /* Mobile Hero Float: Show All Cards & Redefine Stage */
     .hero-glass-wrapper {
         position: relative;
-        height: 280px; /* Tighter stage */
+        height: 480px; /* Taller stage for all cards */
         width: 100%;
         margin-top: 16px;
         display: block; 
     }
     
-    /* Allow organic floating but constrain scale */
+    /* Constrain scale */
     .hero-glass-wrapper .glass-card {
-        transform: scale(0.85);
         max-width: 90vw;
     }
 
-    /* Cascade 1: Top Left Anchor */
+    /* Cascade 1: Top Left */
     .gc-1 { 
         top: 0px !important; 
         left: 2% !important; 
+        transform: scale(0.85) !important; 
     }
 
-    /* Cascade 2: Mid Right Overlap */
+    /* Cascade 2: Top Right */
     .gc-2 { 
         top: 60px !important; 
         right: 2% !important; 
+        left: auto !important;
         z-index: 5 !important;
+        transform: scale(0.8) !important; 
+    }
+    
+    /* Cascade 3: Middle Left (Small) */
+    .gc-4 { 
+        top: 105px !important; 
+        left: 5% !important; 
+        transform: scale(0.8) !important; 
     }
 
-    /* Cascade 3: Lower Left */
+    /* Cascade 4: Middle Right */
     .gc-3 { 
-        top: 140px !important; 
-        left: -4% !important; 
+        top: 145px !important; 
+        right: 0% !important; 
+        left: auto !important;
+        transform: scale(0.85) !important; 
+    }
+    
+    /* Cascade 5: Lower Left (Medium) */
+    .gc-5 { 
+        top: 200px !important; 
+        left: -2% !important; 
+        transform: scale(0.85) !important; 
+        z-index: 4 !important;
     }
 
-    /* Cascade 4: Bottom Right Anchor */
-    .gc-7 { 
-        top: 200px !important; 
+    /* Cascade 6: Lower Right (Small) */
+    .gc-6 { 
+        top: 250px !important; 
         right: 5% !important; 
-        left: auto !important; /* Override desktop center */
+        left: auto !important;
+        transform: scale(0.8) !important; 
+    }
+
+    /* Cascade 7: Bottom Center */
+    .gc-7 { 
+        top: 310px !important; 
+        left: 50% !important; 
+        right: auto !important;
+        transform: translateX(-50%) scale(0.9) !important; 
+        z-index: 6 !important;
+    }
+
+    /* Cascade 8: Bottom Right (Small) */
+    .gc-8 { 
+        top: 400px !important; 
+        right: 10% !important; 
+        left: auto !important;
         transform: scale(0.85) !important; 
     }
 
@@ -1710,7 +1742,7 @@ p.subtitle {
 
 @media (max-width: 768px) {
     .floating-support-btn {
-        bottom: 85px; /* Above the mobile bottom bar */
+        bottom: 24px; /* Just above bottom edge */
         left: 20px;
         right: auto;
         padding: 10px 16px;
