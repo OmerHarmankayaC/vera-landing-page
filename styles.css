@@ -1176,7 +1176,7 @@ p.subtitle {
 
     /* Cascade 2: Top Right */
     .gc-2 { 
-        top: 75px !important; 
+        top: 45px !important; 
         right: 2% !important; 
         left: auto !important;
         z-index: 5 !important;
@@ -1185,14 +1185,15 @@ p.subtitle {
     
     /* Cascade 3: Middle Left (Small) */
     .gc-4 { 
-        top: 150px !important; 
+        top: 130px !important; 
         left: 5% !important; 
         transform: scale(0.8) !important; 
+        padding-right: 12px !important;
     }
 
     /* Cascade 4: Middle Right */
     .gc-3 { 
-        top: 215px !important; 
+        top: 185px !important; 
         right: 0% !important; 
         left: auto !important;
         transform: scale(0.85) !important; 
@@ -1200,7 +1201,7 @@ p.subtitle {
     
     /* Cascade 5: Lower Left (Medium) */
     .gc-5 { 
-        top: 290px !important; 
+        top: 260px !important; 
         left: -2% !important; 
         transform: scale(0.85) !important; 
         z-index: 4 !important;
@@ -1216,18 +1217,18 @@ p.subtitle {
 
     /* Cascade 7: Bottom Center */
     .gc-7 { 
-        top: 440px !important; 
-        left: 50% !important; 
+        top: 410px !important; 
+        left: 30% !important; 
         right: auto !important;
-        transform: translateX(-50%) scale(0.9) !important; 
+        transform: scale(0.9) !important; 
         z-index: 6 !important;
     }
 
     /* Cascade 8: Bottom Right (Small) */
     .gc-8 { 
-        top: 520px !important; 
-        right: 10% !important; 
-        left: auto !important;
+        top: 310px !important; 
+        left: 45% !important; 
+        right: auto !important;
         transform: scale(0.85) !important; 
     }
 
