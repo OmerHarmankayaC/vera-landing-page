@@ -1710,7 +1710,7 @@ p.subtitle {
 
 @media (max-width: 768px) {
     .floating-support-btn {
-        bottom: 100px; /* Above the mobile bottom bar */
+        bottom: 85px; /* Above the mobile bottom bar */
         left: 20px;
         right: auto;
         padding: 10px 16px;
