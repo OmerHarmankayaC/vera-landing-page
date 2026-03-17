@@ -265,10 +265,10 @@ p.subtitle {
 }
 
 .gc-8 {
-    /* Inner Layer - Focused Left-ish Top */
+    /* Inner Layer - Focused Bottom Middle */
     animation: float-gentle 5s ease-in-out infinite 0.7s, fadeUpGlass 0.8s ease 1s forwards;
-    right: 32%;
-    top: 30px;
+    left: 45%;
+    top: 350px;
     z-index: 2;
 }
 
@@ -276,7 +276,7 @@ p.subtitle {
     /* Outer Layer - Far Right Surroundings */
     animation: float-gentle 7s ease-in-out infinite 1s, fadeUpGlass 0.8s ease 0.5s forwards;
     right: 12%;
-    top: 100px;
+    top: 70px;
     z-index: 4;
 }
 
@@ -284,7 +284,7 @@ p.subtitle {
     /* Outer Layer - Far Left Surroundings */
     animation: float-gentle 6.5s ease-in-out infinite 0.5s, fadeUpGlass 0.8s ease 0.7s forwards;
     left: 12%;
-    top: 130px;
+    top: 100px;
     z-index: 6;
 }
 
@@ -294,13 +294,14 @@ p.subtitle {
     right: 28%;
     top: 220px;
     z-index: 3;
+    padding-right: 12px;
 }
 
 .gc-7 {
     /* Inner Layer - Focused Left Middle */
     animation: float-gentle 7.5s ease-in-out infinite 0.4s, fadeUpGlass 0.8s ease 0.9s forwards;
-    left: 35%;
-    top: 280px;
+    left: 25%;
+    top: 240px;
     z-index: 8;
 }
 
@@ -308,7 +309,7 @@ p.subtitle {
     /* Outer Layer - Left Surroundings Bottom */
     animation: float-gentle 6.2s ease-in-out infinite 0.8s, fadeUpGlass 0.8s ease 0.6s forwards;
     left: 15%;
-    top: 340px;
+    top: 310px;
     z-index: 7;
 }
 
@@ -1155,7 +1156,7 @@ p.subtitle {
     /* Mobile Hero Float: Show All Cards & Redefine Stage */
     .hero-glass-wrapper {
         position: relative;
-        height: 480px; /* Taller stage for all cards */
+        height: 600px; /* Taller stage for all cards */
         width: 100%;
         margin-top: 16px;
         display: block; 
@@ -1175,7 +1176,7 @@ p.subtitle {
 
     /* Cascade 2: Top Right */
     .gc-2 { 
-        top: 60px !important; 
+        top: 75px !important; 
         right: 2% !important; 
         left: auto !important;
         z-index: 5 !important;
@@ -1184,14 +1185,14 @@ p.subtitle {
     
     /* Cascade 3: Middle Left (Small) */
     .gc-4 { 
-        top: 105px !important; 
+        top: 150px !important; 
         left: 5% !important; 
         transform: scale(0.8) !important; 
     }
 
     /* Cascade 4: Middle Right */
     .gc-3 { 
-        top: 145px !important; 
+        top: 215px !important; 
         right: 0% !important; 
         left: auto !important;
         transform: scale(0.85) !important; 
@@ -1199,7 +1200,7 @@ p.subtitle {
     
     /* Cascade 5: Lower Left (Medium) */
     .gc-5 { 
-        top: 200px !important; 
+        top: 290px !important; 
         left: -2% !important; 
         transform: scale(0.85) !important; 
         z-index: 4 !important;
@@ -1207,7 +1208,7 @@ p.subtitle {
 
     /* Cascade 6: Lower Right (Small) */
     .gc-6 { 
-        top: 250px !important; 
+        top: 365px !important; 
         right: 5% !important; 
         left: auto !important;
         transform: scale(0.8) !important; 
@@ -1215,7 +1216,7 @@ p.subtitle {
 
     /* Cascade 7: Bottom Center */
     .gc-7 { 
-        top: 310px !important; 
+        top: 440px !important; 
         left: 50% !important; 
         right: auto !important;
         transform: translateX(-50%) scale(0.9) !important; 
@@ -1224,7 +1225,7 @@ p.subtitle {
 
     /* Cascade 8: Bottom Right (Small) */
     .gc-8 { 
-        top: 400px !important; 
+        top: 520px !important; 
         right: 10% !important; 
         left: auto !important;
         transform: scale(0.85) !important; 
