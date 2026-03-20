@@ -61,7 +61,7 @@ window.translations = {
         "pricing-free-desc": "Temel bütçe takibi ve manuel girişler için ideal.",
         "pricing-free-btn": "Ücretsiz Başla",
         "pricing-premium-name": "Premium",
-        "pricing-premium-price": "₺19.99",
+        "pricing-premium-price": "₺29.99",
         "pricing-premium-period": "/ aylık",
         "pricing-premium-desc": "Tüm AI özellikleri ve derinlemesine finansal analizler.",
         "pricing-popular": "En Popüler",
@@ -153,7 +153,7 @@ window.translations = {
         "pricing-free-li4": "Uygulama İçi Görünüm",
 
         "pricing-premium-name": "Vera Premium",
-        "pricing-premium-price": "₺19,99",
+        "pricing-premium-price": "₺29,99",
         "pricing-premium-desc": "Tüm finansal verilerini kontrol etmek isteyenler için.",
         "pricing-premium-btn": "Premium'a Geçin",
         "pricing-premium-li1": "Haftada 15 Fiş Taraması",
@@ -211,7 +211,10 @@ window.translations = {
         "reset-success-title": "Şifre Güncellendi",
         "reset-success-desc": "Şifreniz başarıyla güncellendi. Artık yeni şifrenizle giriş yapabilirsiniz.",
         "reset-loading-desc": "Şifreniz güncelleniyor, lütfen bekleyin...",
-        "reset-error-weak": "Girdiğiniz şifre çok zayıf. Daha güçlü bir şifre deneyin."
+        "reset-error-weak": "Girdiğiniz şifre çok zayıf. Daha güçlü bir şifre deneyin.",
+        "reset-password-confirm-ph": "Şifreyi tekrar girin",
+        "reset-error-mismatch": "Girdiğiniz şifreler eşleşmiyor.",
+        "reset-error-length": "Şifreniz en az 7 karakterden oluşmalıdır."
     },
     en: {
         // Navigation
@@ -367,7 +370,7 @@ window.translations = {
         "pricing-free-li4": "Ad-Supported Experience",
         
         "pricing-premium-name": "Vera Premium",
-        "pricing-premium-price": "₺19.99",
+        "pricing-premium-price": "₺29.99",
         "pricing-premium-desc": "For those who want full control over their financial data.",
         "pricing-premium-btn": "Upgrade to Premium",
         "pricing-premium-li1": "15 Receipt Scans per Week",
@@ -425,7 +428,10 @@ window.translations = {
         "reset-success-title": "Password Updated",
         "reset-success-desc": "Your password has been updated successfully. You can now log in with your new password.",
         "reset-loading-desc": "Updating your password, please wait...",
-        "reset-error-weak": "The password you entered is too weak. Please try a stronger one."
+        "reset-error-weak": "The password you entered is too weak. Please try a stronger one.",
+        "reset-password-confirm-ph": "Confirm new password",
+        "reset-error-mismatch": "The passwords you entered do not match.",
+        "reset-error-length": "Your password must be more than 6 characters long."
     }
 };
 

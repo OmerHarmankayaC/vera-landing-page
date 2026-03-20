@@ -240,8 +240,12 @@
             <p data-i18n="reset-password-desc">Please enter your new password.</p>
             <form id="reset-password-form" onsubmit="handleResetPassword(event)">
                 <div class="input-group">
-                    <input type="password" id="new-password" data-i18n="reset-password-input-ph" placeholder="New password" required minlength="6">
+                    <input type="password" id="new-password" data-i18n="reset-password-input-ph" placeholder="New password" required minlength="7">
                 </div>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" data-i18n="reset-password-confirm-ph" placeholder="Confirm new password" required minlength="7">
+                </div>
+                <p id="reset-error-text" style="color: #EF4444; font-size: 0.875rem; margin-top: -8px; margin-bottom: 16px; display: none; text-align: left;"></p>
                 <button type="submit" class="btn" id="reset-btn" data-i18n="reset-password-submit">Update Password</button>
             </form>
         </div>
@@ -361,6 +365,30 @@
                     event.preventDefault();
                     
                     const newPassword = document.getElementById('new-password').value;
+                    const confirmPassword = document.getElementById('confirm-password').value;
+                    const errorTextEl = document.getElementById('reset-error-text');
+                    
+                    const lang = document.documentElement.lang || 'tr';
+                    const getT = (key, fallback) => {
+                        return (window.translations && window.translations[lang] && window.translations[lang][key]) 
+                            ? window.translations[lang][key] 
+                            : fallback;
+                    };
+                    
+                    errorTextEl.style.display = 'none';
+
+                    if (newPassword.length <= 6) {
+                        errorTextEl.innerText = getT('reset-error-length', "Your password must be more than 6 characters long.");
+                        errorTextEl.style.display = 'block';
+                        return;
+                    }
+
+                    if (newPassword !== confirmPassword) {
+                        errorTextEl.innerText = getT('reset-error-mismatch', "The passwords you entered do not match.");
+                        errorTextEl.style.display = 'block';
+                        return;
+                    }
+                    
                     const btn = document.getElementById('reset-btn');
                     const originalText = btn.innerText;
                     
@@ -379,29 +407,25 @@
                         console.error("Reset error:", error);
                         
                         const errorMsgEl = document.getElementById('error-message');
-                        const lang = document.documentElement.lang || 'tr';
-                        
-                        const getT = (key, fallback) => {
-                            return (window.translations && window.translations[lang] && window.translations[lang][key]) 
-                                ? window.translations[lang][key] 
-                                : fallback;
-                        };
 
                         if (error.code === 'auth/expired-action-code') {
                             errorMsgEl.setAttribute('data-i18n', 'verify-error-expired');
                             errorMsgEl.innerText = getT('verify-error-expired', "This verification link has expired.");
+                            showState('error-state');
                         } else if (error.code === 'auth/invalid-action-code') {
                             errorMsgEl.setAttribute('data-i18n', 'verify-error-invalid');
                             errorMsgEl.innerText = getT('verify-error-invalid', "This verification link is invalid.");
+                            showState('error-state');
                         } else if (error.code === 'auth/weak-password') {
-                            errorMsgEl.setAttribute('data-i18n', 'reset-error-weak');
-                            errorMsgEl.innerText = getT('reset-error-weak', "The password you entered is too weak.");
+                            errorTextEl.setAttribute('data-i18n', 'reset-error-weak');
+                            errorTextEl.innerText = getT('reset-error-weak', "The password you entered is too weak. Please try a stronger one.");
+                            errorTextEl.style.display = 'block';
                         } else {
                             errorMsgEl.removeAttribute('data-i18n');
                             errorMsgEl.innerText = getT('verify-error-generic', "An error occurred:") + " " + error.message;
+                            showState('error-state');
                         }
                         
-                        showState('error-state');
                         btn.disabled = false;
                         btn.innerText = originalText;
                     }
