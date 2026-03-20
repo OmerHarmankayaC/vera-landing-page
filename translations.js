@@ -203,7 +203,15 @@ window.translations = {
         "verify-error-invalid": "Bu doğrulama bağlantısı geçersiz. Daha önce kullanılmış olabilir.",
         "verify-error-generic": "Beklenmedik bir hata oluştu.",
         "verify-error-contact": "Destekle İletişime Geç",
-        "verify-error-return": "Uygulamaya Dön"
+        "verify-error-return": "Uygulamaya Dön",
+        "reset-password-title": "Şifre Sıfırlama",
+        "reset-password-desc": "Lütfen yeni şifrenizi girin.",
+        "reset-password-input-ph": "Yeni şifre",
+        "reset-password-submit": "Şifreyi Güncelle",
+        "reset-success-title": "Şifre Güncellendi",
+        "reset-success-desc": "Şifreniz başarıyla güncellendi. Artık yeni şifrenizle giriş yapabilirsiniz.",
+        "reset-loading-desc": "Şifreniz güncelleniyor, lütfen bekleyin...",
+        "reset-error-weak": "Girdiğiniz şifre çok zayıf. Daha güçlü bir şifre deneyin."
     },
     en: {
         // Navigation
@@ -409,7 +417,15 @@ window.translations = {
         "verify-error-invalid": "This verification link is invalid. It may have already been used.",
         "verify-error-generic": "An unexpected error occurred.",
         "verify-error-contact": "Contact Support",
-        "verify-error-return": "Return to App"
+        "verify-error-return": "Return to App",
+        "reset-password-title": "Reset Password",
+        "reset-password-desc": "Please enter your new password.",
+        "reset-password-input-ph": "New password",
+        "reset-password-submit": "Update Password",
+        "reset-success-title": "Password Updated",
+        "reset-success-desc": "Your password has been updated successfully. You can now log in with your new password.",
+        "reset-loading-desc": "Updating your password, please wait...",
+        "reset-error-weak": "The password you entered is too weak. Please try a stronger one."
     }
 };
 

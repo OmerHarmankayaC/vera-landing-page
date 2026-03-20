@@ -161,12 +161,34 @@
             box-shadow: none;
         }
 
-        #loading-state, #success-state, #error-state {
+        #loading-state, #success-state, #error-state, #reset-password-state, #reset-success-state {
             display: none;
         }
 
-        #loading-state.active, #success-state.active, #error-state.active {
+        #loading-state.active, #success-state.active, #error-state.active, #reset-password-state.active, #reset-success-state.active {
             display: block;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         /* Spinner Animation */
@@ -209,6 +231,31 @@
             <button onclick="handleOpenApp()" class="btn" data-i18n="verify-success-btn">Open Vera</button>
         </div>
 
+        <!-- Reset Password Form State -->
+        <div id="reset-password-state">
+            <div class="status-icon">
+                <i data-lucide="key"></i>
+            </div>
+            <h1 data-i18n="reset-password-title">Reset Password</h1>
+            <p data-i18n="reset-password-desc">Please enter your new password.</p>
+            <form id="reset-password-form" onsubmit="handleResetPassword(event)">
+                <div class="input-group">
+                    <input type="password" id="new-password" data-i18n="reset-password-input-ph" placeholder="New password" required minlength="6">
+                </div>
+                <button type="submit" class="btn" id="reset-btn" data-i18n="reset-password-submit">Update Password</button>
+            </form>
+        </div>
+
+        <!-- Reset Password Success State -->
+        <div id="reset-success-state">
+            <div class="status-icon success">
+                <i data-lucide="check-circle-2"></i>
+            </div>
+            <h1 data-i18n="reset-success-title">Password Updated</h1>
+            <p data-i18n="reset-success-desc">Your password has been updated successfully. You can now log in with your new password.</p>
+            <button onclick="handleOpenApp()" class="btn" data-i18n="verify-success-btn">Open Vera</button>
+        </div>
+
         <!-- Error State -->
         <div id="error-state">
             <div class="status-icon error">
@@ -224,7 +271,7 @@
     <script type="module">
         // Import Firebase SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, applyActionCode, confirmPasswordReset } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         // Firebase configuration
         // IMPORTANT: Replace these placeholders with your actual project config
@@ -245,6 +292,8 @@
             document.getElementById('loading-state').classList.remove('active');
             document.getElementById('success-state').classList.remove('active');
             document.getElementById('error-state').classList.remove('active');
+            document.getElementById('reset-password-state').classList.remove('active');
+            document.getElementById('reset-success-state').classList.remove('active');
             document.getElementById(stateId).classList.add('active');
         }
 
@@ -276,7 +325,12 @@
             }
         };
 
-        async function verifyEmail() {
+        let isAuthActionHandled = false;
+
+        async function handleAuthAction() {
+            if (isAuthActionHandled) return;
+            isAuthActionHandled = true;
+
             // New URL Format Handling (mode, oobCode, apiKey, lang)
             const urlParams = new URLSearchParams(window.location.search);
             const mode = urlParams.get('mode');
@@ -285,7 +339,7 @@
             // Apply localization if lang param is present
             handleLocalization();
 
-            if (mode !== 'verifyEmail') {
+            if (mode !== 'verifyEmail' && mode !== 'resetPassword') {
                 console.warn("Unsupported mode:", mode);
             }
 
@@ -296,6 +350,62 @@
                     errorMsgEl.innerText = window.translations[document.documentElement.lang]['verify-error-missing'];
                 }
                 showState('error-state');
+                return;
+            }
+
+            if (mode === 'resetPassword') {
+                showState('reset-password-state');
+                
+                // Set up the form submit handler globally
+                window.handleResetPassword = async function(event) {
+                    event.preventDefault();
+                    
+                    const newPassword = document.getElementById('new-password').value;
+                    const btn = document.getElementById('reset-btn');
+                    const originalText = btn.innerText;
+                    
+                    btn.disabled = true;
+                    btn.innerHTML = '<i data-lucide="loader-2" class="spinner" style="width: 20px; height: 20px;"></i>';
+                    lucide.createIcons();
+
+                    try {
+                        const app = initializeApp(firebaseConfig);
+                        const auth = getAuth(app);
+                        
+                        await confirmPasswordReset(auth, oobCode, newPassword);
+                        
+                        showState('reset-success-state');
+                    } catch (error) {
+                        console.error("Reset error:", error);
+                        
+                        const errorMsgEl = document.getElementById('error-message');
+                        const lang = document.documentElement.lang || 'tr';
+                        
+                        const getT = (key, fallback) => {
+                            return (window.translations && window.translations[lang] && window.translations[lang][key]) 
+                                ? window.translations[lang][key] 
+                                : fallback;
+                        };
+
+                        if (error.code === 'auth/expired-action-code') {
+                            errorMsgEl.setAttribute('data-i18n', 'verify-error-expired');
+                            errorMsgEl.innerText = getT('verify-error-expired', "This verification link has expired.");
+                        } else if (error.code === 'auth/invalid-action-code') {
+                            errorMsgEl.setAttribute('data-i18n', 'verify-error-invalid');
+                            errorMsgEl.innerText = getT('verify-error-invalid', "This verification link is invalid.");
+                        } else if (error.code === 'auth/weak-password') {
+                            errorMsgEl.setAttribute('data-i18n', 'reset-error-weak');
+                            errorMsgEl.innerText = getT('reset-error-weak', "The password you entered is too weak.");
+                        } else {
+                            errorMsgEl.removeAttribute('data-i18n');
+                            errorMsgEl.innerText = getT('verify-error-generic', "An error occurred:") + " " + error.message;
+                        }
+                        
+                        showState('error-state');
+                        btn.disabled = false;
+                        btn.innerText = originalText;
+                    }
+                };
                 return;
             }
 
@@ -359,7 +469,7 @@
         }
 
         // Start verification on load
-        window.addEventListener('load', verifyEmail);
+        window.addEventListener('load', handleAuthAction);
     </script>
 </body>
 </html>
