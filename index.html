@@ -66,9 +66,15 @@
             <img src="assets/logo_transparent.png" alt="Vera Logo" class="mobile-logo">
             <span class="mobile-logo-text">Vera Finance</span>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <div class="lang-switcher" style="background: rgba(15, 23, 42, 0.04); padding: 4px; border-radius: 8px;">
+                <button class="lang-btn active" data-lang="tr" style="font-size: 0.75rem; padding: 4px 8px;">TR</button>
+                <button class="lang-btn" data-lang="en" style="font-size: 0.75rem; padding: 4px 8px;">EN</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
             <i data-lucide="menu"></i>
         </button>
+        </div>
     </header>
 
     <!-- Full Screen Mobile Menu -->
@@ -480,10 +486,6 @@
             <div class="footer-bottom">
                 <div data-i18n="footer-copyright">&copy; 2026 Ömer Harmankaya. Tüm hakları saklıdır.</div>
                 <div style="display: flex; gap: 24px; align-items: center; justify-content: center; flex-wrap: wrap;">
-                    <div class="lang-switcher" style="background: rgba(15, 23, 42, 0.04); padding: 4px; border-radius: 8px; margin: 0;">
-                        <button class="lang-btn active" data-lang="tr" style="font-size: 0.75rem; padding: 4px 8px;">TR</button>
-                        <button class="lang-btn" data-lang="en" style="font-size: 0.75rem; padding: 4px 8px;">EN</button>
-                    </div>
                     <a href="privacy.html" style="color: inherit; text-decoration: none;" data-i18n="footer-privacy">Gizlilik</a>
                     <a href="terms.html" style="color: inherit; text-decoration: none;" data-i18n="footer-terms">Şartlar</a>
                 </div>
