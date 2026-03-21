@@ -214,7 +214,17 @@ window.translations = {
         "reset-error-weak": "Girdiğiniz şifre çok zayıf. Daha güçlü bir şifre deneyin.",
         "reset-password-confirm-ph": "Şifreyi tekrar girin",
         "reset-error-mismatch": "Girdiğiniz şifreler eşleşmiyor.",
-        "reset-error-length": "Şifreniz en az 7 karakterden oluşmalıdır."
+        "reset-error-length": "Şifreniz en az 7 karakterden oluşmalıdır.",
+
+        // Waitlist Page
+        "waitlist-title": "Vera Çok Yakında Yayında!",
+        "waitlist-desc": "Uygulamamız şu anda geliştirme aşamasında. Erken erişim ve gelişmeleri kaçırmamak için bekleme listesine katılın.",
+        "waitlist-email-ph": "E-posta Adresiniz",
+        "waitlist-submit": "Bekleme Listesine Katıl",
+        "waitlist-success-title": "Teşekkürler!",
+        "waitlist-success-desc": "Katılımınız alındı. Sizi haberdar edeceğiz.",
+        "waitlist-success-btn": "Ana Sayfaya Dön",
+        "waitlist-error-generic": "Bir hata oluştu, lütfen daha sonra tekrar deneyin."
     },
     en: {
         // Navigation
@@ -431,7 +441,17 @@ window.translations = {
         "reset-error-weak": "The password you entered is too weak. Please try a stronger one.",
         "reset-password-confirm-ph": "Confirm new password",
         "reset-error-mismatch": "The passwords you entered do not match.",
-        "reset-error-length": "Your password must be more than 6 characters long."
+        "reset-error-length": "Your password must be more than 6 characters long.",
+
+        // Waitlist Page
+        "waitlist-title": "Vera is Launching Soon!",
+        "waitlist-desc": "Our app is currently under development. Join the waitlist for early access and launch updates.",
+        "waitlist-email-ph": "Your Email Address",
+        "waitlist-submit": "Join Waitlist",
+        "waitlist-success-title": "Thank You!",
+        "waitlist-success-desc": "Your email has been saved securely. We'll keep you updated.",
+        "waitlist-success-btn": "Return to Home",
+        "waitlist-error-generic": "An error occurred, please try again later."
     }
 };
 

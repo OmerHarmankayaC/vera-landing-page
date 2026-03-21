@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waitlist | Vera Finance</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo_transparent.png" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Translations -->
+    <script src="translations.js"></script>
+
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-offwhite: #F9FAFB;
+            --text-primary: #0F1C3F;
+            --text-secondary: #666666;
+            --accent-blue: #2563EB;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 12px 24px -4px rgba(0, 0, 0, 0.04);
+            --shadow-large: 0 20px 40px -8px rgba(0, 0, 0, 0.08);
+            --radius-pill: 9999px;
+            --radius-card: 32px;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .header {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+
+        .lang-switcher {
+            display: flex;
+            background: rgba(15, 23, 42, 0.04);
+            padding: 4px;
+            border-radius: 8px;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--bg-white);
+            color: var(--text-primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .waitlist-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            padding: 56px 40px;
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: var(--shadow-large);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo img {
+            height: 36px;
+        }
+
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            background: #EFF6FF;
+            color: var(--accent-blue);
+        }
+
+        .status-icon.success {
+            background: #ECFDF5;
+            color: #10B981;
+        }
+
+        .status-icon i {
+            width: 40px;
+            height: 40px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.0625rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: var(--text-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            margin-top: 16px;
+            font-size: 0.9375rem;
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            transform: none;
+            box-shadow: none;
+        }
+
+        #form-state,
+        #success-state {
+            display: none;
+        }
+
+        #form-state.active,
+        #success-state.active {
+            display: block;
+        }
+
+        .spinner {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </div>
+
+    <div class="waitlist-card">
+        <a href="https://vera.staticorbit.dev/" class="logo">
+            <img src="assets/logo_transparent.png" alt="Vera Logo">
+            <span>Vera Finance</span>
+        </a>
+
+        <!-- Form State -->
+        <div id="form-state" class="active">
+            <div class="status-icon">
+                <i data-lucide="rocket"></i>
+            </div>
+            <h1 data-i18n="waitlist-title">Vera Çok Yakında Yayında!</h1>
+            <p data-i18n="waitlist-desc">Uygulamamız şu anda geliştirme aşamasında. Erken erişim ve gelişmeleri
+                kaçırmamak için bekleme listesine katılın.</p>
+
+            <form id="waitlist-form">
+                <div class="input-group">
+                    <input type="email" id="email" name="email" data-i18n="waitlist-email-ph"
+                        placeholder="E-posta Adresiniz" required>
+                </div>
+                <p id="error-message"
+                    style="color: #EF4444; font-size: 0.875rem; margin-top: -12px; margin-bottom: 16px; display: none; text-align: left;">
+                </p>
+                <button type="submit" class="btn" id="submit-btn" data-i18n="waitlist-submit">Bekleme Listesine
+                    Katıl</button>
+            </form>
+            <a href="https://vera.staticorbit.dev" class="btn btn-secondary" data-i18n="waitlist-success-btn">Ana Sayfaya
+                Dön</a>
+        </div>
+
+        <!-- Success State -->
+        <div id="success-state">
+            <div class="status-icon success">
+                <i data-lucide="check-circle-2"></i>
+            </div>
+            <h1 data-i18n="waitlist-success-title">Teşekkürler!</h1>
+            <p data-i18n="waitlist-success-desc">Katılımınız alındı. Sizi haberdar edeceğiz.</p>
+            <a href="https://vera.staticorbit.dev" class="btn" data-i18n="waitlist-success-btn">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // 🛑 IMPORTANT: REPLACE 'YOUR_FORM_ID_HERE' WITH YOUR ACTUAL FORMSPREE ID
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjgydok";
+
+        document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const errorMsgEl = document.getElementById('error-message');
+            const originalBtnText = submitBtn.innerText;
+
+            errorMsgEl.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="spinner" style="width: 20px; height: 20px;"></i>';
+            lucide.createIcons();
+
+            if (FORMSPREE_ENDPOINT.includes("YOUR_FORM_ID_HERE")) {
+                errorMsgEl.innerText = "Sistem yapılandırma hatası: Lütfen waitlist.html dosyasını düzenleyip Formspree ID'nizi girin.";
+                errorMsgEl.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+                return;
+            }
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    document.getElementById('form-state').classList.remove('active');
+                    document.getElementById('success-state').classList.add('active');
+                } else {
+                    throw new Error("Formspree returned an error");
+                }
+            } catch (error) {
+                console.error("Submission error: ", error);
+
+                const lang = document.documentElement.lang || 'tr';
+                const errorMessage = (window.translations && window.translations[lang] && window.translations[lang]['waitlist-error-generic'])
+                    ? window.translations[lang]['waitlist-error-generic']
+                    : "Bir hata oluştu, lütfen daha sonra tekrar deneyin.";
+
+                errorMsgEl.innerText = errorMessage;
+                errorMsgEl.style.display = 'block';
+
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            }
+        });
+    </script>
+</body>
+
+</html>
