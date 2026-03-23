@@ -13,7 +13,7 @@ window.translations = {
 
         // Hero
         "hero-title": "Servetini Akıllıca Yönet, Geleceğini İnşa Et",
-        "hero-subtitle": "Yapay zeka destekli bütçeleme, gerçek zamanlı varlık takibi ve kişiselleştirilmiş finansal öngörülerle paranızın kontrolünü elinize alın.",
+        "hero-subtitle": "Yapay zeka destekli bütçeleme, gerçek zamanlı varlık takibi ve kişiselleştirilmiş finansal öngörülerle paranızın kontrolünü elinize\u00A0alın.",
         "hero-cta-primary": "Hemen Başla",
         "hero-cta-secondary": "Nasıl Çalışır?",
 
@@ -60,6 +60,7 @@ window.translations = {
         "pricing-free-price": "₺0",
         "pricing-free-desc": "Temel bütçe takibi ve manuel girişler için ideal.",
         "pricing-free-btn": "Ücretsiz Başla",
+        "pricing-period": " / ay",
         "pricing-premium-name": "Premium",
         "pricing-premium-price": "₺29.99",
         "pricing-premium-period": "/ aylık",
@@ -151,6 +152,7 @@ window.translations = {
         "pricing-free-li2": "Maks. 10 Varlık Takibi",
         "pricing-free-li3": "Sadece Güncel Değer",
         "pricing-free-li4": "Uygulama İçi Görünüm",
+        "pricing-period": " / ay",
 
         "pricing-premium-name": "Vera Premium",
         "pricing-premium-price": "₺29,99",
@@ -287,6 +289,7 @@ window.translations = {
         "pricing-free-price": "$0",
         "pricing-free-desc": "Ideal for essential budget tracking and manual entries.",
         "pricing-free-btn": "Join for Free",
+        "pricing-period": " / month",
         "pricing-premium-name": "Premium",
         "pricing-premium-price": "$4.99",
         "pricing-premium-period": "/ month",
@@ -378,6 +381,7 @@ window.translations = {
         "pricing-free-li2": "Max 10 Asset Tracking",
         "pricing-free-li3": "Current Value Only",
         "pricing-free-li4": "Ad-Supported Experience",
+        "pricing-period": " / month",
         
         "pricing-premium-name": "Vera Premium",
         "pricing-premium-price": "₺29.99",
