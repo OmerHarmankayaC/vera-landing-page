@@ -161,11 +161,11 @@
             box-shadow: none;
         }
 
-        #loading-state, #success-state, #error-state, #reset-password-state, #reset-success-state {
+        #confirm-state, #loading-state, #success-state, #error-state, #reset-password-state, #reset-success-state {
             display: none;
         }
 
-        #loading-state.active, #success-state.active, #error-state.active, #reset-password-state.active, #reset-success-state.active {
+        #confirm-state.active, #loading-state.active, #success-state.active, #error-state.active, #reset-password-state.active, #reset-success-state.active {
             display: block;
         }
 
@@ -212,8 +212,18 @@
             <span>Vera Finance</span>
         </a>
 
+        <!-- Confirm State — shown first; user must click to prevent scanner pre-fetch -->
+        <div id="confirm-state" class="active">
+            <div class="status-icon">
+                <i data-lucide="mail-check"></i>
+            </div>
+            <h1 data-i18n="verify-confirm-title">Confirm Your Email</h1>
+            <p data-i18n="verify-confirm-desc">Tap the button below to verify your Vera Finance account.</p>
+            <button onclick="startVerification()" class="btn" data-i18n="verify-confirm-btn">Verify My Email</button>
+        </div>
+
         <!-- Loading State -->
-        <div id="loading-state" class="active">
+        <div id="loading-state">
             <div class="status-icon">
                 <i data-lucide="loader-2" class="spinner"></i>
             </div>
@@ -343,7 +353,7 @@
             // Apply localization if lang param is present
             handleLocalization();
 
-            if (mode !== 'verifyEmail' && mode !== 'resetPassword') {
+            if (mode && mode !== 'verifyEmail' && mode !== 'resetPassword') {
                 console.warn("Unsupported mode:", mode);
             }
 
@@ -492,8 +502,27 @@
             }
         }
 
-        // Start verification on load
-        window.addEventListener('load', handleAuthAction);
+        // showState helper exposed for confirm button
+        window.showState = showState;
+
+        // Triggered only when the user taps "Verify My Email" — prevents email
+        // security scanners from consuming the one-time oobCode on page load.
+        window.startVerification = function() {
+            // For password reset the confirm button is not shown; this only fires for verifyEmail
+            showState('loading-state');
+            handleAuthAction();
+        };
+
+        // On load: show confirm button for verifyEmail, auto-handle for resetPassword
+        window.addEventListener('load', () => {
+            handleLocalization();
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            if (mode === 'resetPassword') {
+                handleAuthAction(); // Password reset needs the form immediately
+            }
+            // verifyEmail: stay on confirm-state (button already active)
+        });
     </script>
 </body>
 </html>
