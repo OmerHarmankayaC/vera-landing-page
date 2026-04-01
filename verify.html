@@ -322,14 +322,13 @@
         }
 
         window.handleOpenApp = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const oobCode = urlParams.get('oobCode');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
+
             if (isMobile) {
-                const deepLink = `verafinance://verify?oobCode=${oobCode}`;
-                window.location.href = deepLink;
-                
+                // Open app — verification is already complete (applied on this page).
+                // The app just needs to reload the user to pick up emailVerified = true.
+                window.location.href = 'verafinance://verified';
+
                 // Fallback to website if app doesn't open
                 setTimeout(() => {
                     window.location.href = "https://vera.staticorbit.dev";
