@@ -1,0 +1,10 @@
+{
+  "name": "vera-landing",
+  "version": "1.0.0",
+  "description": "Vera Landing Page",
+  "scripts": {
+    "dev": "npx live-server",
+    "build": "echo \"No build step required for static site\""
+  },
+  "dependencies": {}
+}

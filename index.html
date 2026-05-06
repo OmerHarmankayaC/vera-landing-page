@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1775769107">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
@@ -267,94 +267,76 @@
         </div>
     </section>
 
-    <!-- Interactive Features Section (Option C) -->
-    <section id="features" class="section section-tint">
+    <!-- Interactive Vertical Features Section -->
+    <section id="features" class="interactive-features-section section-tint">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 64px;" data-i18n="feature-list-title">Temel Özellikler</h2>
-
-            <div class="interactive-features-wrapper">
-                <!-- Left Side: Tabs -->
-                <div class="feature-tabs-list">
-                    <!-- Tab 1 -->
-                    <div class="feature-tab-item active" data-target="mockup-1">
-                        <div class="mobile-feature-text">
+            <div class="features-scroll-header">
+                <h2 data-i18n="feature-list-title">Temel Özellikler</h2>
+            </div>
+            
+            <div class="features-flex-layout">
+                
+                <!-- Left Side: Vertical list for text -->
+                <div class="features-text-window">
+                    <div class="features-text-track" id="featuresTextTrack">
+                        
+                        <div class="feature-text-panel active" data-mockup="mockup-1">
                             <div class="feature-tab-icon tab-theme-navy"><i data-lucide="calculator"></i></div>
                             <h3 data-i18n="feature-1-title">Kişisel Enflasyon Motoru</h3>
                             <div class="feature-tab-desc" data-i18n="feature-1-desc">
                                 Sadece genel verileri değil, kendi harcama sepetinizdeki gerçek enflasyonu hesaplayan gelişmiş bir mühendislik çözümü.
                             </div>
                         </div>
-                        <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI" class="mobile-feature-img">
-                    </div>
 
-                    <!-- Tab 2 -->
-                    <div class="feature-tab-item" data-target="mockup-2">
-                        <div class="mobile-feature-text">
+                        <div class="feature-text-panel" data-mockup="mockup-2">
                             <div class="feature-tab-icon tab-theme-white"><i data-lucide="scan-line"></i></div>
                             <h3 data-i18n="feature-2-title">Yapay Zeka Destekli Fiş Tarama</h3>
                             <div class="feature-tab-desc" data-i18n="feature-2-desc">
                                 Optik karakter tanıma (OCR) ve yapay zeka ile fişlerinizi dijitalleştirin, envanterinizi ve fiyat değişimlerini anlık takip edin.
                             </div>
                         </div>
-                        <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI" class="mobile-feature-img">
-                    </div>
 
-                    <!-- Tab 3 -->
-                    <div class="feature-tab-item" data-target="mockup-3">
-                        <div class="mobile-feature-text">
+                        <div class="feature-text-panel" data-mockup="mockup-3">
                             <div class="feature-tab-icon tab-theme-green"><i data-lucide="pie-chart"></i></div>
                             <h3 data-i18n="feature-3-title">Bütünleşik Varlık Analizi</h3>
                             <div class="feature-tab-desc" data-i18n="feature-3-desc">
                                 Tüm yatırımlarınızı, nakit akışınızı ve birikimlerinizi tek bir merkezi mimari üzerinden izleyin.
                             </div>
                         </div>
-                        <img src="assets/IMG_4375.PNG" alt="Total Wealth UI" class="mobile-feature-img">
-                    </div>
 
-                    <!-- Tab 4 -->
-                    <div class="feature-tab-item" data-target="mockup-4">
-                        <div class="mobile-feature-text">
+                        <div class="feature-text-panel" data-mockup="mockup-4">
                             <div class="feature-tab-icon tab-theme-red"><i data-lucide="activity"></i></div>
                             <h3 data-i18n="feature-4-title">Derin Finansal Analiz</h3>
                             <div class="feature-tab-desc" data-i18n="feature-4-desc">
-                                Harcama alışkanlıklarınızın derinlerine inin. Geçmiş verilerle geleceğinizi daha iyi
-                                planlayın.
+                                Harcama alışkanlıklarınızın derinlerine inin. Geçmiş verilerle geleceğinizi daha iyi planlayın.
                             </div>
                         </div>
-                        <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI" class="mobile-feature-img">
-                    </div>
 
-                    <!-- Tab 5 -->
-                    <div class="feature-tab-item" data-target="mockup-5">
-                        <div class="mobile-feature-text">
+                        <div class="feature-text-panel" data-mockup="mockup-5">
                             <div class="feature-tab-icon tab-theme-blue"><i data-lucide="target"></i></div>
                             <h3 data-i18n="feature-5-title">Proaktif Bütçeleme</h3>
                             <div class="feature-tab-desc" data-i18n="feature-5-desc">
                                 Limitlerinize yaklaşmadan önce akıllı uyarılar alın ve bütçenizi aşmayın.
                             </div>
                         </div>
-                        <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI" class="mobile-feature-img">
+
                     </div>
                 </div>
 
-                <!-- Right Side: Sticky Device Frame -->
-                <div class="feature-visual-panel">
-                    <div class="feature-mockup-layer active" id="mockup-1">
-                        <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI">
-                    </div>
-                    <div class="feature-mockup-layer" id="mockup-2">
-                        <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI">
-                    </div>
-                    <div class="feature-mockup-layer" id="mockup-3">
-                        <img src="assets/IMG_4375.PNG" alt="Total Wealth UI">
-                    </div>
-                    <div class="feature-mockup-layer" id="mockup-4">
-                        <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI">
-                    </div>
-                    <div class="feature-mockup-layer" id="mockup-5">
-                        <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI">
-                    </div>
+                <!-- Right Side: Phone Mockup -->
+                <div class="features-phone-window">
+                        <div class="mockup-phone">
+                            <div class="dynamic-island"></div>
+                            <div class="phone-screen-track" id="featuresImageTrack">
+                                <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI" class="screen-img active" id="mockup-1">
+                                <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI" class="screen-img" id="mockup-2">
+                                <img src="assets/IMG_4375.PNG" alt="Total Wealth UI" class="screen-img" id="mockup-3">
+                                <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI" class="screen-img" id="mockup-4">
+                                <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI" class="screen-img" id="mockup-5">
+                            </div>
+                        </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -509,87 +491,57 @@
     <script>
         lucide.createIcons();
 
-        // Interactive Tabs Logic
+        // Vertical Scroll Feature Intersection Logic
         document.addEventListener("DOMContentLoaded", () => {
-            const tabs = document.querySelectorAll(".feature-tab-item");
-            const mockups = document.querySelectorAll(".feature-mockup-layer");
-            let isScrollingFromClick = false;
-            let isTransitioning = false; // NEW: Lock to prevent re-triggering during layout shift
-            let scrollTimeout;
-            let transitionTimeout;
+            const textPanels = document.querySelectorAll('.feature-text-panel');
+            const screenImages = document.querySelectorAll('.screen-img');
 
-            const setActiveState = (targetId) => {
-                const targetTab = Array.from(tabs).find(t => t.dataset.target === targetId);
-                const targetMockup = document.getElementById(targetId);
-
-                if (targetTab && !targetTab.classList.contains("active") && !isTransitioning) {
-                    isTransitioning = true;
-                    
-                    tabs.forEach(t => t.classList.remove("active"));
-                    mockups.forEach(m => m.classList.remove("active"));
-
-                    targetTab.classList.add("active");
-                    if (targetMockup) {
-                        targetMockup.classList.add("active");
-                    }
-
-                    // Release lock after CSS transition completes (~400ms in style.css)
-                    clearTimeout(transitionTimeout);
-                    transitionTimeout = setTimeout(() => {
-                        isTransitioning = false;
-                    }, 450); 
-                }
-            };
-
-            tabs.forEach(tab => {
-                tab.addEventListener("click", () => {
-                    const targetId = tab.dataset.target;
-                    
-                    isScrollingFromClick = true;
-                    setActiveState(targetId);
-
-                    // Smooth scroll to the tab with an offset
-                    const yOffset = -150; 
-                    const y = tab.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    
-                    window.scrollTo({ top: y, behavior: 'smooth' });
-
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        isScrollingFromClick = false;
-                    }, 1000); 
-                });
-            });
-
-            // High-performance Intersection Observer for scroll spy
             const observerOptions = {
                 root: null,
-                rootMargin: '-35% 0px -45% 0px', // Precise trigger band
-                threshold: [0, 0.5, 1]
+                rootMargin: '-10% 0px -45% 0px', // Trigger earlier (closer to top)
+                threshold: [0, 0.1, 0.5]
             };
 
-            const tabObserver = new IntersectionObserver((entries) => {
-                // Ignore observer if we are scrolling from a click OR in the middle of a transition layout shift
-                if (isScrollingFromClick || isTransitioning) return;
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetId = entry.target.dataset.mockup;
+                        const index = Array.from(textPanels).indexOf(entry.target);
+                        
+                        // Update text panels
+                        textPanels.forEach(p => p.classList.remove('active'));
+                        entry.target.classList.add('active');
 
-                const intersecting = entries.filter(e => e.isIntersecting);
-                if (intersecting.length > 0) {
-                    // Pick the entry with the highest intersection ratio
-                    const primaryEntry = intersecting.reduce((prev, current) => 
-                        (prev.intersectionRatio > current.intersectionRatio) ? prev : current
-                    );
-                    
-                    if (primaryEntry.intersectionRatio > 0.1) {
-                        setActiveState(primaryEntry.target.dataset.target);
+                        // Horizontal swipe logic for images
+                        const track = document.getElementById('featuresImageTrack');
+                        if (track) {
+                            track.style.transform = `translateX(-${index * 100}%)`;
+                        }
+
+                        // Update active class for screen images (for any specific styles)
+                        screenImages.forEach((img, idx) => {
+                            if (idx === index) {
+                                img.classList.add('active');
+                            } else {
+                                img.classList.remove('active');
+                            }
+                        });
                     }
-                }
-            }, observerOptions);
-
-            tabs.forEach(tab => {
-                tabObserver.observe(tab);
+                });
+            }, {
+                root: null,
+                rootMargin: '-48% 0px -48% 0px', // Precise center trigger
+                threshold: 0
             });
 
-            // Mobile Menu Logic
+            textPanels.forEach(panel => {
+                featureObserver.observe(panel);
+            });
+        // This closes DOMContentLoaded! but I must make sure not to break it
+        // Wait, the bottom of the script ALREADY HAS `});` for DOMContentLoaded!
+        // So I should NOT close it here. Just let it flow into Mobile Menu Logic.
+
+        // Mobile Menu Logic
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileCloseBtn = document.getElementById('mobileCloseBtn');
             const mobileMenu = document.getElementById('mobileMenu');

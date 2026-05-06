@@ -1,10 +1,27 @@
 
 html, body {
-    overflow-x: hidden;
-    width: 100%;
+    overflow-x: clip !important; /* Prevents horizontal scroll, allows sticky */
+    overflow-y: visible !important; /* CRITICAL for sticky */
     position: relative;
-    max-width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+
+/* Override any scroll lock from external plugins */
+.antigravity-scroll-lock, 
+body[style*="overflow: hidden"] {
+    overflow: visible !important;
+}
+
+/* 
+   ==========================================================================
+   TEST COMMENT ADDED AT 2026-04-10 00:15
+   IF YOU CAN SEE THIS, THE FILES ARE UPDATING CORRECTLY ON DISK.
+   ==========================================================================
+*/
+
+
 :root {
     /* Color Palette */
     --bg-white: #FFFFFF;
@@ -50,7 +67,7 @@ body {
     color: var(--text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .container {
@@ -962,169 +979,6 @@ p.subtitle {
     }
 }
 
-/* --- Interactive Feature Tabs --- */
-.interactive-features-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-    .interactive-features-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
-
-.feature-tabs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    position: relative;
-    padding-bottom: 300px;
-    /* Extra padding so the sticky scroll feels longer */
-}
-
-.feature-tab-item {
-    padding: 24px;
-    border-radius: var(--radius-card-inner);
-    background: transparent;
-    border: 1px solid transparent;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.5;
-}
-
-.feature-tab-item:hover {
-    opacity: 0.8;
-}
-
-.feature-tab-item.active {
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-soft-float);
-    opacity: 1;
-}
-
-.feature-tab-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    background: var(--bg-card);
-}
-
-.tab-theme-navy {
-    background-color: #0F172A;
-    color: white;
-}
-
-.tab-theme-white {
-    background-color: #F9FAFB;
-    color: #0F172A;
-    border: 1px solid #E5E7EB;
-}
-
-.tab-theme-green {
-    background-color: #064E3B;
-    color: white;
-}
-
-.tab-theme-red {
-    background-color: #7F1D1D;
-    color: white;
-}
-
-.theme-blue {
-    background-color: #2563EB;
-    /* Vibrant Blue */
-    color: white;
-}
-
-.theme-blue .bento-title,
-.theme-blue .bento-desc {
-    color: white;
-}
-
-.theme-blue .bento-icon {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: none;
-}
-
-.theme-blue .bento-device-cut {
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.tab-theme-blue {
-    background-color: #2563EB;
-    color: white;
-}
-
-.feature-tab-item h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-}
-
-.feature-tab-desc {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    /* Prevent layout shifts by using a fixed-ish height or just better transition */
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
-}
-
-.feature-tab-item.active .feature-tab-desc {
-    max-height: 150px; /* Adjusted from 200px */
-    opacity: 1;
-    margin-top: 8px;
-}
-
-.feature-visual-panel {
-    position: sticky;
-    top: 120px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-mockup-layer {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(24px);
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    width: 100%;
-    max-width: 320px;
-    display: flex;
-    justify-content: center;
-}
-
-.feature-mockup-layer.active {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-.feature-mockup-layer img {
-    height: 600px;
-    object-fit: contain;
-}
-
 /* Mobile Elements Hidden on Desktop */
 .mobile-app-header,
 .mobile-menu-overlay,
@@ -1472,23 +1326,9 @@ p.subtitle {
         display: none;
     }
 
-    .feature-tab-item {
-        flex: 0 0 85%;
-        scroll-snap-align: center;
-        opacity: 1 !important; /* Always visible on mobile swipe */
-        padding: 24px !important; /* Full padding */
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border-light) !important;
-        border-radius: 24px !important;
-        box-shadow: var(--shadow-soft-float) !important;
-        display: flex;
-        flex-direction: column;
-    }
+    
 
-    .feature-tab-item.active {
-        box-shadow: none !important;
-        border-color: transparent !important;
-    }
+    
 
     /* Mobile Text Container for Feature Tabs */
     .mobile-feature-text {
@@ -1798,5 +1638,208 @@ p.subtitle {
 @media (max-width: 991px) {
     .lang-switcher {
         margin-left: 0;
+    }
+}
+
+/* ==========================================================================
+   Vertical Scroll Features Section (100vh Overhaul)
+   ========================================================================== */
+
+.interactive-features-section {
+    position: relative;
+    overflow: visible !important;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 15vh;
+}
+
+/* Sticky Heading - Decoupled from flex */
+.features-scroll-header {
+    position: sticky;
+    top: 60px; /* Aligned with nav */
+    z-index: 110;
+    text-align: center;
+    padding: 30px 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.features-flex-layout {
+    display: block; /* No longer flex-row */
+    position: relative;
+    width: 100%;
+}
+
+/* Left/Main Content Layer */
+.features-text-window {
+    width: 100%;
+    position: relative;
+}
+
+.features-text-track {
+    display: flex;
+    flex-direction: column;
+    /* No vertical gap needed as panels are 100vh */
+}
+
+.feature-text-panel {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10%;
+    padding-right: 65%; /* Massive padding to clear the centered phone */
+    opacity: 0.1;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.9) translateY(20px);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+.feature-text-panel.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 10;
+}
+
+/* PEERING EFFECT: Adjusted for centering */
+.feature-text-panel:has(+ .feature-text-panel.active) {
+    opacity: 0.6;
+    transform: scale(0.9) translateY(35vh);
+    filter: blur(2px);
+    z-index: 5;
+}
+
+.feature-text-panel.active + .feature-text-panel {
+    opacity: 0.6;
+    transform: scale(0.9) translateY(-35vh);
+    filter: blur(2px);
+    z-index: 5;
+}
+
+.feature-text-panel .feature-tab-icon {
+    margin-bottom: 24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.feature-text-panel .feature-tab-icon svg {
+    width: 32px;
+    height: 32px;
+    color: currentColor;
+}
+
+.feature-text-panel h3 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.feature-text-panel .feature-tab-desc {
+    font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+/* Phone Overlay Layer */
+.features-phone-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Spans the entire track length */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Allows sticky positioning inside */
+    z-index: 100;
+    pointer-events: none; /* Crucial: allow interacting with text layer below */
+}
+
+/* Mockup Phone is now centered in its absolute-parent overlay */
+.mockup-phone {
+    width: 280px;
+    height: 600px;
+    border-radius: 40px;
+    background: #000;
+    border: 10px solid #1e293b;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%) translateZ(0); /* Perfect vertical center */
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.dynamic-island {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 22px;
+    background: #111;
+    border-radius: 12px;
+    z-index: 100;
+}
+
+.phone-screen-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    display: flex; /* Horizontal track */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screen-img {
+    width: 100% !important;
+    height: 100% !important;
+    flex-shrink: 0;
+    object-fit: cover;
+    opacity: 1 !important; /* Always visible in track */
+}
+
+.screen-img.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .features-flex-layout {
+        flex-direction: column-reverse;
+    }
+    .feature-text-panel {
+        min-height: 70vh;
+        text-align: center;
+        align-items: center;
+    }
+    .features-phone-window {
+        width: 100%;
+        position: sticky;
+        top: 60px;
+        height: 60vh;
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--border-light);
+    }
+    .mockup-phone {
+        width: 240px;
+        height: 521px;
+        margin-top: 20px;
     }
 }

@@ -229,7 +229,11 @@ window.translations = {
         "waitlist-success-title": "Teşekkürler!",
         "waitlist-success-desc": "Katılımınız alındı. Sizi haberdar edeceğiz.",
         "waitlist-success-btn": "Ana Sayfaya Dön",
-        "waitlist-error-generic": "Bir hata oluştu, lütfen daha sonra tekrar deneyin."
+        "waitlist-error-generic": "Bir hata oluştu, lütfen daha sonra tekrar deneyin.",
+        "waitlist-device-title": "Cihazınızı Seçin",
+        "waitlist-device-desc": "Vera iOS için App Store'da yayında! Android kullanıcıları için ise çok yakında geliyoruz.",
+        "waitlist-btn-ios": "iOS (App Store)",
+        "waitlist-btn-android": "Android (Bekleme Listesi)"
     },
     en: {
         // Navigation
@@ -461,7 +465,11 @@ window.translations = {
         "waitlist-success-title": "Thank You!",
         "waitlist-success-desc": "Your email has been saved securely. We'll keep you updated.",
         "waitlist-success-btn": "Return to Home",
-        "waitlist-error-generic": "An error occurred, please try again later."
+        "waitlist-error-generic": "An error occurred, please try again later.",
+        "waitlist-device-title": "Choose Your Device",
+        "waitlist-device-desc": "Vera is now available on the App Store for iOS! For Android users, we are coming very soon.",
+        "waitlist-btn-ios": "iOS (App Store)",
+        "waitlist-btn-android": "Android (Waitlist)"
     }
 };
 

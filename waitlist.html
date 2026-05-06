@@ -226,11 +226,13 @@
             box-shadow: none;
         }
 
+        #device-state,
         #form-state,
         #success-state {
             display: none;
         }
 
+        #device-state.active,
         #form-state.active,
         #success-state.active {
             display: block;
@@ -263,8 +265,27 @@
             <span>Vera Finance</span>
         </a>
 
+        <!-- Device Selection State -->
+        <div id="device-state" class="active">
+            <div class="status-icon" style="background: #F8FAFC; color: #0F1C3F;">
+                <i data-lucide="smartphone"></i>
+            </div>
+            <h1 data-i18n="waitlist-device-title">Cihazınızı Seçin</h1>
+            <p data-i18n="waitlist-device-desc">Vera iOS için App Store'da yayında! Android kullanıcıları için ise çok yakında geliyoruz.</p>
+
+            <button class="btn" style="margin-bottom: 16px; background: #0F1C3F; color: #fff;" onclick="window.location.href='https://apps.apple.com/tr/app/vera-finance/id6760785410?l=tr'">
+                <i data-lucide="apple" style="margin-right: 8px; width: 20px; height: 20px;"></i> <span data-i18n="waitlist-btn-ios">iOS (App Store)</span>
+            </button>
+            
+            <button class="btn" style="background: #F8FAFC; color: #0F1C3F; border: 1px solid var(--border-light);" onclick="document.getElementById('device-state').classList.remove('active'); document.getElementById('form-state').classList.add('active');">
+                 <span data-i18n="waitlist-btn-android">Android (Bekleme Listesi)</span>
+            </button>
+            
+            <a href="https://vera.staticorbit.dev" class="btn btn-secondary" data-i18n="waitlist-success-btn">Ana Sayfaya Dön</a>
+        </div>
+
         <!-- Form State -->
-        <div id="form-state" class="active">
+        <div id="form-state">
             <div class="status-icon">
                 <i data-lucide="rocket"></i>
             </div>
