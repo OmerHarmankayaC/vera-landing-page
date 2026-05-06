@@ -323,23 +323,23 @@
                     </div>
                 </div>
 
-                <!-- Right Side: Phone Mockup -->
-                <div class="features-phone-window">
-                        <div class="mockup-phone">
-                            <div class="dynamic-island"></div>
-                            <div class="phone-screen-track" id="featuresImageTrack">
-                                <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI" class="screen-img active" id="mockup-1">
-                                <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI" class="screen-img" id="mockup-2">
-                                <img src="assets/IMG_4375.PNG" alt="Total Wealth UI" class="screen-img" id="mockup-3">
-                                <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI" class="screen-img" id="mockup-4">
-                                <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI" class="screen-img" id="mockup-5">
-                            </div>
-                        </div>
-                </div>
-
             </div>
         </div>
     </section>
+
+    <!-- Fixed Phone Mockup (positioned by JS) -->
+    <div class="features-phone-fixed" id="featuresPhoneFixed">
+        <div class="mockup-phone">
+            <div class="dynamic-island"></div>
+            <div class="phone-screen-track" id="featuresImageTrack">
+                <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI" class="screen-img active" id="mockup-1">
+                <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI" class="screen-img" id="mockup-2">
+                <img src="assets/IMG_4375.PNG" alt="Total Wealth UI" class="screen-img" id="mockup-3">
+                <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI" class="screen-img" id="mockup-4">
+                <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI" class="screen-img" id="mockup-5">
+            </div>
+        </div>
+    </div>
     <!-- Detailed Analysis sections removed in favor of Spotlight cards -->
 
     <!-- Transparency & Security Section -->
@@ -495,17 +495,30 @@
         document.addEventListener("DOMContentLoaded", () => {
             const textPanels = document.querySelectorAll('.feature-text-panel');
             const screenImages = document.querySelectorAll('.screen-img');
+            const phoneFixed = document.getElementById('featuresPhoneFixed');
+            const featuresSection = document.getElementById('features');
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '-10% 0px -45% 0px', // Trigger earlier (closer to top)
-                threshold: [0, 0.1, 0.5]
-            };
+            // Show/hide fixed phone when features section is in viewport
+            if (phoneFixed && featuresSection) {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            phoneFixed.classList.add('visible');
+                        } else {
+                            phoneFixed.classList.remove('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.05,
+                    rootMargin: '-60px 0px 0px 0px'
+                });
+                sectionObserver.observe(featuresSection);
+            }
 
+            // Feature panel observer - switches active panel + slides phone screen
             const featureObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const targetId = entry.target.dataset.mockup;
                         const index = Array.from(textPanels).indexOf(entry.target);
                         
                         // Update text panels
@@ -518,28 +531,21 @@
                             track.style.transform = `translateX(-${index * 100}%)`;
                         }
 
-                        // Update active class for screen images (for any specific styles)
+                        // Update active class for screen images
                         screenImages.forEach((img, idx) => {
-                            if (idx === index) {
-                                img.classList.add('active');
-                            } else {
-                                img.classList.remove('active');
-                            }
+                            img.classList.toggle('active', idx === index);
                         });
                     }
                 });
             }, {
                 root: null,
-                rootMargin: '-48% 0px -48% 0px', // Precise center trigger
+                rootMargin: '-48% 0px -48% 0px',
                 threshold: 0
             });
 
             textPanels.forEach(panel => {
                 featureObserver.observe(panel);
             });
-        // This closes DOMContentLoaded! but I must make sure not to break it
-        // Wait, the bottom of the script ALREADY HAS `});` for DOMContentLoaded!
-        // So I should NOT close it here. Just let it flow into Mobile Menu Logic.
 
         // Mobile Menu Logic
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
