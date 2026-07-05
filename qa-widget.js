@@ -105,32 +105,32 @@ class VeraQAWidget {
 
     appendMessage(role, content, sources = []) {
         const messageDiv = document.createElement('div');
-        messageDiv.className = \`vera-qa-message \${role}\`;
+        messageDiv.className = `vera-qa-message ${role}`;
 
         let sourcesHtml = '';
         if (sources && sources.length > 0) {
-            sourcesHtml = \`
+            sourcesHtml = `
                 <div class="vera-qa-sources">
-                    \${sources.map(s => \`
-                        <a href="\${s.url || '#'}" target="_blank" rel="noopener noreferrer" class="vera-qa-source-link">
+                    ${sources.map(s => `
+                        <a href="${s.url || '#'}" target="_blank" rel="noopener noreferrer" class="vera-qa-source-link">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            \${this.escapeHtml(s.title)}
+                            ${this.escapeHtml(s.title)}
                         </a>
-                    \`).join('')}
+                    `).join('')}
                 </div>
-            \`;
+            `;
         }
 
         // Extremely simple markdown-like formatting for links/bold could go here, 
         // but for now we'll just safely inject text and preserve newlines.
         const safeContent = this.escapeHtml(content).replace(/\\n/g, '<br/>');
 
-        messageDiv.innerHTML = \`
+        messageDiv.innerHTML = `
             <div class="vera-qa-bubble">
-                \${safeContent}
+                ${safeContent}
             </div>
-            \${sourcesHtml}
-        \`;
+            ${sourcesHtml}
+        `;
 
         this.elements.messagesArea.appendChild(messageDiv);
         this.scrollToBottom();
@@ -144,13 +144,13 @@ class VeraQAWidget {
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'vera-qa-message assistant loading-indicator';
         loadingDiv.id = 'veraQaLoading';
-        loadingDiv.innerHTML = \`
+        loadingDiv.innerHTML = `
             <div class="vera-qa-bubble vera-qa-typing">
                 <div class="vera-qa-dot"></div>
                 <div class="vera-qa-dot"></div>
                 <div class="vera-qa-dot"></div>
             </div>
-        \`;
+        `;
         this.elements.messagesArea.appendChild(loadingDiv);
         this.scrollToBottom();
     }
