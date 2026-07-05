@@ -1738,7 +1738,7 @@ p.subtitle {
 /* Fixed Phone Mockup - positioned via JS */
 .features-phone-fixed {
     position: fixed;
-    top: 50%;
+    top: 55%;
     right: calc(50% - 640px + 80px); /* Align with right side of container */
     transform: translateY(-50%);
     z-index: 200;
@@ -1817,7 +1817,7 @@ p.subtitle {
     .features-phone-fixed {
         right: 50%;
         transform: translate(50%, -50%);
-        top: 40%;
+        top: 55%;
     }
     .mockup-phone {
         width: 200px;
