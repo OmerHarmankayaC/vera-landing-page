@@ -1576,7 +1576,6 @@ p.subtitle {
                 bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 background 0.3s ease,
                 box-shadow 0.3s ease;
-    animation: float-gentle 6s ease-in-out infinite;
 }
 
 .floating-support-btn.at-footer {
@@ -1671,10 +1670,12 @@ p.subtitle {
 .features-flex-layout {
     position: relative;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
 }
 
 .features-text-window {
-    width: 50%;
     position: relative;
 }
 
@@ -1735,19 +1736,21 @@ p.subtitle {
     max-width: 100%;
 }
 
-/* Fixed Phone Mockup - positioned via JS */
-.features-phone-fixed {
-    position: fixed;
-    top: 55%;
-    right: calc(50% - 640px + 80px); /* Align with right side of container */
+/* Sticky Phone Mockup */
+.features-phone-sticky {
+    position: sticky;
+    top: 50vh;
     transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 200;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.features-phone-fixed.visible {
+.features-phone-sticky.visible {
     opacity: 1;
 }
 
@@ -1798,13 +1801,17 @@ p.subtitle {
 
 /* Responsive: position phone relative to viewport on smaller screens */
 @media (max-width: 1400px) {
-    .features-phone-fixed {
-        right: 5vw;
-    }
+    /* Sticky width can be adjusted if necessary */
 }
 
 @media (max-width: 992px) {
+    .features-flex-layout {
+        grid-template-columns: 1fr;
+    }
     .features-text-window {
+        grid-row: 1;
+        grid-column: 1;
+        z-index: 10;
         width: 100%;
     }
     .feature-text-panel {
@@ -1814,10 +1821,13 @@ p.subtitle {
         padding-left: 8%;
         padding-right: 8%;
     }
-    .features-phone-fixed {
-        right: 50%;
-        transform: translate(50%, -50%);
+    .features-phone-sticky {
+        grid-row: 1;
+        grid-column: 1;
+        width: 100%;
+        position: sticky;
         top: 55%;
+        z-index: 0;
     }
     .mockup-phone {
         width: 200px;
