@@ -1,7 +1,6 @@
 
 html {
-    overflow-x: clip !important; /* Prevents horizontal scroll */
-    overflow-y: visible !important;
+    /* overflow-x: clip removed to fix sticky positioning */
 }
 
 html, body {
@@ -70,8 +69,7 @@ body {
     color: var(--text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    overflow-y: visible;
+    /* overflow-x: clip removed to fix sticky positioning */
 }
 
 .container {
@@ -1653,10 +1651,9 @@ p.subtitle {
     overflow: visible !important;
 }
 
-/* Sticky Heading */
+/* Sticky Heading removed due to overlap */
 .features-scroll-header {
-    position: sticky;
-    top: 60px;
+    position: relative;
     z-index: 110;
     text-align: center;
     padding: 30px 0;
@@ -1672,7 +1669,6 @@ p.subtitle {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;
 }
 
 .features-text-window {
@@ -1686,7 +1682,7 @@ p.subtitle {
 
 .feature-text-panel {
     width: 100%;
-    min-height: 60vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1704,7 +1700,8 @@ p.subtitle {
     z-index: 10;
 }
 
-.feature-text-panel .feature-tab-icon {
+.feature-text-panel .feature-tab-icon,
+.text-carousel-slide .feature-tab-icon {
     margin-bottom: 24px;
     width: 64px;
     height: 64px;
@@ -1716,34 +1713,37 @@ p.subtitle {
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
-.feature-text-panel .feature-tab-icon svg {
+.feature-text-panel .feature-tab-icon svg,
+.text-carousel-slide .feature-tab-icon svg {
     width: 32px;
     height: 32px;
     color: currentColor;
 }
 
-.feature-text-panel h3 {
+.feature-text-panel h3,
+.text-carousel-slide h3 {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     margin-bottom: 24px;
     line-height: 1.1;
     font-weight: 700;
 }
 
-.feature-text-panel .feature-tab-desc {
+.feature-text-panel .feature-tab-desc,
+.text-carousel-slide .feature-tab-desc {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: var(--text-secondary);
     line-height: 1.6;
     max-width: 100%;
 }
 
+.features-text-carousel {
+    display: none;
+}
+
 /* Sticky Phone Mockup */
 .features-phone-sticky {
-    position: sticky;
-    top: 50vh;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    display: block;
     z-index: 200;
     pointer-events: none;
     opacity: 0;
@@ -1754,7 +1754,15 @@ p.subtitle {
     opacity: 1;
 }
 
+/* No-op wrapper on desktop: mockup-phone sticks directly within .features-phone-sticky */
+.features-phone-stage {
+    display: contents;
+}
+
 .mockup-phone {
+    position: sticky;
+    top: calc(50vh - 250px);
+    margin: 0 auto;
     width: 280px;
     height: 600px;
     border-radius: 40px;
@@ -1762,7 +1770,6 @@ p.subtitle {
     border: 10px solid #1e293b;
     overflow: hidden;
     box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
-    position: relative;
 }
 
 .dynamic-island {
@@ -1777,14 +1784,27 @@ p.subtitle {
     z-index: 100;
 }
 
+.status-bar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+    pointer-events: none;
+}
+
 .phone-screen-track {
     width: 100%;
     height: 100%;
-    position: relative;
-    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
     display: flex;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
+    padding-top: 37.5px;
+    box-sizing: border-box;
 }
 
 .screen-img {
@@ -1793,6 +1813,7 @@ p.subtitle {
     height: 100%;
     flex-shrink: 0;
     object-fit: cover;
+    object-position: top center;
 }
 
 .screen-img.active {
@@ -1808,29 +1829,63 @@ p.subtitle {
     .features-flex-layout {
         grid-template-columns: 1fr;
     }
+    /* Text panels overlap the phone's grid cell purely to give the pinned
+       stage room to scroll through - they no longer show their own content
+       on mobile (see .features-text-carousel below instead). */
     .features-text-window {
         grid-row: 1;
         grid-column: 1;
-        z-index: 10;
+        z-index: 1;
         width: 100%;
     }
     .feature-text-panel {
-        min-height: 70vh;
-        text-align: center;
-        align-items: center;
-        padding-left: 8%;
-        padding-right: 8%;
+        min-height: 100vh;
+        opacity: 0 !important;
+        pointer-events: none;
     }
     .features-phone-sticky {
         grid-row: 1;
         grid-column: 1;
         width: 100%;
+        z-index: 10;
+    }
+    .features-phone-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: sticky;
-        top: 55%;
-        z-index: 0;
+        top: calc(45vh - 216px); /* push it closer to the center */
     }
     .mockup-phone {
+        position: relative;
+        top: auto;
+        transform: none;
         width: 200px;
         height: 433px;
+    }
+    .phone-screen-track {
+        padding-top: 26px;
+    }
+    .features-text-carousel {
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        margin: 24px auto 0;
+        overflow: hidden;
+    }
+    .text-carousel-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .text-carousel-slide {
+        width: 100%;
+        min-width: 100%;
+        flex-shrink: 0;
+        text-align: center;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+    .text-carousel-slide .feature-tab-icon {
+        margin: 0 auto 20px;
     }
 }

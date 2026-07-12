@@ -326,16 +326,60 @@
 
                 <!-- Sticky Phone Mockup -->
                 <div class="features-phone-sticky" id="featuresPhoneFixed">
+                  <div class="features-phone-stage">
                     <div class="mockup-phone">
                         <div class="dynamic-island"></div>
+                        <img src="Vera-In_App-screenshots/time_battery.png" class="status-bar-overlay" alt="Status bar">
                         <div class="phone-screen-track" id="featuresImageTrack">
-                            <img src="assets/IMG_4377.PNG" alt="Inflation Calculator UI" class="screen-img active" id="mockup-1">
-                            <img src="assets/IMG_4379.PNG" alt="Receipt Scanning UI" class="screen-img" id="mockup-2">
-                            <img src="assets/IMG_4375.PNG" alt="Total Wealth UI" class="screen-img" id="mockup-3">
-                            <img src="assets/IMG_4378.PNG" alt="Financial Analysis UI" class="screen-img" id="mockup-4">
-                            <img src="assets/IMG_4382.PNG" alt="Proactive Budgeting UI" class="screen-img" id="mockup-5">
+                            <img src="Vera-In_App-screenshots/home_screen.png" alt="Inflation Calculator UI" class="screen-img active" id="mockup-1">
+                            <img src="Vera-In_App-screenshots/inventory.png" alt="Receipt Scanning UI" class="screen-img" id="mockup-2">
+                            <img src="Vera-In_App-screenshots/assets.png" alt="Total Wealth UI" class="screen-img" id="mockup-3">
+                            <img src="Vera-In_App-screenshots/insights.png" alt="Financial Analysis UI" class="screen-img" id="mockup-4">
+                            <img src="Vera-In_App-screenshots/goals.png" alt="Proactive Budgeting UI" class="screen-img" id="mockup-5">
                         </div>
                     </div>
+
+                    <!-- Mobile-only: text slides right beneath the pinned phone -->
+                    <div class="features-text-carousel">
+                        <div class="text-carousel-track" id="featuresTextCarouselTrack">
+                            <div class="text-carousel-slide">
+                                <div class="feature-tab-icon tab-theme-navy"><i data-lucide="calculator"></i></div>
+                                <h3 data-i18n="feature-1-title">Kişisel Enflasyon Motoru</h3>
+                                <div class="feature-tab-desc" data-i18n="feature-1-desc">
+                                    Sadece genel verileri değil, kendi harcama sepetinizdeki gerçek enflasyonu hesaplayan gelişmiş bir mühendislik çözümü.
+                                </div>
+                            </div>
+                            <div class="text-carousel-slide">
+                                <div class="feature-tab-icon tab-theme-white"><i data-lucide="scan-line"></i></div>
+                                <h3 data-i18n="feature-2-title">Yapay Zeka Destekli Fiş Tarama</h3>
+                                <div class="feature-tab-desc" data-i18n="feature-2-desc">
+                                    Optik karakter tanıma (OCR) ve yapay zeka ile fişlerinizi dijitalleştirin, envanterinizi ve fiyat değişimlerini anlık takip edin.
+                                </div>
+                            </div>
+                            <div class="text-carousel-slide">
+                                <div class="feature-tab-icon tab-theme-green"><i data-lucide="pie-chart"></i></div>
+                                <h3 data-i18n="feature-3-title">Bütünleşik Varlık Analizi</h3>
+                                <div class="feature-tab-desc" data-i18n="feature-3-desc">
+                                    Tüm yatırımlarınızı, nakit akışınızı ve birikimlerinizi tek bir merkezi mimari üzerinden izleyin.
+                                </div>
+                            </div>
+                            <div class="text-carousel-slide">
+                                <div class="feature-tab-icon tab-theme-red"><i data-lucide="activity"></i></div>
+                                <h3 data-i18n="feature-4-title">Derin Finansal Analiz</h3>
+                                <div class="feature-tab-desc" data-i18n="feature-4-desc">
+                                    Harcama alışkanlıklarınızın derinlerine inin. Geçmiş verilerle geleceğinizi daha iyi planlayın.
+                                </div>
+                            </div>
+                            <div class="text-carousel-slide">
+                                <div class="feature-tab-icon tab-theme-blue"><i data-lucide="target"></i></div>
+                                <h3 data-i18n="feature-5-title">Proaktif Bütçeleme</h3>
+                                <div class="feature-tab-desc" data-i18n="feature-5-desc">
+                                    Limitlerinize yaklaşmadan önce akıllı uyarılar alın ve bütçenizi aşmayın.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
                 </div>
 
             </div>
@@ -531,6 +575,12 @@
                         const track = document.getElementById('featuresImageTrack');
                         if (track) {
                             track.style.transform = `translateX(-${index * 100}%)`;
+                        }
+
+                        // Mobile: text carousel slides in sync with the phone screen
+                        const textCarouselTrack = document.getElementById('featuresTextCarouselTrack');
+                        if (textCarouselTrack) {
+                            textCarouselTrack.style.transform = `translateX(-${index * 100}%)`;
                         }
 
                         // Update active class for screen images
