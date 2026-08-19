@@ -1,16 +1,51 @@
-# React + Vite
+# Vera Finance — Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The marketing site for [Vera Finance](https://apps.apple.com/tr/app/vera-finance/id6760785410),
+an AI-assisted personal finance app for iOS.
 
-Currently, two official plugins are available:
+**Live:** [vera-landing-page-three.vercel.app](https://vera-landing-page-three.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Besides the landing page it carries the pages a published App Store app needs
+to have somewhere: privacy policy, terms of service, support, and a waitlist.
 
-## React Compiler
+## Q&A widget
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The site embeds a question-answering widget (`qa-widget.js`) that answers
+questions about the app from its documentation rather than from a language
+model's memory. Questions go to a serverless function (`api/vera-qa.js`) which
+attaches a shared secret and forwards them to the RAG backend — the browser
+never sees the credential.
 
-## Expanding the ESLint configuration
+| Variable | Description |
+|---|---|
+| `VERA_QA_BACKEND_URL` | RAG backend endpoint |
+| `VERA_QA_SHARED_SECRET` | Sent as `X-Vera-QA-Secret` |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The retrieval side lives in a separate repository:
+[Vera_RAG_Assistant](https://github.com/OmerHarmankayaC/Vera_RAG_Assistant).
+
+## Structure
+
+```
+index.html          landing
+about.html          about the app
+privacy.html        privacy policy      ← docs/privacy-policy.md
+terms.html          terms of service    ← docs/terms-of-service.md
+support.html        support
+waitlist.html       waitlist signup
+verify.html         account verification
+translations.js     Turkish / English copy
+qa-widget.js/.css   Q&A widget
+api/vera-qa.js      serverless proxy to the RAG backend
+```
+
+Static HTML, CSS and JavaScript — no framework and no build step. Bilingual
+(Turkish / English) through `translations.js`. Deployed on Vercel.
+
+## Development
+
+```bash
+npm run dev      # npx live-server
+```
+
+`npm run build` is a no-op; the site is served as it is.
